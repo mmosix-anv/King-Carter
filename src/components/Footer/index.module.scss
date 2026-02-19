@@ -1,0 +1,159 @@
+/* Footer Styles */
+.footer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* LINKS SECTION (Existing Footer Content) */
+.linksSection {
+  background-color: #0e0e0e;
+  color: #afafaf;
+  font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  padding: 50px 70px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+
+  .column {
+    flex: 1;
+    min-width: 200px;
+
+    .heading {
+      color: #f2f2f2;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      margin-top: 0;
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        margin-bottom: 15px;
+        line-height: 1.5;
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+            &:hover { color: #fff; }
+        }
+      }
+    }
+
+    .socialGrid {
+       display: flex;
+       gap: 20px;
+       margin-bottom: 15px;
+       flex-wrap: wrap;
+    }
+
+    .socialItem {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       cursor: pointer;
+       
+       img {
+         width: 15px;
+         height: 15px;
+       }
+       
+       &:hover {
+         color: #fff;
+       }
+    }
+  }
+
+  .enquiryBtn {
+    display: flex;
+    align-items: center;
+    background: url('/image/mlswdn3c-pjcot4p.png') no-repeat center/cover;
+    width: 151px;
+    height: 60px;
+    position: relative;
+    cursor: pointer;
+    margin-top: 20px;
+
+    .iconContainer {
+       position: absolute;
+       top: 9px;
+       left: 14px;
+       width: 138px;
+       height: 34px;
+       
+       img {
+         width: 100%;
+         height: 100%;
+       }
+    }
+    
+    .btnTextContainer {
+        position: absolute;
+        top: 8px;
+        right: 0;
+        left: 13px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        padding-left: 17px;
+        background: url('/image/mlswdn3c-yosyyhr.svg') no-repeat center/cover;
+    }
+
+    .btnText {
+       color: #fff;
+       font-weight: 700;
+       font-size: 13px;
+    }
+  }
+
+  .copyrightBar {
+    border-top: 1px solid #212121;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    p {
+        margin: 0;
+        font-weight: 300;
+        font-size: 12px;
+    }
+
+    .logoSmall {
+        height: 24px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 30px 20px;
+    
+    .content {
+       flex-direction: column;
+       gap: 30px;
+    }
+
+    .column {
+       min-width: 100%;
+    }
+
+    .copyrightBar {
+       flex-direction: column;
+       gap: 10px;
+       text-align: center;
+    }
+  }
+}

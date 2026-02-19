@@ -1,0 +1,38 @@
+# Tasks
+- [x] Task 1: Audit current Home CSS and markup
+  - [x] Identify absolute positions and fixed heights causing divergence
+  - [x] Note typography gaps vs. screenshot (sizes/weights)
+- [x] Task 2: Refactor hero section
+  - [x] Order heading above subheading
+  - [x] Apply type scale to match screenshot
+- [x] Task 3: Implement intro band CTA
+  - [x] Add centered “Make an Enquiry” button
+  - [x] Verify spacing above/below
+- [x] Task 4: Rebuild Services cards
+  - [x] Use image as background/content fill
+  - [x] Add overlay shading
+  - [x] Position bottom-left title (3 cards)
+- [x] Task 5: Rebuild Experiences cards
+  - [x] Mirror Services technique
+  - [x] Overlay “Lorem ipsum” bottom-left (3 cards)
+- [x] Task 6: Align “Why King & Carter”
+  - [x] Center heading/subheading
+  - [x] Display five circles in one row with centered labels
+- [x] Task 7: Contact section
+  - [x] Ensure full-width image background and readable inputs
+  - [x] Working Submit button UI
+- [x] Task 8: Remove legacy absolute/fixed heights
+  - [x] Convert to flex/flow and responsive units
+- [x] Task 9: Validation
+  - [x] Start dev server and visually compare to screenshot
+  - [x] Check responsive behavior at 1440px, 1024px, 768px
+
+# Task Dependencies
+- [Task 2] depends on [Task 1]
+- [Task 3] depends on [Task 2]
+- [Task 4] depends on [Task 1]
+- [Task 5] depends on [Task 4]
+- [Task 6] depends on [Task 1]
+- [Task 7] depends on [Task 1]
+- [Task 8] depends on [Task 1]
+- [Task 9] depends on [Tasks 2–8]

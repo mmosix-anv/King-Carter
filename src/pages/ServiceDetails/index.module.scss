@@ -1,0 +1,312 @@
+* {
+  box-sizing: border-box;
+}
+
+.serviceDetails {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  padding-bottom: 1px;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+
+  .groups14 {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    width: 100%;
+
+    .groups4 {
+      position: relative;
+      width: 100%;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+
+      .frame {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        .image {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          background-image: url(/image/mlswdn3k-pi1zzgj.png);
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
+
+          .privateLuxuryTranspo {
+            color: #ffffff;
+            font-family: Inter, sans-serif;
+            font-size: 88px;
+            font-weight: 700;
+            text-align: center;
+            padding: 20px;
+            
+            @media (max-width: 768px) {
+              font-size: 48px;
+            }
+          }
+        }
+      }
+      
+      .groups3 {
+         /* Navigation Bar - should be fixed or sticky if needed, or absolute top */
+         position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 72px;
+         z-index: 10;
+         /* Add styles for nav items if needed, mostly hidden in desktop view usually handled by header component? */
+         /* Assuming this is part of the design overlay */
+      }
+    }
+
+    .designedForIndividua3 {
+      margin: 80px auto 20px;
+      font-family: Inter, sans-serif;
+      font-size: 54px;
+      font-weight: 700;
+      color: #191919;
+      text-align: center;
+      max-width: 1000px;
+      padding: 0 20px;
+      
+      @media (max-width: 768px) {
+        font-size: 32px;
+        margin-top: 40px;
+      }
+    }
+
+    .loremIpsumDolorSitAm4 {
+      margin: 0 auto 60px;
+      font-family: Inter, sans-serif;
+      font-size: 19px;
+      line-height: 1.6;
+      color: #191919;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+
+    .groups13 {
+      position: relative;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      
+      /* Image Blocks */
+      .frame2, .frame3 {
+        position: relative;
+        width: 100%;
+        height: 500px; /* Min height for images */
+        overflow: hidden;
+        
+        .image2 {
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+        }
+      }
+      
+      .groups12 {
+        /* Overlay for the first image (frame2) */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 500px; /* Match frame2 height */
+        pointer-events: none; /* Let clicks pass through */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        .groups11 {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           background: rgba(0,0,0,0.5);
+        }
+        
+        .lOremipsum {
+          font-family: Inter, sans-serif;
+          font-size: 40px;
+          font-weight: 700;
+          color: #ffffff;
+          position: relative;
+          z-index: 2;
+          margin-bottom: 10px;
+        }
+        
+        .lOremipsumdollar {
+           font-family: Inter, sans-serif;
+           font-size: 12px;
+           font-weight: 700;
+           color: #ffffff;
+           position: relative;
+           z-index: 2;
+        }
+        
+        .seeMore {
+           margin-top: 20px;
+           font-size: 13px;
+           color: #fff;
+           position: relative;
+           z-index: 2;
+        }
+        
+        .vector15 {
+           margin-top: 10px;
+           position: relative;
+           z-index: 2;
+        }
+      }
+
+      .groups10 {
+        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .frame4, .frame5, .frame6, .frame7 {
+          position: relative;
+          width: 100%;
+          height: 500px;
+          overflow: hidden;
+          
+          .image2 {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+          }
+        }
+        
+        .frame8 {
+           /* Contact Form Section */
+           position: relative;
+           width: 100%;
+           background: #0e0e0e;
+           color: #fff;
+           padding: 60px 20px;
+           display: flex;
+           justify-content: center;
+           
+           .image3 {
+              width: 100%;
+              max-width: 1000px;
+              background: none; /* Remove bg image if it was interfering */
+              padding: 0;
+              margin: 0;
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+              
+              .contactUs {
+                 font-size: 38px;
+                 font-weight: 700;
+                 color: #fff;
+              }
+              
+              .autoWrapper, .autoWrapper2, .autoWrapper3, .autoWrapper5 {
+                 display: flex;
+                 flex-direction: column;
+                 gap: 15px;
+                 
+                 p {
+                    color: #e5e5e5;
+                    font-size: 14px;
+                 }
+              }
+              
+              .vector4, .vector5 {
+                 height: 1px;
+                 background-color: #e5e5e5;
+                 width: 100%;
+              }
+              
+              .groups8 {
+                 /* Submit button */
+                 margin-top: 20px;
+                 cursor: pointer;
+                 width: fit-content;
+                 
+                 .vector9 {
+                    background: #fff;
+                    color: #000;
+                    padding: 10px 30px;
+                    font-weight: 700;
+                 }
+              }
+           }
+        }
+        
+        .frame14 {
+           /* Footer Info Section */
+           position: relative;
+           width: 100%;
+           background: #0e0e0e;
+           padding: 40px 20px;
+           
+           .vector12 {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-between;
+              width: 100%;
+              max-width: 1200px;
+              margin: 0 auto;
+              background: none;
+              padding: 0;
+              height: auto;
+              min-width: 0;
+              
+              .autoWrapper6, .autoWrapper12 {
+                 display: flex;
+                 flex-direction: column;
+                 gap: 10px;
+                 margin: 20px 0;
+              }
+              
+              .sErvices2, .fOllowus {
+                 color: #fff;
+                 font-weight: 700;
+                 font-size: 14px;
+              }
+              
+              .aCorporateExecutiveT, .aPrivateLuxuryTransp, .aSpecialEventsLifest {
+                 color: #afafaf;
+                 font-size: 12px;
+              }
+           }
+           
+           .vector13 {
+              /* Copyright bar */
+              background: #212121;
+              width: 100%;
+              padding: 10px 20px;
+              display: flex;
+              justify-content: center;
+              
+              .kIngandcartercom2026 {
+                 color: #afafaf;
+                 font-size: 12px;
+              }
+           }
+        }
+      }
+    }
+  }
+}

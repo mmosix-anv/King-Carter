@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #191919;
+  padding: 0 40px;
+  width: 100%;
+  height: 72px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+/* Base Nav Container */
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  height: 100%;
+}
+
+/* Wrapper for Nav Items to center them */
+.navLinksWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  position: absolute; /* Absolute positioning for true centering */
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  pointer-events: none; /* Allow clicks to pass through to logo/auth */
+}
+
+.navLeft, .navRight {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  pointer-events: auto; /* Re-enable pointer events */
+}
+
+.navLeft {
+  justify-content: flex-end;
+  margin-right: 180px; /* Increased space for logo */
+}
+
+.navRight {
+  justify-content: flex-start;
+  margin-left: 180px; /* Increased space for logo */
+}
+
+.navLink {
+  text-decoration: none;
+  line-height: 1;
+  letter-spacing: 1px;
+  color: #f2f2f2;
+  font-family: Inter, sans-serif;
+  font-size: 10px;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.logoContainer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  z-index: 1001;
+}
+
+.logo {
+  width: 237px;
+  height: 45px;
+  flex-shrink: 0;
+  transition: width 0.3s ease;
+}
+
+/* Services Dropdown */
+.servicesDropdown {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #212121;
+  min-width: 180px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  padding: 8px 0;
+  z-index: 101;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownItem {
+  padding: 12px 20px;
+  color: #f2f2f2;
+  text-decoration: none;
+  font-size: 12px;
+  font-family: Inter, sans-serif;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: #333;
+  }
+}
+
+/* Auth Section (Right side) */
+.authContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: auto; /* Push to the right */
+  padding-right: 20px; /* Add padding to prevent sticking to edge */
+  position: relative;
+  z-index: 1002; /* Ensure it's above other elements */
+}
+
+.memberBtnWrapper {
+  position: relative;
+  border: 1px solid #f2f2f2;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: #f2f2f2;
+    
+    .becomeAMember {
+      color: #191919;
+    }
+  }
+}
+
+.becomeAMember {
+  display: block;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #f2f2f2;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.loginWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.divider {
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.loginLink {
+  text-decoration: none;
+  color: #ffffff;
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  transition: opacity 0.3s ease;
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.arrowIcon {
+  width: 12px;
+  height: 12px;
+}
+
+/* Burger Menu */
+.burgerMenu {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+.burgerLine {
+  width: 100%;
+  height: 2px;
+  background-color: #f2f2f2;
+  transition: all 0.3s ease;
+}
+
+/* Close button - same style/position as burger */
+.closeBtn {
+  display: none;
+  position: absolute;
+  top: 27px; /* Matches vertical center of 72px header (72-18)/2 approx */
+  left: 40px; /* Matches header padding */
+  background: none;
+  border: none;
+  color: #f2f2f2;
+  font-size: 30px;
+  line-height: 18px; /* Match burger height */
+  cursor: pointer;
+  z-index: 1003;
+  padding: 0;
+  width: 24px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .navLeft, .navRight {
+    width: auto;
+    margin: 0;
+    gap: 15px;
+  }
+  
+  .navLinksWrapper {
+    gap: 250px; /* Space for logo in middle */
+  }
+
+  .logo {
+    width: 180px;
+  }
+}
+
+@media (max-width: 992px) {
+  .header {
+    justify-content: space-between;
+    padding: 0 40px; /* Keep padding consistent */
+  }
+
+  .logoContainer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+  }
+
+  .burgerMenu {
+    display: flex;
+    order: 1;
+  }
+
+  /* Mobile Drawer */
+  .navContainer {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Slide out to right */
+    width: 100%;
+    height: 100vh;
+    background-color: #191919;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    overflow-y: auto;
+  }
+
+  .navContainer.navOpen {
+    right: 0;
+  }
+
+  .closeBtn {
+    display: block; /* Show close button when menu is open */
+  }
+
+  .navLinksWrapper {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .navLeft, .navRight {
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    gap: 30px;
+    margin-bottom: 30px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Fix for overlapping menu items - reset desktop margins */
+  .navLeft {
+    margin-right: 0;
+  }
+  
+  .navRight {
+    margin-left: 0;
+  }
+
+  .authContainer {
+    flex-direction: row; /* Keep items on same line */
+    justify-content: center;
+    width: 100%;
+    margin-left: 0;
+    margin-top: auto; /* Push to bottom of flex container */
+    padding-bottom: 40px; /* Space from bottom */
+    gap: 20px;
+    padding-right: 0; /* Reset desktop padding */
+  }
+
+  .servicesDropdown {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .dropdownMenu {
+    position: static;
+    transform: none;
+    background: transparent;
+    box-shadow: none;
+    padding: 10px 0 0 0;
+    align-items: center;
+  }
+
+  .navLink {
+    font-size: 18px;
+  }
+}

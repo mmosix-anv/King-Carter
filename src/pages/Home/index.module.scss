@@ -1,0 +1,295 @@
+/* Basic CSS Reset & Scoped Styles */
+.homepage {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  width: 100%;
+  overflow-x: hidden;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* HERO SECTION */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align content to the left */
+  min-height: 700px; /* Reduced height from 100vh to match design */
+  background-image: url('/image/mltgxmaq-wbyrc3o.png'); /* Updated image */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: #ffffff; /* Updated text color to white */
+  text-align: left;
+  padding: 0 5%; /* Horizontal padding */
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3); /* Slight overlay for readability */
+    z-index: 1;
+  }
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Left align items */
+  gap: 1.5rem;
+  margin-top: 5vh; /* Slightly offset from center to match design */
+
+  .heroTitle {
+    font-size: clamp(2.5rem, 5vw, 54px); /* Responsive but capped at 54px */
+    font-weight: 700;
+    line-height: 1.1;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 0.5rem;
+    color: #ffffff; /* Explicitly set color */
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1rem, 2vw, 19px); /* Responsive but capped at 19px */
+    font-weight: 400;
+    line-height: 1.5;
+    max-width: 500px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    color: #ffffff; /* Explicitly set color */
+  }
+}
+
+/* INTRO SECTION */
+.intro {
+  padding: 6rem 2rem;
+  background-color: #fff; /* White background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.introContent {
+  max-width: 800px;
+  text-align: center;
+
+  .introText {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 700; /* Bold text */
+    line-height: 1.6;
+    color: #000 !important; /* Force black color */
+    margin-bottom: 2rem;
+  }
+
+  .bookExperienceBtn {
+    display: inline-block;
+    background-color: #000;
+    color: #fff;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #000;
+
+    &:hover {
+      background-color: #fff;
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  }
+}
+
+/* WHY KING & CARTER SECTION */
+.whyKingCarter {
+  padding: 6rem 2rem;
+  background-color: #fcfcfc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sectionSubtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.whyGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1400px;
+  width: 100%;
+}
+
+.whyItem {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1px solid #d4af37; /* Gold/Bronze border color matching screenshot hint */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  background: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  }
+}
+
+.whyText {
+  font-size: 0.95rem;
+  color: #000;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* CONTACT SECTION styles removed as they are moved to Footer */
+
+/* SERVICES SECTION */
+.services {
+  padding: 4rem 0; /* Removed horizontal padding for full width */
+  width: 100%;
+  max-width: 100%; /* Ensure full width */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.sectionTitle {
+  font-size: 5rem; /* Increased size to match screenshot (approx 90px) */
+  font-weight: 700;
+  text-align: center;
+  color: #2a2a2a; /* Updated color to match design */
+  margin-bottom: 2rem; /* Increased margin */
+}
+
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px; /* Minimal gap to match "end-to-end" look */
+  width: 100%;
+  max-width: 100%; /* Full width */
+  padding: 0; /* Remove padding */
+  
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  box-shadow: none; /* Remove shadow for cleaner look */
+  aspect-ratio: 3/4;
+  min-height: 400px; /* Force minimum height in case aspect-ratio fails or needs content */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background-color: #333; /* Fallback color */
+
+  &:hover {
+    .cardImage {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block; /* Ensure image is displayed as a block element */
+  position: absolute; /* Position absolute to cover the card */
+  top: 0;
+  left: 0;
+  z-index: 1; /* Ensure it sits below the overlay */
+}
+
+.cardOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 1.5rem;
+  /* Gradient for text readability */
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 0.5rem; /* Reduced gap */
+  height: 100%; /* Cover full height for gradient effect if needed, or keep partial */
+  z-index: 2; /* Ensure it sits above the image */
+  pointer-events: none; /* Allow clicks to pass through to the card */
+}
+
+.cardTitle, .learnMoreBtn {
+  pointer-events: auto; /* Re-enable pointer events for interactive elements */
+}
+
+.cardTitle {
+  font-size: 2rem; /* Larger title matching screenshot */
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.1;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  color: #ffffff;
+}
+
+.learnMoreBtn {
+  background: transparent;
+  border: none; /* Text only button */
+  color: #ccc; /* Lighter color for secondary text */
+  padding: 0;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-transform: none; /* Keep as is */
+
+  &:hover {
+    color: white;
+    text-decoration: underline;
+  }
+}

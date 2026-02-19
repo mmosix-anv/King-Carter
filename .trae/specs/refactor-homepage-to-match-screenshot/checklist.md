@@ -1,0 +1,9 @@
+- [x] Hero heading is above subheading with correct sizes/weights
+- [x] Intro band is centered with CTA button and proper spacing
+- [x] Services: three image cards with bottom-left text overlays
+- [x] Experiences: three image cards with bottom-left text overlays
+- [x] “Why King & Carter”: five circles in a single row, labels centered
+- [x] Contact section spans full width with readable inputs and visible Submit
+- [x] No fixed heights in Home except min-heights where necessary
+- [x] No absolute positioning for layout (only for overlays inside cards)
+- [x] Homepage is responsive at 1440px, 1024px, and 768px

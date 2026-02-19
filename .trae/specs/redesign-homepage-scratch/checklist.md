@@ -1,0 +1,8 @@
+- [x] Hero section matches the visual design (typography, spacing, background).
+- [x] Services section displays 4 cards in a row on desktop and stacks on mobile.
+- [x] Experiences section displays 4 cards in a row on desktop and stacks on mobile.
+- [x] "Why King & Carter" section circles are centered and wrap responsively.
+- [x] Contact form has the correct dark theme styling and input layout.
+- [x] No horizontal scrollbars are visible on the page (overflow handled).
+- [x] All text is readable and follows the hierarchy from the screenshot.
+- [x] Images are correctly loaded and scaled (object-fit: cover where appropriate).

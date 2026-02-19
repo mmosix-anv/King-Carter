@@ -1,0 +1,478 @@
+* {
+  box-sizing: border-box;
+}
+
+.experience {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+
+  /* Global Section Styles */
+  .groups32, .frame5, .frame7, .frame13, .groups9, .groups10, 
+  .groups13, .groups14, .groups16, .groups17, .vector38, .frame17 {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px;
+    max-width: 1200px; /* Constrain content width */
+    margin: 0 auto;
+  }
+
+  /* Specific Adjustments */
+
+  /* Contact Form Section */
+  .groups32 {
+    background: #f9f9f9;
+    width: 100%;
+    max-width: 100%; /* Full width background */
+    
+    .frame2 {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      
+      .image {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        
+        .wantToEnquireAboutPr4 {
+           font-family: Inter, sans-serif;
+           font-size: 40px;
+           font-weight: 700;
+           color: #111;
+           text-align: center;
+           
+           @media (max-width: 768px) {
+             font-size: 28px;
+           }
+        }
+        
+        .forAllOtherEnquiries {
+           text-align: center;
+           color: #666;
+           text-decoration: underline;
+           cursor: pointer;
+        }
+        
+        .vector, .vector2, .vector4, .vector5 {
+           height: 1px;
+           background-color: #ddd;
+           width: 100%;
+           margin: 10px 0;
+        }
+        
+        .autoWrapper, .autoWrapper2, .autoWrapper4, .autoWrapper5 {
+           display: flex;
+           gap: 20px;
+           align-items: center;
+           flex-wrap: wrap;
+           
+           .salutation, .emailAddress, .phoneNumber {
+              flex: 1;
+              min-width: 200px;
+              padding: 10px;
+              border-bottom: 1px solid #ddd;
+           }
+        }
+        
+        .autoWrapper3 {
+           display: flex;
+           gap: 20px;
+           width: 100%;
+           
+           .vector3 {
+              flex: 1;
+              height: 1px;
+              background-color: #ddd;
+           }
+        }
+        
+        .frame {
+           margin-top: 20px;
+           .howDidYouHearAboutUs {
+              padding: 10px;
+              border-bottom: 1px solid #ddd;
+           }
+        }
+        
+        .letUsKnowHowWeCanHel {
+           padding: 10px;
+           border-bottom: 1px solid #ddd;
+           margin-top: 20px;
+        }
+        
+        .autoWrapper6, .autoWrapper9 {
+           display: flex;
+           align-items: flex-start;
+           gap: 10px;
+           margin-top: 15px;
+           
+           .vector6 {
+              width: 20px;
+              height: 20px;
+              margin-top: 3px;
+           }
+           
+           p {
+              font-size: 14px;
+              color: #666;
+           }
+        }
+        
+        .autoWrapper10 {
+           margin-top: 30px;
+           display: flex;
+           justify-content: center;
+           cursor: pointer;
+           
+           .vector9 {
+              background: #000;
+              color: #fff;
+              padding: 10px 40px;
+              font-weight: 700;
+              text-transform: uppercase;
+           }
+           
+           .groups3 {
+              display: none; /* Hide decorative button bg if handled by CSS */
+           }
+        }
+      }
+    }
+  }
+
+  /* Content Sections with Images */
+  .frame5, .frame7, .groups16 {
+     /* Membership Sections */
+     text-align: center;
+     
+     .vector11, .vector14, .vector26 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        
+        .frame3 {
+           width: 100%;
+           max-width: 600px;
+           
+           .image2 {
+              width: 100%;
+              height: auto;
+           }
+        }
+        
+        .privateMembership {
+           font-size: 32px;
+           font-weight: 700;
+        }
+        
+        .autoWrapper11, .groups6, .groups15 {
+           max-width: 800px;
+           font-size: 18px;
+           line-height: 1.6;
+           color: #333;
+        }
+        
+        .autoWrapper12, .autoWrapper13, .autoWrapper23 {
+           display: flex;
+           gap: 20px;
+           margin-top: 20px;
+           
+           img {
+              height: 40px;
+              width: auto;
+           }
+        }
+     }
+  }
+
+  /* Editorial / Noted */
+  .frame13 {
+     background: #fff;
+     
+     .frame9 {
+        width: 100%;
+        
+        .vector16 {
+           display: flex;
+           flex-direction: column;
+           align-items: center;
+           text-align: center;
+           gap: 20px;
+           
+           .autoWrapper14, .autoWrapper15 {
+              max-width: 800px;
+              font-size: 24px;
+              
+              .editorial {
+                 font-weight: 700;
+                 font-size: 40px;
+              }
+           }
+        }
+     }
+     
+     .frame12 {
+        width: 100%;
+        margin-top: 40px;
+        
+        .frame11 {
+           .image4 {
+              display: flex;
+              flex-wrap: wrap;
+              gap: 20px;
+              justify-content: center;
+              
+              .frame10 {
+                 flex: 1;
+                 min-width: 300px;
+                 background: #f5f5f5;
+                 padding: 20px;
+                 
+                 .image3 {
+                    p {
+                       margin-bottom: 10px;
+                    }
+                    .whereToWatchTheSixNa4 {
+                       font-weight: 700;
+                       font-size: 24px;
+                    }
+                 }
+              }
+              
+              .autoWrapper16 {
+                 /* Image grid placeholders */
+                 flex: 1;
+                 min-width: 300px;
+                 display: flex;
+                 flex-wrap: wrap;
+                 gap: 10px;
+                 
+                 .groups8, .vector17 {
+                    width: 100px;
+                    height: 100px;
+                    background: #eee;
+                 }
+              }
+           }
+        }
+     }
+  }
+
+  /* Travel, Restaurants, Exclusive Access */
+  .groups9, .groups10, .groups13 {
+     .vector18, .vector19, .vector22 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+        
+        .image2, .image5, .image6 {
+           width: 100%;
+           max-width: 600px;
+           height: auto;
+        }
+        
+        .travel, .restaurantsNightlife, .exclusiveAccess {
+           font-size: 32px;
+           font-weight: 700;
+        }
+        
+        .ourAwardWinningInHou2, .estaurantsEnableExcl, .recedentedAccessToCo2 {
+           max-width: 800px;
+           font-size: 18px;
+           line-height: 1.6;
+        }
+     }
+  }
+
+  /* Full width image */
+  .groups14 {
+     padding: 0;
+     max-width: 100%;
+     
+     .frame15 {
+        width: 100%;
+        
+        .frame14 {
+           width: 100%;
+           height: 400px;
+           overflow: hidden;
+           
+           .image2 {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+           }
+        }
+     }
+  }
+
+  /* Brand Events */
+  .groups17 {
+     .vector27 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+        
+        .brandEventsExperienc3 {
+           font-size: 40px;
+           font-weight: 700;
+        }
+        
+        .quintessentiallyExpe2 {
+           max-width: 800px;
+           font-size: 18px;
+           line-height: 1.6;
+        }
+     }
+     
+     .image7 {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        margin-top: 40px;
+     }
+  }
+
+  /* Testimonials */
+  .vector38 {
+     text-align: center;
+     background: #fff;
+     
+     .hereSWhatOurMembersH {
+        font-size: 40px;
+        font-weight: 700;
+        margin-bottom: 40px;
+     }
+     
+     .frame18 {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 24px;
+        font-style: italic;
+     }
+     
+     .planningOurItinerary3 {
+        max-width: 800px;
+        margin: 20px auto;
+        font-size: 18px;
+        line-height: 1.6;
+     }
+     
+     .autoWrapper31 {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 40px;
+        
+        .groups25 {
+           width: 10px;
+           height: 10px;
+        }
+     }
+  }
+
+  /* Misc Text/Images floating at bottom */
+  .yActivationsEventsGu, .ortWeElevate, .membershipServices, .businessServices {
+      text-align: center;
+      font-weight: 700;
+      font-size: 24px;
+      margin: 40px 0;
+  }
+
+  .vector24, .vector34 {
+     /* Dividers */
+     width: 100%;
+     max-width: 200px;
+     margin: 20px auto;
+  }
+  
+  .groups20 {
+     /* Private events */
+     .vector30 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+        
+        .image2 {
+           width: 100%;
+           max-width: 600px;
+           height: auto;
+        }
+        
+        .privateEvents {
+           font-size: 32px;
+           font-weight: 700;
+        }
+        
+        .groups18 {
+           max-width: 800px;
+           font-size: 18px;
+           line-height: 1.6;
+        }
+     }
+  }
+  
+  .frame17 {
+     /* Expect the best */
+     background: #f9f9f9;
+     width: 100%;
+     max-width: 100%;
+     
+     .vector33 {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+        
+        .expectTheBestExperie3 {
+           font-size: 40px;
+           font-weight: 700;
+        }
+        
+        .for25YearsWeHaveBeen3 {
+           max-width: 800px;
+           font-size: 18px;
+           line-height: 1.6;
+        }
+     }
+  }
+  
+  .image8 {
+     width: 100%;
+     height: auto;
+     margin-top: 40px;
+  }
+
+  /* Bottom CTA */
+  .frame24 {
+     background: #000;
+     color: #fff;
+     padding: 20px 40px;
+     margin: 40px 0;
+     cursor: pointer;
+     
+     .makeAnEnquiry {
+        font-weight: 700;
+        text-transform: uppercase;
+     }
+  }
+}
