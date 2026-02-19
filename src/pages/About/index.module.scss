@@ -248,8 +248,132 @@
     object-fit: contain;
     margin-top: 2rem;
   }
+}
+
+/* Image Grid Section */
+.imageGridSection {
+  display: flex;
+  width: 100%;
+  height: 50vh; /* Adjust based on design, screenshot suggests a substantial height */
+  min-height: 400px;
+  overflow: hidden;
+}
+
+.gridImage {
+  height: 100%;
+  object-fit: cover;
+}
+
+.gridImage:nth-child(1) {
+  width: 18.2%;
+}
+
+.gridImage:nth-child(2) {
+  width: 41.2%;
+}
+
+.gridImage:nth-child(3) {
+  width: 18.3%;
+}
+
+.gridImage:nth-child(4) {
+  width: 22.3%;
+}
+
+@media (max-width: 1024px) {
+  .imageGridSection {
+    flex-direction: row; /* Keep horizontal on mobile per request "single line end-to-end" */
+    height: 250px; /* Reduced height for mobile */
+    min-height: auto;
+  }
+}
+
+/* Founder's Section */
+.foundersSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 6rem 5%;
+  background-color: #fff;
+  color: #2a2a2a;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.foundersContent {
+  flex: 1;
+  max-width: 600px;
+  margin-right: 4rem;
+}
+
+.foundersTitle {
+  font-size: 55px;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  line-height: 1.2;
+  margin-top: 0;
+}
+
+.foundersText {
+  p {
+    font-size: 19px;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: #2a2a2a;
+  }
+}
+
+.foundersCommitment {
+  margin-top: 2rem;
+  font-weight: 400;
+}
+
+.founderSignature {
+  margin-top: 4rem;
+}
+
+.founderName {
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 0.5rem !important;
+}
+
+.founderRole {
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 0 !important;
+}
+
+.foundersImageContainer {
+  flex: 0 0 478px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.foundersImage {
+  width: 100%;
+  height: auto;
+  max-width: 478px;
+}
+
+@media (max-width: 1024px) {
+  .foundersSection {
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 5%;
+  }
+
+  .foundersContent {
+    margin-right: 0;
+    max-width: 100%;
+    margin-bottom: 4rem;
+    text-align: left; /* Keep left aligned as it's a letter, or center if preferred? Design usually left for letters */
+  }
   
-  .lifestyleContent {
-    padding: 0 20px;
+  .foundersImageContainer {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 300px;
   }
 }

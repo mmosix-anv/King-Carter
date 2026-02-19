@@ -68,6 +68,40 @@ const About = () => {
           </div>
         </div>
       </div>
+
+      <div className={styles.imageGridSection}>
+        <img src="/image/mltnbtbh-js49sjy.png" className={styles.gridImage} alt="Sailing" />
+        <img src="/image/mltnbtbh-14fj04h.png" className={styles.gridImage} alt="Dining" />
+        <img src="/image/mltnbtbh-yooz9uh.png" className={styles.gridImage} alt="Nature" />
+        <img src="/image/mltnbtbh-bt937q9.png" className={styles.gridImage} alt="Interior" />
+      </div>
+
+      <div className={styles.foundersSection}>
+        <div className={styles.foundersContent}>
+          <h2 className={styles.foundersTitle}>Founder’s Letter</h2>
+          <div className={styles.foundersText}>
+            <p>
+              King & Carter was born from my experiences across hospitality, business, and travel — and from a desire to build something that feels grounded and refined.
+            </p>
+            <p>
+              I wanted to create a transport division that values people, respects time, and delivers service without ego. A brand where clients feel taken care of, not sold to.
+            </p>
+            <p>
+              Luxury, to me, is about intention — doing the right things consistently, even when no one is watching.
+            </p>
+            <p className={styles.foundersCommitment}>
+              King & Carter is my commitment to that standard.
+            </p>
+            <div className={styles.founderSignature}>
+              <p className={styles.founderName}>Karton Zawolo</p>
+              <p className={styles.founderRole}>Founder, King & Carter</p>
+            </div>
+          </div>
+        </div>
+        <div className={styles.foundersImageContainer}>
+          <img src="/image/mltnljp8-pmuqhyu.svg" className={styles.foundersImage} alt="Abstract Shape" />
+        </div>
+      </div>
     </Layout>
   );
 };

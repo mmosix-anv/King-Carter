@@ -40,9 +40,9 @@ const Header = () => {
               <span className={styles.navLink}>S E R V I C E S</span>
               {isServicesOpen && (
                 <div className={styles.dropdownMenu}>
-                  <Link to="/services/transport" className={styles.dropdownItem}>Private Transport</Link>
-                  <Link to="/services/events" className={styles.dropdownItem}>Special Events</Link>
-                  <Link to="/services/corporate" className={styles.dropdownItem}>Corporate Travel</Link>
+                  <Link to="/service-details" className={styles.dropdownItem}>Private Transport</Link>
+                  <Link to="/service-details" className={styles.dropdownItem}>Special Events</Link>
+                  <Link to="/service-details" className={styles.dropdownItem}>Corporate Travel</Link>
                 </div>
               )}
             </div>
