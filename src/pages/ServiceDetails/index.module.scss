@@ -12,14 +12,14 @@
 
 .heroSection {
   width: 100%;
-  height: 80vh; /* Substantial height for hero */
+  height: 80vh;
   min-height: 600px;
   background-image: url(/image/mlto3mo6-h6nuqqp.png);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
-  align-items: flex-end; /* Text at bottom */
+  align-items: flex-end;
   padding-bottom: 0;
   position: relative;
 }
@@ -28,9 +28,9 @@
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 0 0 133px; /* Remove bottom padding here */
-  position: absolute; /* Take out of flow to overlay/hang */
-  bottom: -2px; /* Adjusted: Pull text up slightly from -44px */
+  padding: 0 0 0 133px;
+  position: absolute;
+  bottom: -2px;
   left: 0;
   right: 0;
   
@@ -41,7 +41,7 @@
   
   @media (max-width: 768px) {
     padding: 0 20px;
-    position: relative; /* On mobile, keep inside */
+    position: relative;
     bottom: auto;
     padding-bottom: 20px;
   }
@@ -51,26 +51,10 @@
   font-family: Inter, sans-serif;
   font-size: 88px;
   font-weight: 700;
-  color: #ffffff; /* Assuming white text per previous instructions, check if needs to be black if outside? Screenshot shows white text ON image/dark bg */
-  /* Wait, screenshot shows text ON the image at the bottom. 
-     If user says "start where the background image ends", they might mean the text baseline aligns with image bottom?
-     OR the text hangs off the edge? 
-     Let's look at screenshot again. Text is white, overlaying the bottom part of the photo.
-     Actually, "start where the background image ends" could mean the text is BELOW the image?
-     But the screenshot shows white text on top of the dark car interior/person.
-     
-     Re-reading: "Private Luxury Transport text needs to start where the background image ends"
-     If the screenshot shows text OVER image, then maybe "start where image ends" refers to horizontal alignment? 
-     No, context is vertical "pull the text bottom".
-     
-     If the text is white and over the image, it's already "at the bottom".
-     Maybe they mean the *baseline* of the text sits exactly on the bottom edge of the image container?
-  */
   color: #ffffff;
   margin: 0;
-  line-height: 1; /* Tighten line height to remove gap */
-  transform: translateY(18%); /* Push text down so descenders might touch bottom edge or slightly cut off like a magazine cover style? */
-  /* Or simply remove padding and let flex-end do work with line-height 1 */
+  line-height: 1;
+  transform: translateY(18%);
   
   @media (max-width: 1024px) {
     font-size: 64px;
@@ -79,5 +63,96 @@
   @media (max-width: 768px) {
     font-size: 42px;
     transform: none;
+  }
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 116px 20px 116px 133px;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  background: #ffffff;
+
+  .designedForIndividua3 {
+    margin: 0 0 0 2px;
+    line-height: 59px;
+    color: #191919;
+    font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+    font-size: 54px;
+    font-weight: 700;
+
+    .designedForIndividua {
+      letter-spacing: 0;
+      color: #191919;
+      font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 54px;
+      font-weight: 700;
+    }
+
+    .designedForIndividua2 {
+      line-height: 79px;
+      letter-spacing: 0;
+      color: #191919;
+      font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 54px;
+      font-weight: 700;
+    }
+  }
+
+  .loremIpsumDolorSitAm4 {
+    margin: 45px 0 0;
+    line-height: 26px;
+    color: #191919;
+    font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+    font-size: 19px;
+
+    .loremIpsumDolorSitAm {
+      letter-spacing: 0;
+      color: #191919;
+      font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 19px;
+    }
+
+    .loremIpsumDolorSitAm2 {
+      line-height: 30px;
+      letter-spacing: 0;
+      color: #191919;
+      font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 19px;
+    }
+
+    .loremIpsumDolorSitAm3 {
+      line-height: 29px;
+      letter-spacing: 0;
+      color: #191919;
+      font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+      font-size: 19px;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    padding: 96px 20px 96px 60px;
+    .designedForIndividua3 {
+      font-size: 48px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 60px 20px;
+    .designedForIndividua3 {
+      font-size: 34px;
+      line-height: 1.2;
+      .designedForIndividua,
+      .designedForIndividua2 {
+        font-size: inherit;
+      }
+    }
+    .loremIpsumDolorSitAm4 {
+      font-size: 16px;
+      line-height: 1.6;
+    }
   }
 }
