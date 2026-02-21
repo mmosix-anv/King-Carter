@@ -29,7 +29,7 @@ const ContactSection = () => {
           <div className={styles.checkboxGroup}>
             <label className={styles.checkboxLabel}>
               <input type="checkbox" name="subscribe" />
-              <span>I would like to subscribe to receive communications from Quintessentially Experiences</span>
+              <span>I would like to subscribe to receive communications from King + Carter Experiences</span>
             </label>
             <label className={styles.checkboxLabel}>
               <input type="checkbox" name="terms" />

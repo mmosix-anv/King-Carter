@@ -5,6 +5,7 @@ import About from './pages/About';
 import ServiceDetails from './pages/ServiceDetails';
 import Membership from './pages/Membership';
 import Experience from './pages/Experience';
+import Contact from './pages/Contact';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path="/service-details" element={<ServiceDetails />} />
         <Route path="/membership" element={<Membership />} />
         <Route path="/experience" element={<Experience />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   );

@@ -24,7 +24,7 @@ const BusinessServices = () => {
           <div className={styles.cardContent}>
             <h3 className={styles.cardTitle}>Brand events & experiences</h3>
             <p className={styles.cardText}>
-              Quintessentially Experiences builds lasting connections between luxury businesses and high-value 
+              King + Carter Experiences builds lasting connections between luxury businesses and high-value 
               audiences by leading the way in events & experience strategy, activations & events, guest 
               management & experiences, and incentives & rewards.
             </p>

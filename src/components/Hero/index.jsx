@@ -7,7 +7,7 @@ const Hero = () => {
       <div className={styles.top}>
         <div className={styles.content}>
           <h1>Want the best in life? Come to<br />the best in the business.</h1>
-          <p>We're the world's leading luxury lifestyle group, and we've spent the last 25 years perfecting our private membership offering to be the pinnacle of personalisation and epitome of exclusivity it is today. Here's how our community of like-minded members all live extraordinary lives thanks to a Quintessentially membership...</p>
+          <p>We're the world's leading luxury lifestyle group, and we've spent the last 25 years perfecting our private membership offering to be the pinnacle of personalisation and epitome of exclusivity it is today. Here's how our community of like-minded members all live extraordinary lives thanks to a King + Carter membership...</p>
           <button>Apply for membership</button>
         </div>
         <img src="/image/mlvh4yls-tepfzvw.png" alt="" />

@@ -38,7 +38,7 @@ const ContactForm = () => {
           
           <label className={styles.checkbox}>
             <input type="checkbox" />
-            <span>I would like to subscribe to Quintessentially's Noted Newsletter</span>
+            <span>I would like to subscribe to King + Carter's Noted Newsletter</span>
           </label>
           
           <label className={styles.checkbox}>
