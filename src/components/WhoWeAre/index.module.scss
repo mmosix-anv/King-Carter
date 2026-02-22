@@ -1,0 +1,133 @@
+/* Founder's Section */
+.foundersSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 80px 40px;
+  background-color: #fff;
+  color: #2a2a2a;
+  width: 100%;
+}
+
+.foundersContent {
+  flex: 1;
+  max-width: 563px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.foundersTitle {
+  font-size: 93px;
+  font-weight: 700;
+  margin: 0 0 24px 0;
+  line-height: 68px;
+  letter-spacing: 0;
+  color: #2a2a2a;
+  font-family: Inter, sans-serif;
+}
+
+.foundersText {
+  font-size: 19px;
+  line-height: 23px;
+  color: #2a2a2a;
+  font-family: Inter, sans-serif;
+  margin: 0 0 24px 0;
+
+  .textBold {
+    letter-spacing: 0;
+  }
+
+  .textNormal {
+    line-height: 26px;
+    letter-spacing: 0;
+  }
+}
+
+.learnMoreBtn {
+  margin: 32px 0 0 0;
+  padding: 12px 18px 13px 21px;
+  background-color: #000;
+  color: #f2f2f2;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 10px;
+  letter-spacing: 0;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: Inter, sans-serif;
+
+  &:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+}
+
+.foundersCommitment {
+  margin-top: 2rem;
+  font-weight: 400;
+}
+
+.founderSignature {
+  margin-top: 4rem;
+}
+
+.founderName {
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 0.5rem !important;
+}
+
+.founderRole {
+  font-size: 20px;
+  font-weight: 300;
+  margin-bottom: 0 !important;
+}
+
+.foundersImageContainer {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  margin-left: auto;
+}
+
+.foundersImage {
+  width: 478px;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 1200px) {
+  .foundersSection {
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 5%;
+  }
+
+  .foundersTitle {
+    font-size: 60px;
+    line-height: 1.2;
+  }
+
+  .foundersContent {
+    margin-right: 0;
+    max-width: 100%;
+    margin-bottom: 4rem;
+    text-align: left;
+  }
+  
+  .foundersImageContainer {
+    width: 100%;
+    max-width: 400px;
+    justify-content: center;
+  }
+
+  .foundersImage {
+    width: 100%;
+    max-width: 400px;
+  }
+}

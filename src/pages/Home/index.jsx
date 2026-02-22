@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { servicesData } from '../../data/services';
 import Layout from '../../components/Layout';
+import Fleet from '../../components/Fleet';
+import WhoWeAre from '../../components/WhoWeAre';
 import styles from './index.module.scss';
 
 const services = Object.values(servicesData).map((service) => ({
@@ -12,11 +14,31 @@ const services = Object.values(servicesData).map((service) => ({
 }));
 
 const whyItems = [
-  { id: 1, description: 'A calm, professional experience from booking to arrival' },
-  { id: 2, description: 'Discreet, reliable, and well-presented drivers' },
-  { id: 3, description: 'Clean, modern vehicles designed for comfort' },
-  { id: 4, description: 'Personalized coordination for every engagement' },
-  { id: 5, description: 'A brand rooted in service, not spectacle' },
+  { 
+    id: 1, 
+    line1: 'Professional experience',
+    line2: 'from booking to arrival'
+  },
+  { 
+    id: 2, 
+    line1: 'Discreet, reliable, and',
+    line2: 'well-presented drivers'
+  },
+  { 
+    id: 3, 
+    line1: 'Clean, modern vehicles',
+    line2: 'designed for comfort'
+  },
+  { 
+    id: 4, 
+    line1: 'Personalized coordination',
+    line2: 'for every engagement'
+  },
+  { 
+    id: 5, 
+    line1: 'A brand rooted in',
+    line2: 'service, not spectacle'
+  },
 ];
 
 const Home = () => {
@@ -54,15 +76,26 @@ const Home = () => {
           </div>
         </section>
 
+        <Fleet />
+
+        <WhoWeAre />
+
         <section className={styles.whyKingCarter}>
           <h2 className={styles.sectionTitle}>Why King & Carter</h2>
-          <p className={styles.sectionSubtitle}>Premium is felt in the details</p>
-          <div className={styles.whyGrid}>
+          <p className={styles.sectionSubtitle}>Premium is felt in the details.</p>
+          <div className={styles.whyFeaturesContainer}>
             {whyItems.map((item) => (
-              <div key={item.id} className={styles.whyItem}>
-                <div className={styles.circle}>
-                  <p className={styles.whyText}>{item.description}</p>
-                </div>
+              <div key={item.id} className={styles.whyFeature}>
+                <p className={styles.featureText}>
+                  <span className={styles.featureLine1}>
+                    {item.line1}
+                    <br />
+                  </span>
+                  <span className={styles.featureLine2}>
+                    {item.line2}
+                  </span>
+                </p>
+                <img src="/image/mlx6pxfq-hxpyzi5.svg" className={styles.featureUnderline} alt="" />
               </div>
             ))}
           </div>

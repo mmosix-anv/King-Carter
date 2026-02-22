@@ -161,43 +161,6 @@ export const servicesData = {
       text: 'Make Your Occasion Unforgettable',
       buttonLabel: 'Book Event Transportation'
     }
-  },
-
-  'airport-hotel-transfers-premium': {
-    id: 'airport-hotel-transfers-premium',
-    heroTitle: 'Airport & Hotel Transfers',
-    heroTagline: 'Seamless arrivals and departures with real-time coordination and premium comfort',
-    heroImage: '/assets/imgs/page/homepage1/banner3.png',
-    description: [
-      'Our airport and hotel transfer service eliminates the stress of travel logistics, providing reliable, comfortable transportation between airports, hotels, and destinations. We monitor flight schedules in real-time, ensuring your chauffeur is ready when you arrive, regardless of delays or early arrivals.',
-      'From the moment you book, we handle every detail. Our chauffeurs track your flight, adjust pickup times automatically, and greet you with professionalism and courtesy. Whether you\'re arriving for business or leisure, we ensure a smooth transition from airport to destination.',
-      'We understand that travel can be unpredictable. Our service includes flight monitoring, flexible pickup windows, and assistance with luggage. Our vehicles are spacious, comfortable, and equipped to make your transfer as relaxing as possible after a long flight.',
-      'For hotel transfers, we provide prompt, reliable service that respects your schedule. Whether you need early morning airport runs or late-night pickups, our 24/7 availability ensures you\'re never left waiting. We serve all major airports and hotels in the region.',
-      'Choose King & Carter Premier for transfers that prioritize your comfort, respect your time, and deliver peace of mind. Start and end your journey with the reliability and elegance you deserve.'
-    ],
-    highlights: [
-      'Real-Time Flight Monitoring',
-      '24/7 Availability',
-      'Meet & Greet Service',
-      'Luggage Assistance',
-      'Spacious Vehicles',
-      'All Major Airports Covered',
-      'Hotel Coordination',
-      'Flexible Pickup Windows'
-    ],
-    images: [
-      '/image/mltqxr0s-tvy6qwy.png',
-      '/image/mltqxr0s-0ykx36e.png',
-      '/image/mltqxr0s-5bj4l8e.png',
-      '/image/mltqxr0s-koo2o1u.png',
-      '/image/mltqxr0s-hynsmyb.png',
-      '/image/mltqxr0s-3fog7d9.png',
-      '/image/mltqxr0s-ch5rmk1.png'
-    ],
-    cta: {
-      text: 'Arrive in Comfort and Style',
-      buttonLabel: 'Book Transfer Service'
-    }
   }
 };
 
