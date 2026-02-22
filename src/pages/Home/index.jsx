@@ -1,34 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { servicesData } from '../../data/services';
 import Layout from '../../components/Layout';
 import styles from './index.module.scss';
 
-const services = [
-  {
-    id: 1,
-    title: 'Private Luxury Transport',
-    image: '/image/mlswdgwy-hbcgkbw.png', // Reverted to the image used in the Experience section
-    link: '/services/private-transport',
-  },
-  {
-    id: 2,
-    title: 'Private Luxury Transport',
-    image: '/image/mlswdgwy-hbcgkbw.png',
-    link: '/services/private-transport',
-  },
-  {
-    id: 3,
-    title: 'Private Luxury Transport',
-    image: '/image/mlswdgwy-hbcgkbw.png',
-    link: '/services/private-transport',
-  },
-  {
-    id: 4,
-    title: 'Private Luxury Transport',
-    image: '/image/mlswdgwy-hbcgkbw.png',
-    link: '/services/private-transport',
-  },
-];
+const services = Object.values(servicesData).map((service) => ({
+  id: service.id,
+  title: service.heroTitle,
+  image: service.heroImage,
+  link: `/services/${service.id}`,
+}));
 
 const whyItems = [
   { id: 1, description: 'A calm, professional experience from booking to arrival' },
@@ -62,13 +43,13 @@ const Home = () => {
           <h2 className={styles.sectionTitle}>Services</h2>
           <div className={styles.gridContainer}>
             {services.map((service) => (
-              <div key={service.id} className={styles.card}>
+              <Link key={service.id} to={service.link} className={styles.card}>
                 <img src={service.image} alt={service.title} className={styles.cardImage} />
                 <div className={styles.cardOverlay}>
                   <h3 className={styles.cardTitle}>{service.title}</h3>
                   <button className={styles.learnMoreBtn}>Learn more</button>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>

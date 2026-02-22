@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { servicesData } from '../../data/services';
 import styles from './index.module.scss';
 
 const Header = () => {
@@ -40,9 +41,15 @@ const Header = () => {
               <span className={styles.navLink}>S E R V I C E S</span>
               {isServicesOpen && (
                 <div className={styles.dropdownMenu}>
-                  <Link to="/service-details" className={styles.dropdownItem}>Private Transport</Link>
-                  <Link to="/service-details" className={styles.dropdownItem}>Special Events</Link>
-                  <Link to="/service-details" className={styles.dropdownItem}>Corporate Travel</Link>
+                  {Object.values(servicesData).map((service) => (
+                    <Link 
+                      key={service.id} 
+                      to={`/services/${service.id}`} 
+                      className={styles.dropdownItem}
+                    >
+                      {service.heroTitle}
+                    </Link>
+                  ))}
                 </div>
               )}
             </div>
