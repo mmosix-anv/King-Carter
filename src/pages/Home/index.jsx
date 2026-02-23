@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { servicesData } from '../../data/services';
 import Layout from '../../components/Layout';
@@ -42,6 +42,19 @@ const whyItems = [
 ];
 
 const Home = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % whyItems.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+  };
+
   return (
     <Layout>
       <main className={styles.homepage}>
@@ -83,21 +96,35 @@ const Home = () => {
         <section className={styles.whyKingCarter}>
           <h2 className={styles.sectionTitle}>Why King & Carter</h2>
           <p className={styles.sectionSubtitle}>Premium is felt in the details.</p>
-          <div className={styles.whyFeaturesContainer}>
-            {whyItems.map((item) => (
-              <div key={item.id} className={styles.whyFeature}>
-                <p className={styles.featureText}>
-                  <span className={styles.featureLine1}>
+          <div className={styles.carouselContainer}>
+            <button 
+              className={styles.carouselArrow}
+              onClick={() => goToSlide((currentSlide - 1 + whyItems.length) % whyItems.length)}
+              aria-label="Previous slide"
+            >
+              ‹
+            </button>
+            <div className={styles.carouselTrack}>
+              {whyItems.map((item, index) => (
+                <div 
+                  key={item.id} 
+                  className={`${styles.whyFeature} ${index === currentSlide ? styles.active : ''}`}
+                >
+                  <p className={styles.featureText}>
                     {item.line1}
                     <br />
-                  </span>
-                  <span className={styles.featureLine2}>
                     {item.line2}
-                  </span>
-                </p>
-                <img src="/image/mlx6pxfq-hxpyzi5.svg" className={styles.featureUnderline} alt="" />
-              </div>
-            ))}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <button 
+              className={styles.carouselArrow}
+              onClick={() => goToSlide((currentSlide + 1) % whyItems.length)}
+              aria-label="Next slide"
+            >
+              ›
+            </button>
           </div>
         </section>
       </main>
