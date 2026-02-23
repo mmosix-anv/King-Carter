@@ -3,10 +3,10 @@
 
 export const analyticsConfig = {
   // Google Analytics 4 Measurement ID (format: G-XXXXXXXXXX)
-  gaTrackingId: 'G-XXXXXXXXXX',
+  gaTrackingId: 'G-Z2YYTLCEK3',
   
   // Google Tag Manager ID (format: GTM-XXXXXXX)
-  gtmId: 'GTM-XXXXXXX',
+  gtmId: 'GTM-TQ9WSK5Z',
   
   // Enable/disable tracking (set to false in development)
   enabled: import.meta.env.PROD
