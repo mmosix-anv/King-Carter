@@ -4,6 +4,7 @@ import './index.css'
 import './styles/mobile-responsive.css'
 import App from './App.jsx'
 import { SpeedInsights } from '@vercel/speed-insights/react'
+import { Analytics } from '@vercel/analytics/react'
 import { initGA, initGTM } from './config/analytics'
 
 // Initialize analytics
@@ -14,5 +15,6 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
     <SpeedInsights />
+    <Analytics />
   </StrictMode>,
 )
