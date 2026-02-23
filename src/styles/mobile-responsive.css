@@ -1,0 +1,122 @@
+/* Global Mobile Responsive Styles */
+
+/* Mobile-first approach - applies to all screen sizes unless overridden */
+@media (max-width: 768px) {
+  /* Global container padding */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Ensure all sections have proper mobile padding */
+  section,
+  .section,
+  [class*="Section"],
+  [class*="section"] {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  /* Headings alignment and sizing */
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Footer headings align left */
+  footer h1,
+  footer h2,
+  footer h3,
+  footer h4,
+  footer h5,
+  footer h6 {
+    text-align: left;
+  }
+
+  /* Paragraph text alignment */
+  p {
+    text-align: left;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  /* Checkbox labels left aligned */
+  label {
+    text-align: left !important;
+    display: flex !important;
+    align-items: flex-start !important;
+  }
+
+  input[type="checkbox"] {
+    margin-left: 0 !important;
+    margin-right: 10px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Button centering */
+  button,
+  [class*="btn"],
+  [class*="Btn"],
+  [class*="button"],
+  [class*="Button"] {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Form elements full width */
+  input:not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Grid layouts to single column */
+  [class*="grid"],
+  [class*="Grid"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Flex layouts to column */
+  [class*="row"],
+  [class*="Row"] {
+    flex-direction: column !important;
+  }
+
+  /* Images responsive */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Remove excessive margins */
+  * {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Container max-width */
+  [class*="container"],
+  [class*="Container"] {
+    max-width: 100% !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  section,
+  .section,
+  [class*="Section"],
+  [class*="section"] {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+
+  [class*="container"],
+  [class*="Container"] {
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+}

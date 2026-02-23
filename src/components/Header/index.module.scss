@@ -275,7 +275,7 @@
     padding-top: 0;
     transition: right 0.3s ease-in-out;
     z-index: 1000;
-    overflow-y: auto;
+    overflow: hidden;
   }
 
   .navContainer.navOpen {

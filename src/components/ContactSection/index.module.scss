@@ -40,6 +40,11 @@
   font-weight: 700;
   margin-bottom: 1.5rem;
   color: white;
+
+  @media (max-width: 768px) {
+    font-size: 36px;
+    text-align: center;
+  }
 }
 
 .contactCopy {
@@ -47,6 +52,11 @@
   font-weight: 600;
   margin: 0 0 0.5rem;
   color: white;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    text-align: center;
+  }
 }
 
 .contactSubCopy {
@@ -54,6 +64,11 @@
   font-weight: 400;
   margin: 0 0 2rem;
   color: #e5e5e5;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+    text-align: center;
+  }
 }
 
 .bookBtn {
