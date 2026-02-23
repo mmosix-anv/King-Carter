@@ -13,6 +13,11 @@
     font-weight: 700;
     line-height: 68px;
     color: #2a2a2a;
+
+    @media (max-width: 768px) {
+      font-size: 36px !important;
+      line-height: 1.2 !important;
+    }
   }
 
   .description {
@@ -54,14 +59,14 @@
     padding: 60px 0 80px;
 
     .title {
-      font-size: 48px;
-      line-height: 52px;
+      font-size: 36px !important;
+      line-height: 1.2 !important;
       margin-bottom: 30px;
     }
 
     .description {
-      font-size: 16px;
-      line-height: 22px;
+      font-size: 14px !important;
+      line-height: 1.6 !important;
       margin-bottom: 20px;
     }
 

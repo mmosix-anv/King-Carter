@@ -2,6 +2,10 @@
   background: #191919;
   color: #fff;
   padding-top: 80px;
+
+  @media (max-width: 768px) {
+    padding-top: 60px;
+  }
 }
 
 .top {
@@ -17,9 +21,17 @@
     padding: 60px 20px;
   }
 
+  @media (max-width: 768px) {
+    padding: 30px 20px 20px;
+  }
+
   .content {
     flex: 1;
     padding-top: 20px;
+
+    @media (max-width: 768px) {
+      padding-top: 0;
+    }
 
     h1 {
       font-size: 36px;
@@ -27,6 +39,10 @@
       color: #f2f2f2;
       line-height: 1.2;
       margin: 0 0 35px;
+
+      @media (max-width: 768px) {
+        margin: 0 0 20px;
+      }
     }
 
     p {
@@ -34,6 +50,10 @@
       color: #f2f2f2;
       line-height: 1.6;
       margin: 0 0 48px;
+
+      @media (max-width: 768px) {
+        margin: 0 0 24px;
+      }
     }
 
     button {
@@ -81,6 +101,8 @@
 
   @media (max-width: 768px) {
     flex-direction: column;
+    padding: 40px 20px;
+    gap: 30px;
   }
 
   .feature {
@@ -91,6 +113,11 @@
       width: 150px;
       height: 127px;
       margin-bottom: 6px;
+
+      @media (max-width: 768px) {
+        width: 100px;
+        height: 85px;
+      }
     }
 
     h3 {
@@ -98,6 +125,10 @@
       font-weight: 400;
       color: #fff;
       margin: 0 0 25px;
+
+      @media (max-width: 768px) {
+        margin: 0 0 15px;
+      }
     }
 
     p {

@@ -42,7 +42,7 @@
   color: white;
 
   @media (max-width: 768px) {
-    font-size: 36px;
+    font-size: 32px !important;
     text-align: center;
   }
 }
@@ -54,7 +54,7 @@
   color: white;
 
   @media (max-width: 768px) {
-    font-size: 18px;
+    font-size: 16px !important;
     text-align: center;
   }
 }
@@ -66,7 +66,7 @@
   color: #e5e5e5;
 
   @media (max-width: 768px) {
-    font-size: 16px;
+    font-size: 14px !important;
     text-align: center;
   }
 }
