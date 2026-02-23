@@ -6,12 +6,14 @@ import ServiceDetails from './pages/ServiceDetails';
 import Membership from './pages/Membership';
 import Experience from './pages/Experience';
 import Contact from './pages/Contact';
+import { trackPageView } from './config/analytics';
 import './App.css';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
+    trackPageView(pathname);
   }, [pathname]);
   return null;
 }

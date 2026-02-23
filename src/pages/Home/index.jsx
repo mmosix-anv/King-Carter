@@ -4,6 +4,8 @@ import { servicesData } from '../../data/services';
 import Layout from '../../components/Layout';
 import Fleet from '../../components/Fleet';
 import WhoWeAre from '../../components/WhoWeAre';
+import { useSEO } from '../../hooks/useSEO';
+import { pageSEO } from '../../config/seo';
 import styles from './index.module.scss';
 
 const services = Object.values(servicesData).map((service) => ({
@@ -43,6 +45,8 @@ const whyItems = [
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  useSEO(pageSEO.home);
 
   useEffect(() => {
     const interval = setInterval(() => {

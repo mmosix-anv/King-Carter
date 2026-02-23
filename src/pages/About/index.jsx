@@ -1,8 +1,11 @@
 import React from 'react';
 import Layout from '../../components/Layout';
+import { useSEO } from '../../hooks/useSEO';
+import { pageSEO } from '../../config/seo';
 import styles from './index.module.scss';
 
 const About = () => {
+  useSEO(pageSEO.about);
   return (
     <Layout>
       <div className={styles.heroSection}>

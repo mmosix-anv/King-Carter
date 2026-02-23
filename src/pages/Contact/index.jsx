@@ -3,8 +3,11 @@ import MiniLayout from '../../components/MiniLayout';
 import styles from './Contact.module.scss';
 import { countries } from '../../data/countries';
 import { sendFormSubmission } from '../../utils/emailService';
+import { useSEO } from '../../hooks/useSEO';
+import { pageSEO } from '../../config/seo';
 
 const Contact = () => {
+  useSEO(pageSEO.contact);
   const [formData, setFormData] = useState({
     salutation: '',
     firstName: '',

@@ -5,9 +5,12 @@ import BusinessServices from '../../components/BusinessServices';
 import Testimonials from '../../components/Testimonials';
 import ContactForm from '../../components/ContactForm';
 import { countries } from '../../data/countries';
+import { useSEO } from '../../hooks/useSEO';
+import { pageSEO } from '../../config/seo';
 import styles from './index.module.scss';
 
 const Experience = () => {
+  useSEO(pageSEO.experience);
   return (
     <Layout>
       <div className={styles.experience}>

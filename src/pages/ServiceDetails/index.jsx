@@ -2,12 +2,22 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import Layout from '../../components/Layout';
 import { getServiceById } from '../../data/services';
+import { useSEO } from '../../hooks/useSEO';
+import { pageSEO } from '../../config/seo';
 import styles from './index.module.scss';
 
 const ServiceDetails = () => {
   const { serviceId } = useParams();
   const navigate = useNavigate();
   const serviceData = getServiceById(serviceId);
+
+  const seoData = pageSEO.services[serviceId] || {
+    title: serviceData?.heroTitle || 'Service Details',
+    description: serviceData?.heroTagline || '',
+    keywords: 'luxury transportation Atlanta, premium car service'
+  };
+
+  useSEO(seoData);
 
   // Redirect to home page if service not found
   useEffect(() => {

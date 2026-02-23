@@ -6,8 +6,11 @@ import Masonry from '../../components/Masonry';
 import Testimonials from '../../components/Testimonials';
 import AppDownload from '../../components/AppDownload';
 import MapSection from '../../components/MapSection';
+import { useSEO } from '../../hooks/useSEO';
+import { pageSEO } from '../../config/seo';
 
 const Membership = () => {
+  useSEO(pageSEO.membership);
   return (
     <Layout>
       <Hero />
