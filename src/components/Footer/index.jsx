@@ -4,6 +4,10 @@ import styles from './index.module.scss';
 import ContactSection from '../ContactSection';
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className={styles.footer}>
       <ContactSection />
@@ -71,7 +75,9 @@ const Footer = () => {
 
         <div className={styles.copyrightBar}>
           <p>KINGANDCARTER.COM © 2026 ALL RIGHTS RESERVED.</p>
-          <img src="/image/mlswdn3c-d655tz3.svg" className={styles.logoSmall} alt="logo" />
+          <div className={styles.rightSection}>
+            <button onClick={scrollToTop} className={styles.scrollToTop}>↑</button>
+          </div>
         </div>
       </div>
     </footer>

@@ -105,19 +105,20 @@
 }
 
 .submitBtn {
-  padding: 12px 40px;
-  background: transparent;
-  border: 1px solid #191919;
-  border-radius: 25px;
+  padding: 12px 28px;
+  background: #000;
+  border: 1px solid #000;
+  border-radius: 50px;
   font-family: Inter, sans-serif;
-  font-size: 15px;
-  color: #191919;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
   align-self: center;
   
   &:hover {
-    background: #191919;
-    color: #ffffff;
+    background: #fff;
+    color: #000;
   }
 }
