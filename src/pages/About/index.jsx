@@ -79,6 +79,7 @@ const About = () => {
         <img src="/image/mltnbtbh-bt937q9.png" className={styles.gridImage} alt="Interior" />
       </div>
 
+      <section className={styles.topSection}>
       <div className={styles.foundersSection}>
         <div className={styles.foundersContent}>
           <h2 className={styles.foundersTitle}>Founder’s Letter</h2>
@@ -105,6 +106,8 @@ const About = () => {
           <img src="/image/mltnljp8-pmuqhyu.svg" className={styles.foundersImage} alt="Abstract Shape" />
         </div>
       </div>
+      </section>
+
     </Layout>
   );
 };
