@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import MiniLayout from '../../components/MiniLayout';
 import styles from './Contact.module.scss';
+import { countries } from '../../data/countries';
+import { sendFormSubmission } from '../../utils/emailService';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     salutation: '',
     firstName: '',
     lastName: '',
-    country: '',
+    country: 'United States',
     email: '',
-    phoneCode: '+233',
+    phoneCode: '+1',
     phone: '',
     hearAbout: '',
     message: '',
@@ -17,9 +19,35 @@ const Contact = () => {
     terms: false
   });
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const result = await sendFormSubmission(formData, 'Contact');
+    
+    setIsSubmitting(false);
+    setSubmitStatus(result);
+
+    if (result.success) {
+      // Reset form on success
+      setFormData({
+        salutation: '',
+        firstName: '',
+        lastName: '',
+        country: 'United States',
+        email: '',
+        phoneCode: '+1',
+        phone: '',
+        hearAbout: '',
+        message: '',
+        newsletter: false,
+        terms: false
+      });
+    }
   };
 
   return (
@@ -31,7 +59,7 @@ const Contact = () => {
             <p className={styles.subtitle}>Apply for a private membership with the world's leading luxury lifestyle management group to enjoy 24/7 personalised concierge support. The best part? The whole process takes no more than 48 hours.</p>
             
             <form onSubmit={handleSubmit}>
-              <div className={styles.row}>
+              <div className={styles.nameRow}>
                 <select value={formData.salutation} onChange={(e) => setFormData({...formData, salutation: e.target.value})}>
                   <option value="">Salutation</option>
                   <option value="Mr">Mr</option>
@@ -44,18 +72,18 @@ const Contact = () => {
               
               <select value={formData.country} onChange={(e) => setFormData({...formData, country: e.target.value})} required>
                 <option value="">Country of residence *</option>
-                <option value="Ghana">Ghana</option>
-                <option value="UK">United Kingdom</option>
-                <option value="US">United States</option>
+                {countries.map((country) => (
+                  <option key={country.name} value={country.name}>{country.name}</option>
+                ))}
               </select>
               
               <input type="email" placeholder="Email address *" value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})} required />
               
-              <div className={styles.row}>
+              <div className={styles.phoneRow}>
                 <select value={formData.phoneCode} onChange={(e) => setFormData({...formData, phoneCode: e.target.value})}>
-                  <option value="+233">(+233) Ghana</option>
-                  <option value="+44">(+44) UK</option>
-                  <option value="+1">(+1) US</option>
+                  {countries.map((country) => (
+                    <option key={country.code} value={country.code}>{country.code}</option>
+                  ))}
                 </select>
                 <input type="tel" placeholder="Phone number *" value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})} required />
               </div>
@@ -76,7 +104,15 @@ const Contact = () => {
               
               <p className={styles.required}>* Indicates required field</p>
               
-              <button type="submit">Submit Form</button>
+              {submitStatus && (
+                <div className={submitStatus.success ? styles.successMessage : styles.errorMessage}>
+                  {submitStatus.message}
+                </div>
+              )}
+              
+              <button type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Submitting...' : 'Submit Form'}
+              </button>
             </form>
           </div>
           

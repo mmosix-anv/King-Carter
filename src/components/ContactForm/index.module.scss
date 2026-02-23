@@ -46,7 +46,7 @@
   text-align: left;
 }
 
-.row {
+.nameRow {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
@@ -54,6 +54,20 @@
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+}
+
+.phoneRow {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 20px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.codeInput {
+  max-width: 120px;
 }
 
 .input, .textarea {
@@ -117,8 +131,33 @@
   transition: all 0.3s ease;
   align-self: center;
   
-  &:hover {
+  &:hover:not(:disabled) {
     background: #fff;
     color: #000;
   }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.successMessage {
+  padding: 15px;
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  color: #155724;
+  font-size: 14px;
+  text-align: center;
+}
+
+.errorMessage {
+  padding: 15px;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  color: #721c24;
+  font-size: 14px;
+  text-align: center;
 }

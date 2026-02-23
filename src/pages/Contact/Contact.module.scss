@@ -55,6 +55,11 @@
       background-repeat: no-repeat;
       background-position: right 0 center;
       padding-right: 20px;
+
+      option {
+        background: #000;
+        color: #fff;
+      }
     }
 
     textarea {
@@ -62,13 +67,27 @@
       resize: vertical;
     }
 
-    .row {
+    .nameRow {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 20px;
 
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
+      }
+    }
+
+    .phoneRow {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+
+      select:first-child {
+        max-width: 120px;
       }
     }
 
@@ -99,20 +118,45 @@
 
     button {
       padding: 12px 32px;
-      background: #666;
+      background: #000;
       color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-size: 15px;
+      border: 1px solid #fff;
+      border-radius: 50px;
+      font-size: 14px;
       font-weight: 600;
       cursor: pointer;
       align-self: flex-start;
+      transition: all 0.3s ease;
 
-      &:hover {
-        background: #777;
+      &:hover:not(:disabled) {
+        background: #fff;
+        color: #000;
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
       }
     }
   }
+}
+
+.successMessage {
+  padding: 15px;
+  background: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 4px;
+  color: #155724;
+  font-size: 14px;
+}
+
+.errorMessage {
+  padding: 15px;
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  color: #721c24;
+  font-size: 14px;
 }
 
 .infoSection {
