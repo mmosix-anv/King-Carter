@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './index.module.scss';
 import ContactSection from '../ContactSection';
+import { servicesData } from '../../data/services';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -17,11 +18,11 @@ const Footer = () => {
           <div className={styles.column}>
             <h4 className={styles.heading}>SERVICES</h4>
             <ul className={styles.list}>
-              <li>•&nbsp;&nbsp;&nbsp;&nbsp;Private Luxury Transport</li>
-              <li>•&nbsp;&nbsp;&nbsp;&nbsp;Corporate & Executive Travel</li>
-              <li>•&nbsp;&nbsp;&nbsp;&nbsp;Airport & Hotel Transfers</li>
-              <li>•&nbsp;&nbsp;&nbsp;&nbsp;Special Events & Lifestyle Engagements</li>
-              <li>•&nbsp;&nbsp;&nbsp;&nbsp;Dedicated Driver Partnerships</li>
+              {Object.values(servicesData).map((service) => (
+                <li key={service.id}>
+                  <Link to={`/services/${service.id}`}>{service.heroTitle}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -40,36 +41,14 @@ const Footer = () => {
             <div className={styles.socialGrid}>
               <div className={styles.socialItem}>
                 <img src="/image/mlswdn3c-2roa1dr.svg" alt="Instagram" />
-                <span>Instagram</span>
               </div>
               <div className={styles.socialItem}>
                 <img src="/image/mlswdn3c-obyakby.svg" alt="Facebook" />
-                <span>Facebook</span>
               </div>
               <div className={styles.socialItem}>
-                <img src="/image/mlswdn3c-vd1frbk.svg" alt="Linkedin" />
-                <span>Linkedin</span>
+                <img src="/image/twitter-x.svg" alt="X" />
               </div>
             </div>
-             <div className={styles.socialGrid}>
-              <div className={styles.socialItem}>
-                 <span>TikTok</span>
-              </div>
-              <div className={styles.socialItem}>
-                 <span>Pinterest</span>
-              </div>
-             </div>
-          </div>
-
-          <div className={styles.column}>
-             <div className={styles.enquiryBtn}>
-                <div className={styles.iconContainer}>
-                  <img src="/image/mlswdn3c-mn4qu50.svg" alt="enquiry" />
-                </div>
-                <div className={styles.btnTextContainer}>
-                   <span className={styles.btnText}>Make an enquiry</span>
-                </div>
-             </div>
           </div>
         </div>
 
