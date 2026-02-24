@@ -33,7 +33,9 @@ describe('Routing Integration Tests', () => {
       render(<RouterProvider router={router} />);
 
       const serviceData = servicesData['private-luxury-transport'];
-      expect(screen.getByText(serviceData.heroTitle)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getAllByText(serviceData.heroTitle).length).toBeGreaterThan(0);
+      });
       expect(screen.getByText(serviceData.heroTagline)).toBeInTheDocument();
     });
 
@@ -53,7 +55,9 @@ describe('Routing Integration Tests', () => {
       render(<RouterProvider router={router} />);
 
       const serviceData = servicesData['corporate-executive-travel'];
-      expect(screen.getByText(serviceData.heroTitle)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getAllByText(serviceData.heroTitle).length).toBeGreaterThan(0);
+      });
       expect(screen.getByText(serviceData.heroTagline)).toBeInTheDocument();
     });
 
@@ -73,7 +77,9 @@ describe('Routing Integration Tests', () => {
       render(<RouterProvider router={router} />);
 
       const serviceData = servicesData['airport-hotel-transfers'];
-      expect(screen.getByText(serviceData.heroTitle)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getAllByText(serviceData.heroTitle).length).toBeGreaterThan(0);
+      });
       expect(screen.getByText(serviceData.heroTagline)).toBeInTheDocument();
     });
 
@@ -93,14 +99,16 @@ describe('Routing Integration Tests', () => {
       render(<RouterProvider router={router} />);
 
       const serviceData = servicesData['special-engagements-events'];
-      expect(screen.getByText(serviceData.heroTitle)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getAllByText(serviceData.heroTitle).length).toBeGreaterThan(0);
+      });
       expect(screen.getByText(serviceData.heroTagline)).toBeInTheDocument();
     });
 
-    it('should render all four services with complete content', () => {
+    it('should render all four services with complete content', async () => {
       const serviceIds = Object.keys(servicesData);
 
-      serviceIds.forEach((serviceId) => {
+      for (const serviceId of serviceIds) {
         const router = createMemoryRouter(
           [
             {
@@ -117,8 +125,11 @@ describe('Routing Integration Tests', () => {
 
         const serviceData = servicesData[serviceId];
         
-        // Verify hero content
-        expect(screen.getByText(serviceData.heroTitle)).toBeInTheDocument();
+        // Wait for hero content to load
+        await waitFor(() => {
+          expect(screen.getAllByText(serviceData.heroTitle).length).toBeGreaterThan(0);
+        });
+        
         expect(screen.getByText(serviceData.heroTagline)).toBeInTheDocument();
         
         // Verify description paragraphs
@@ -136,7 +147,7 @@ describe('Routing Integration Tests', () => {
         expect(screen.getByText(serviceData.cta.buttonLabel)).toBeInTheDocument();
 
         unmount();
-      });
+      }
     });
   });
 
@@ -193,7 +204,9 @@ describe('Routing Integration Tests', () => {
       render(<RouterProvider router={router2} />);
 
       const serviceData = servicesData['private-luxury-transport'];
-      expect(screen.getByText(serviceData.heroTitle)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getAllByText(serviceData.heroTitle).length).toBeGreaterThan(0);
+      });
     });
 
     it('should redirect to a valid service page', async () => {
@@ -216,7 +229,9 @@ describe('Routing Integration Tests', () => {
 
       // Verify the target service renders correctly
       const serviceData = servicesData[targetServiceId];
-      expect(screen.getByText(serviceData.heroTitle)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getAllByText(serviceData.heroTitle).length).toBeGreaterThan(0);
+      });
       expect(screen.getByText(serviceData.heroTagline)).toBeInTheDocument();
       
       // Verify it's a complete, valid service page
@@ -247,7 +262,9 @@ describe('Routing Integration Tests', () => {
 
       // Initially on private-luxury-transport
       const service1Data = servicesData['private-luxury-transport'];
-      expect(screen.getByText(service1Data.heroTitle)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getAllByText(service1Data.heroTitle).length).toBeGreaterThan(0);
+      });
 
       // Navigate forward
       router.navigate(1);
@@ -255,7 +272,7 @@ describe('Routing Integration Tests', () => {
 
       await waitFor(() => {
         const service2Data = servicesData['corporate-executive-travel'];
-        expect(screen.getByText(service2Data.heroTitle)).toBeInTheDocument();
+        expect(screen.getAllByText(service2Data.heroTitle).length).toBeGreaterThan(0);
       });
 
       // Navigate backward
@@ -263,7 +280,7 @@ describe('Routing Integration Tests', () => {
       rerender(<RouterProvider router={router} />);
 
       await waitFor(() => {
-        expect(screen.getByText(service1Data.heroTitle)).toBeInTheDocument();
+        expect(screen.getAllByText(service1Data.heroTitle).length).toBeGreaterThan(0);
       });
     });
 
@@ -292,7 +309,9 @@ describe('Routing Integration Tests', () => {
 
       // Verify initial service
       const firstServiceData = servicesData[serviceSequence[0]];
-      expect(screen.getByText(firstServiceData.heroTitle)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getAllByText(firstServiceData.heroTitle).length).toBeGreaterThan(0);
+      });
 
       // Navigate forward through remaining services
       for (let i = 1; i < serviceSequence.length; i++) {
@@ -301,7 +320,7 @@ describe('Routing Integration Tests', () => {
 
         await waitFor(() => {
           const serviceData = servicesData[serviceSequence[i]];
-          expect(screen.getByText(serviceData.heroTitle)).toBeInTheDocument();
+          expect(screen.getAllByText(serviceData.heroTitle).length).toBeGreaterThan(0);
         });
       }
 
@@ -312,7 +331,7 @@ describe('Routing Integration Tests', () => {
 
         await waitFor(() => {
           const serviceData = servicesData[serviceSequence[i]];
-          expect(screen.getByText(serviceData.heroTitle)).toBeInTheDocument();
+          expect(screen.getAllByText(serviceData.heroTitle).length).toBeGreaterThan(0);
         });
       }
 
@@ -340,7 +359,9 @@ describe('Routing Integration Tests', () => {
 
       // Verify initial service content
       const service1Data = servicesData['airport-hotel-transfers'];
-      expect(screen.getByText(service1Data.heroTitle)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getAllByText(service1Data.heroTitle).length).toBeGreaterThan(0);
+      });
       expect(screen.getByText(service1Data.cta.buttonLabel)).toBeInTheDocument();
 
       // Navigate forward
@@ -349,7 +370,7 @@ describe('Routing Integration Tests', () => {
 
       await waitFor(() => {
         const service2Data = servicesData['special-engagements-events'];
-        expect(screen.getByText(service2Data.heroTitle)).toBeInTheDocument();
+        expect(screen.getAllByText(service2Data.heroTitle).length).toBeGreaterThan(0);
         expect(screen.getByText(service2Data.cta.buttonLabel)).toBeInTheDocument();
       });
 
@@ -358,12 +379,12 @@ describe('Routing Integration Tests', () => {
       rerender(<RouterProvider router={router} />);
 
       await waitFor(() => {
-        expect(screen.getByText(service1Data.heroTitle)).toBeInTheDocument();
+        expect(screen.getAllByText(service1Data.heroTitle).length).toBeGreaterThan(0);
         expect(screen.getByText(service1Data.cta.buttonLabel)).toBeInTheDocument();
         
-        // Verify the previous service content is no longer present
+        // Verify the previous service's CTA button is no longer present (more specific than checking title which appears in nav)
         const service2Data = servicesData['special-engagements-events'];
-        expect(screen.queryByText(service2Data.heroTitle)).not.toBeInTheDocument();
+        expect(screen.queryByText(service2Data.cta.buttonLabel)).not.toBeInTheDocument();
       });
     });
 
@@ -389,7 +410,9 @@ describe('Routing Integration Tests', () => {
 
       // Start at middle service
       const service2Data = servicesData['corporate-executive-travel'];
-      expect(screen.getByText(service2Data.heroTitle)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(screen.getAllByText(service2Data.heroTitle).length).toBeGreaterThan(0);
+      });
 
       // Rapid navigation: back, forward, back, forward
       router.navigate(-1);
@@ -397,14 +420,14 @@ describe('Routing Integration Tests', () => {
 
       await waitFor(() => {
         const service1Data = servicesData['private-luxury-transport'];
-        expect(screen.getByText(service1Data.heroTitle)).toBeInTheDocument();
+        expect(screen.getAllByText(service1Data.heroTitle).length).toBeGreaterThan(0);
       });
 
       router.navigate(1);
       rerender(<RouterProvider router={router} />);
 
       await waitFor(() => {
-        expect(screen.getByText(service2Data.heroTitle)).toBeInTheDocument();
+        expect(screen.getAllByText(service2Data.heroTitle).length).toBeGreaterThan(0);
       });
 
       router.navigate(1);
@@ -412,14 +435,14 @@ describe('Routing Integration Tests', () => {
 
       await waitFor(() => {
         const service3Data = servicesData['airport-hotel-transfers'];
-        expect(screen.getByText(service3Data.heroTitle)).toBeInTheDocument();
+        expect(screen.getAllByText(service3Data.heroTitle).length).toBeGreaterThan(0);
       });
 
       router.navigate(-1);
       rerender(<RouterProvider router={router} />);
 
       await waitFor(() => {
-        expect(screen.getByText(service2Data.heroTitle)).toBeInTheDocument();
+        expect(screen.getAllByText(service2Data.heroTitle).length).toBeGreaterThan(0);
       });
     });
   });

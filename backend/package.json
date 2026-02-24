@@ -11,6 +11,7 @@
     "develop": "strapi develop",
     "seed:example": "node ./scripts/seed.js",
     "seed:services": "node ./scripts/seed-services.js",
+    "migrate:featured-image": "node ./scripts/migrate-featured-image.js",
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",

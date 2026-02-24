@@ -4,6 +4,7 @@ import { fetchServices } from '../../data/strapiServices';
 import Layout from '../../components/Layout';
 import Fleet from '../../components/Fleet';
 import WhoWeAre from '../../components/WhoWeAre';
+import ServiceErrorBoundary from '../../components/ServiceErrorBoundary';
 import { useSEO } from '../../hooks/useSEO';
 import { pageSEO } from '../../config/seo';
 import styles from './index.module.scss';
@@ -39,19 +40,25 @@ const whyItems = [
 const Home = () => {
   const [services, setServices] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [error, setError] = useState(null);
 
   useSEO(pageSEO.home);
 
   useEffect(() => {
-    fetchServices().then(data => {
-      const servicesList = Object.values(data).map(service => ({
-        id: service.id,
-        title: service.heroTitle,
-        image: service.heroImage,
-        link: `/services/${service.id}`,
-      }));
-      setServices(servicesList);
-    });
+    fetchServices()
+      .then(data => {
+        const servicesList = Object.values(data).map(service => ({
+          id: service.id,
+          title: service.heroTitle,
+          image: service.featuredImage,
+          link: `/services/${service.id}`,
+        }));
+        setServices(servicesList);
+      })
+      .catch(error => {
+        console.error('Failed to load services:', error);
+        setError(error);
+      });
   }, []);
 
   useEffect(() => {
@@ -64,6 +71,11 @@ const Home = () => {
   const goToSlide = (index) => {
     setCurrentSlide(index);
   };
+
+  // Throw error during render so error boundary can catch it
+  if (error) {
+    throw error;
+  }
 
   return (
     <Layout>
@@ -84,19 +96,21 @@ const Home = () => {
           </div>
         </section>
 
-        <section className={styles.services}>
-          <h2 className={styles.sectionTitle}>Services</h2>
-          <div className={styles.gridContainer}>
-            {services.map((service) => (
-              <Link key={service.id} to={service.link} className={styles.card}>
-                <div className={styles.cardOverlay}>
-                  <h3 className={styles.cardTitle}>{service.title}</h3>
-                  <button className={styles.learnMoreBtn}>Learn more</button>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
+        <ServiceErrorBoundary>
+          <section className={styles.services}>
+            <h2 className={styles.sectionTitle}>Services</h2>
+            <div className={styles.gridContainer}>
+              {services.map((service) => (
+                <Link key={service.id} to={service.link} className={styles.card}>
+                  <div className={styles.cardOverlay}>
+                    <h3 className={styles.cardTitle}>{service.title}</h3>
+                    <button className={styles.learnMoreBtn}>Learn more</button>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        </ServiceErrorBoundary>
 
         <Fleet />
 

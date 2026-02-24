@@ -656,11 +656,20 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     cta: Schema.Attribute.JSON & Schema.Attribute.Required;
     description: Schema.Attribute.JSON & Schema.Attribute.Required;
-    heroImage: Schema.Attribute.String & Schema.Attribute.Required;
-    heroTagline: Schema.Attribute.Text & Schema.Attribute.Required;
-    heroTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    featuredImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    heroImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    heroTagline: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
+    heroTitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     highlights: Schema.Attribute.JSON & Schema.Attribute.Required;
-    images: Schema.Attribute.JSON & Schema.Attribute.Required;
+    images: Schema.Attribute.Media<'images', true> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -668,7 +677,12 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    serviceId: Schema.Attribute.UID & Schema.Attribute.Required;
+    serviceId: Schema.Attribute.UID &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique &
+      Schema.Attribute.SetMinMaxLength<{
+        minLength: 1;
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

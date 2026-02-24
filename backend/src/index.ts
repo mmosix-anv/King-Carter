@@ -16,5 +16,56 @@ export default {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+  async bootstrap({ strapi }) {
+    // Set public permissions for service API endpoints
+    const publicRole = await strapi
+      .query('plugin::users-permissions.role')
+      .findOne({ where: { type: 'public' } });
+
+    if (publicRole) {
+      // Enable service API permissions
+      const servicePermissions = await strapi
+        .query('plugin::users-permissions.permission')
+        .findMany({
+          where: {
+            role: publicRole.id,
+            action: {
+              $in: ['api::service.service.find', 'api::service.service.findOne'],
+            },
+          },
+        });
+
+      for (const permission of servicePermissions) {
+        await strapi
+          .query('plugin::users-permissions.permission')
+          .update({
+            where: { id: permission.id },
+            data: { enabled: true },
+          });
+      }
+
+      // Enable upload permissions for public role
+      const uploadPermissions = await strapi
+        .query('plugin::users-permissions.permission')
+        .findMany({
+          where: {
+            role: publicRole.id,
+            action: {
+              $in: ['plugin::upload.content-api.upload'],
+            },
+          },
+        });
+
+      for (const permission of uploadPermissions) {
+        await strapi
+          .query('plugin::users-permissions.permission')
+          .update({
+            where: { id: permission.id },
+            data: { enabled: true },
+          });
+      }
+
+      strapi.log.info('Public permissions set for service API endpoints');
+    }
+  },
 };

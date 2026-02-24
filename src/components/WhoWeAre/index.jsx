@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './index.module.scss';
 
 const WhoWeAre = () => {
@@ -14,7 +15,7 @@ const WhoWeAre = () => {
           <p className={styles.foundersText}>
             Inspired by world-class hospitality, we focus on calm, well-coordinated experiences rather than excess. Every journey is designed to feel seamless, personal, and refined.
           </p>
-          <button className={styles.learnMoreBtn}>Learn More About Us</button>
+          <Link to="/about" className={styles.learnMoreBtn}>Learn More About Us</Link>
         </div>
         <img src="/image/MixBlendGroups.png" className={styles.foundersImage} alt="Who We Are" />
       </div>

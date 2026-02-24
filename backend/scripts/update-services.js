@@ -1,29 +1,11 @@
-/**
- * @typedef {Object} ServiceData
- * @property {string} id - Unique identifier in kebab-case
- * @property {string} heroTitle - Main title displayed in hero section
- * @property {string} heroTagline - Subtitle/tagline in hero or description
- * @property {string} heroImage - URL to hero background image
- * @property {string} featuredImage - URL to featured image used on homepage
- * @property {string[]} description - Array of paragraph strings (1-5 paragraphs)
- * @property {string[]} highlights - Array of service highlight strings (3-10 items)
- * @property {string[]} images - Array of image URLs for gallery (5-10 images)
- * @property {Object} cta - Call-to-action configuration
- * @property {string} cta.text - CTA promotional text
- * @property {string} cta.buttonLabel - Text for CTA button
- */
+const axios = require('axios');
 
-/**
- * Service data store containing all service information
- * @type {Object.<string, ServiceData>}
- */
-export const servicesData = {
+const servicesData = {
   'private-luxury-transport': {
     id: 'private-luxury-transport',
     heroTitle: 'Private Luxury Transport',
     heroTagline: 'Designed for individuals and families seeking comfort, privacy, and reliability.',
     heroImage: '/image/mltqxr0s-tvy6qwy.png',
-    featuredImage: '/image/mltqxr0s-tvy6qwy.png',
     description: [
       'Our private luxury transport service offers a discreet, personalized travel experience tailored to your preferences. Whether for daily commutes, special occasions, or leisure travel, we provide premium vehicles and professional chauffeurs dedicated to your comfort and privacy.',
       'Each journey is crafted with attention to detail, ensuring a seamless experience from pickup to destination. Our chauffeurs are trained to provide the highest level of discretion and professionalism, allowing you to relax, work, or simply enjoy the ride.',
@@ -58,7 +40,6 @@ export const servicesData = {
     heroTitle: 'Corporate & Executive Travel',
     heroTagline: 'Professional transportation solutions for business leaders and corporate teams.',
     heroImage: '/image/mltqxr0s-0ykx36e.png',
-    featuredImage: '/image/mltqxr0s-0ykx36e.png',
     description: [
       'Our corporate and executive travel service is designed for business professionals who demand reliability, punctuality, and professionalism. We understand that time is your most valuable asset, and our service is built to maximize efficiency while maintaining the highest standards of comfort.',
       'From airport transfers to multi-city business trips, our experienced chauffeurs ensure you arrive on time, every time. Our fleet of executive vehicles provides a mobile office environment, allowing you to prepare for meetings, make calls, or simply relax between appointments.',
@@ -90,13 +71,11 @@ export const servicesData = {
       buttonLabel: 'Book Corporate Service'
     }
   },
-
   'airport-hotel-transfers': {
     id: 'airport-hotel-transfers',
     heroTitle: 'Airport & Hotel Transfers',
     heroTagline: 'Seamless, punctual transfers for stress-free arrivals and departures.',
     heroImage: '/image/mltqxr0s-5bj4l8e.png',
-    featuredImage: '/image/mltqxr0s-5bj4l8e.png',
     description: [
       'Our airport and hotel transfer service eliminates the stress of travel logistics, providing reliable, comfortable transportation between airports, hotels, and destinations. We monitor flight schedules in real-time, ensuring your chauffeur is ready when you arrive, regardless of delays or early arrivals.',
       'From the moment you book, we handle every detail. Our chauffeurs track your flight, adjust pickup times automatically, and greet you with professionalism and courtesy. Whether you\'re arriving for business or leisure, we ensure a smooth transition from airport to destination.',
@@ -128,13 +107,11 @@ export const servicesData = {
       buttonLabel: 'Book Transfer Service'
     }
   },
-
   'special-engagements-events': {
     id: 'special-engagements-events',
     heroTitle: 'Special Engagements & Events',
     heroTagline: 'Elegant transportation for weddings, galas, and memorable occasions.',
     heroImage: '/image/mltqxr0s-koo2o1u.png',
-    featuredImage: '/image/mltqxr0s-koo2o1u.png',
     description: [
       'Our special engagements and events service is designed to make your most important occasions truly unforgettable. From weddings and anniversaries to galas and milestone celebrations, we provide elegant transportation that complements the significance of your event.',
       'We understand that special occasions require meticulous planning and flawless execution. Our team works closely with you to coordinate timing, routes, and special requests, ensuring transportation seamlessly integrates with your event schedule. Every detail is managed with care and precision.',
@@ -169,15 +146,72 @@ export const servicesData = {
   }
 };
 
-/**
- * Retrieves service data by ID
- * @param {string} serviceId - The service identifier
- * @returns {ServiceData|null} Service data or null if not found
- */
-export const getServiceById = (serviceId) => {
-  // Use hasOwnProperty to avoid prototype pollution issues
-  if (Object.prototype.hasOwnProperty.call(servicesData, serviceId)) {
-    return servicesData[serviceId];
+async function main() {
+  const API_URL = 'http://localhost:1337/api';
+  
+  console.log('='.repeat(60));
+  console.log('Service Update Script');
+  console.log('='.repeat(60));
+  console.log('Updating services with complete data from src/data/services.js\n');
+
+  let updated = 0;
+  let failed = 0;
+
+  for (const [key, service] of Object.entries(servicesData)) {
+    try {
+      // First, get the existing service to find its document ID
+      const response = await axios.get(`${API_URL}/services`, {
+        params: {
+          'filters[serviceId][$eq]': service.id
+        }
+      });
+
+      if (response.data.data.length === 0) {
+        console.log(`✗ ${service.heroTitle}: Not found in database`);
+        failed++;
+        continue;
+      }
+
+      const existingService = response.data.data[0];
+      const documentId = existingService.documentId;
+
+      // Update the service
+      await axios.put(`${API_URL}/services/${documentId}`, {
+        data: {
+          serviceId: service.id,
+          heroTitle: service.heroTitle,
+          heroTagline: service.heroTagline,
+          heroImage: service.heroImage,
+          description: service.description,
+          highlights: service.highlights,
+          images: service.images,
+          cta: service.cta,
+        },
+      });
+      
+      console.log(`✓ ${service.heroTitle}: Updated successfully`);
+      updated++;
+    } catch (error) {
+      console.error(`✗ ${service.heroTitle}: Failed`);
+      if (error.response) {
+        console.error('  Status:', error.response.status);
+        console.error('  Data:', JSON.stringify(error.response.data, null, 2));
+      } else {
+        console.error('  Error:', error.message);
+        console.error('  Stack:', error.stack);
+      }
+      failed++;
+    }
   }
-  return null;
-};
+
+  console.log('\n' + '='.repeat(60));
+  console.log('Update Summary:');
+  console.log(`  Updated: ${updated}`);
+  console.log(`  Failed: ${failed}`);
+  console.log('='.repeat(60));
+}
+
+main().catch(error => {
+  console.error('Update failed:', error);
+  process.exit(1);
+});
