@@ -282,6 +282,60 @@ export class StrapiClient {
   }
 
   /**
+   * Extracts URL from Strapi media object(s)
+   * 
+   * Handles different media formats:
+   * - Single media object: { url: '/uploads/image.png', ... } → '/uploads/image.png'
+   * - Array of media objects: [{ url: '...' }, ...] → ['/uploads/...', ...]
+   * - String (fallback): returns as-is
+   * - Null/undefined: returns null or empty array
+   * 
+   * @private
+   * @param {Object|Array|string|null} media - Media object(s) from Strapi
+   * @returns {string|string[]|null} Extracted URL(s) or null
+   */
+  _extractMediaUrl(media) {
+      if (!media) {
+        return null;
+      }
+
+      // Helper function to make URL absolute
+      const makeAbsoluteUrl = (url) => {
+        if (!url) return null;
+        // If already absolute, return as-is
+        if (url.startsWith('http://') || url.startsWith('https://')) {
+          return url;
+        }
+        // If relative, prepend baseURL
+        if (url.startsWith('/')) {
+          return `${this.config.baseURL}${url}`;
+        }
+        // Otherwise return as-is
+        return url;
+      };
+
+      // If it's already a string, return as-is (fallback for old data)
+      if (typeof media === 'string') {
+        return makeAbsoluteUrl(media);
+      }
+
+      // Handle array of media objects
+      if (Array.isArray(media)) {
+        return media
+          .map(item => makeAbsoluteUrl(item?.url || null))
+          .filter(url => url !== null);
+      }
+
+      // Handle single media object
+      if (typeof media === 'object' && media.url) {
+        return makeAbsoluteUrl(media.url);
+      }
+
+      return null;
+    }
+
+
+  /**
    * Transforms Strapi API response to local data format
    * 
    * Converts Strapi's response structure:
@@ -290,6 +344,11 @@ export class StrapiClient {
    * 
    * To local format:
    * { 'service-id': { id: 'service-id', ... } }
+   * 
+   * Handles media objects by extracting URLs:
+   * - featuredImage: single media object → URL string
+   * - heroImage: single media object → URL string
+   * - images: array of media objects → array of URL strings
    * 
    * @private
    * @param {Object} strapiResponse - Raw Strapi API response
@@ -312,16 +371,16 @@ export class StrapiClient {
         continue;
       }
 
-      // Transform to local format
+      // Transform to local format, extracting URLs from media objects
       transformed[serviceId] = {
         id: serviceId,
         heroTitle: attrs.heroTitle,
         heroTagline: attrs.heroTagline,
-        heroImage: attrs.heroImage,
-        featuredImage: attrs.featuredImage,
+        heroImage: this._extractMediaUrl(attrs.heroImage),
+        featuredImage: this._extractMediaUrl(attrs.featuredImage),
         description: attrs.description,
         highlights: attrs.highlights,
-        images: attrs.images,
+        images: this._extractMediaUrl(attrs.images) || [],
         cta: attrs.cta
       };
     }
@@ -427,8 +486,8 @@ export class StrapiClient {
    */
   async fetchServices() {
     try {
-      // Make request to Strapi
-      const response = await this._makeRequest('/api/services');
+      // Make request to Strapi with populate to get media relations
+      const response = await this._makeRequest('/api/services?populate=*');
 
       // Transform response
       const transformed = this._transformResponse(response);
@@ -508,8 +567,8 @@ export class StrapiClient {
    */
   async fetchServiceById(serviceId) {
     try {
-      // Make request to Strapi with filter
-      const endpoint = `/api/services?filters[serviceId][$eq]=${encodeURIComponent(serviceId)}`;
+      // Make request to Strapi with filter and populate to get media relations
+      const endpoint = `/api/services?filters[serviceId][$eq]=${encodeURIComponent(serviceId)}&populate=*`;
       const response = await this._makeRequest(endpoint);
 
       // Transform response
@@ -691,8 +750,8 @@ export class StrapiClient {
     const errors = [];
 
     try {
-      // Fetch data from Strapi
-      const response = await this._makeRequest('/api/services');
+      // Fetch data from Strapi with populate to get media relations
+      const response = await this._makeRequest('/api/services?populate=*');
       const strapiData = this._transformResponse(response);
 
       // Get local data

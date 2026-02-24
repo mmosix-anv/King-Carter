@@ -440,25 +440,14 @@
   transition: all 0.3s ease;
   cursor: pointer;
   background-color: #333; /* Fallback color */
+  background-size: cover; /* Ensure background image covers the card */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent image repetition */
   margin: 0 2px;
 
   &:hover {
-    .cardImage {
-      transform: scale(1.05);
-    }
+    transform: scale(1.02); /* Slight zoom on hover */
   }
-}
-
-.cardImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-  display: block; /* Ensure image is displayed as a block element */
-  position: absolute; /* Position absolute to cover the card */
-  top: 0;
-  left: 0;
-  z-index: 1; /* Ensure it sits below the overlay */
 }
 
 .cardOverlay {

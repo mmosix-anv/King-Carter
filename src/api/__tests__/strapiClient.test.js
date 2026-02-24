@@ -553,6 +553,72 @@ describe('StrapiClient', () => {
       expect(result['test-service'].id).toBe('test-service');
     });
 
+    it('should extract URL from single media object', () => {
+      const mediaObject = { id: 1, url: '/uploads/image.png', name: 'image.png' };
+      const result = client._extractMediaUrl(mediaObject);
+      expect(result).toBe('/uploads/image.png');
+    });
+
+    it('should extract URLs from array of media objects', () => {
+      const mediaArray = [
+        { id: 1, url: '/uploads/img1.png', name: 'img1.png' },
+        { id: 2, url: '/uploads/img2.png', name: 'img2.png' }
+      ];
+      const result = client._extractMediaUrl(mediaArray);
+      expect(result).toEqual(['/uploads/img1.png', '/uploads/img2.png']);
+    });
+
+    it('should return string as-is for fallback compatibility', () => {
+      const stringUrl = '/image/test.png';
+      const result = client._extractMediaUrl(stringUrl);
+      expect(result).toBe('/image/test.png');
+    });
+
+    it('should return null for null or undefined media', () => {
+      expect(client._extractMediaUrl(null)).toBeNull();
+      expect(client._extractMediaUrl(undefined)).toBeNull();
+    });
+
+    it('should filter out null URLs from media array', () => {
+      const mediaArray = [
+        { id: 1, url: '/uploads/img1.png' },
+        { id: 2, url: null },
+        { id: 3, url: '/uploads/img3.png' }
+      ];
+      const result = client._extractMediaUrl(mediaArray);
+      expect(result).toEqual(['/uploads/img1.png', '/uploads/img3.png']);
+    });
+
+    it('should transform media objects in response', () => {
+      const strapiResponse = {
+        data: [
+          {
+            id: 1,
+            attributes: {
+              serviceId: 'test-service',
+              heroTitle: 'Test',
+              heroTagline: 'Tagline',
+              heroImage: { id: 12, url: '/uploads/hero.png', name: 'hero.png' },
+              featuredImage: { id: 13, url: '/uploads/featured.png', name: 'featured.png' },
+              description: ['Desc'],
+              highlights: ['H1'],
+              images: [
+                { id: 14, url: '/uploads/img1.png', name: 'img1.png' },
+                { id: 15, url: '/uploads/img2.png', name: 'img2.png' }
+              ],
+              cta: { text: 'CTA', buttonLabel: 'Button' }
+            }
+          }
+        ]
+      };
+
+      const result = client._transformResponse(strapiResponse);
+
+      expect(result['test-service'].heroImage).toBe('/uploads/hero.png');
+      expect(result['test-service'].featuredImage).toBe('/uploads/featured.png');
+      expect(result['test-service'].images).toEqual(['/uploads/img1.png', '/uploads/img2.png']);
+    });
+
     it('should skip items without attributes', () => {
       const strapiResponse = {
         data: [

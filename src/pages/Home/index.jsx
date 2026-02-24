@@ -101,7 +101,12 @@ const Home = () => {
             <h2 className={styles.sectionTitle}>Services</h2>
             <div className={styles.gridContainer}>
               {services.map((service) => (
-                <Link key={service.id} to={service.link} className={styles.card}>
+                <Link 
+                  key={service.id} 
+                  to={service.link} 
+                  className={styles.card}
+                  style={{ backgroundImage: `url(${service.image})` }}
+                >
                   <div className={styles.cardOverlay}>
                     <h3 className={styles.cardTitle}>{service.title}</h3>
                     <button className={styles.learnMoreBtn}>Learn more</button>
