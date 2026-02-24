@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "serviceId": {
+      "type": "uid",
+      "required": true
+    },
+    "heroTitle": {
+      "type": "string",
+      "required": true
+    },
+    "heroTagline": {
+      "type": "text",
+      "required": true
+    },
+    "heroImage": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "json",
+      "required": true
+    },
+    "highlights": {
+      "type": "json",
+      "required": true
+    },
+    "images": {
+      "type": "json",
+      "required": true
+    },
+    "cta": {
+      "type": "json",
+      "required": true
+    }
+  }
+}

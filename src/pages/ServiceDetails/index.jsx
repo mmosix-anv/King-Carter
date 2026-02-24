@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
-import { fetchServiceById } from '../../data/sanityServices';
+import { fetchServiceById } from '../../data/strapiServices';
 import { useSEO } from '../../hooks/useSEO';
 import { pageSEO } from '../../config/seo';
 import styles from './index.module.scss';

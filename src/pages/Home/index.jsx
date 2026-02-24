@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchServices } from '../../data/sanityServices';
+import { fetchServices } from '../../data/strapiServices';
 import Layout from '../../components/Layout';
 import Fleet from '../../components/Fleet';
 import WhoWeAre from '../../components/WhoWeAre';
