@@ -89,7 +89,6 @@ const Home = () => {
           <div className={styles.gridContainer}>
             {services.map((service) => (
               <Link key={service.id} to={service.link} className={styles.card}>
-                <img src={service.image} alt={service.title} className={styles.cardImage} />
                 <div className={styles.cardOverlay}>
                   <h3 className={styles.cardTitle}>{service.title}</h3>
                   <button className={styles.learnMoreBtn}>Learn more</button>
