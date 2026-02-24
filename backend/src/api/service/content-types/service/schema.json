@@ -4,10 +4,18 @@
   "info": {
     "singularName": "service",
     "pluralName": "services",
-    "displayName": "Service"
+    "displayName": "Services"
   },
   "options": {
     "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    },
+    "content-type-builder": {
+      "visible": true
+    }
   },
   "attributes": {
     "serviceId": {

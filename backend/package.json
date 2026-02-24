@@ -10,7 +10,7 @@
     "dev": "strapi develop",
     "develop": "strapi develop",
     "seed:example": "node ./scripts/seed.js",
-    "migrate:services": "node ./scripts/migrate-services.js",
+    "seed:services": "node ./scripts/seed-services.js",
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",

@@ -1,8 +1,4 @@
-const fs = require('fs');
-const path = require('path');
-
-const servicesPath = path.join(__dirname, '../../src/data/services.js');
-const servicesContent = fs.readFileSync(servicesPath, 'utf8');
+const axios = require('axios');
 
 const servicesData = {
   'private-luxury-transport': {
@@ -71,12 +67,15 @@ const servicesData = {
   }
 };
 
-async function migrateServices() {
-  console.log('Starting Strapi migration...');
+async function main() {
+  const API_URL = 'http://localhost:1337/api';
+  
+  console.log('Starting migration...');
+  console.log('Make sure Strapi is running on http://localhost:1337\n');
 
   for (const [key, service] of Object.entries(servicesData)) {
     try {
-      const result = await strapi.entityService.create('api::service.service', {
+      await axios.post(`${API_URL}/services`, {
         data: {
           serviceId: service.id,
           heroTitle: service.heroTitle,
@@ -90,11 +89,14 @@ async function migrateServices() {
       });
       console.log(`✓ Migrated: ${service.heroTitle}`);
     } catch (error) {
-      console.error(`✗ Failed to migrate ${service.heroTitle}:`, error.message);
+      console.error(`✗ Failed to migrate ${service.heroTitle}:`, error.response?.data || error.message);
     }
   }
 
-  console.log('Migration complete!');
+  console.log('\nMigration complete!');
 }
 
-migrateServices();
+main().catch(error => {
+  console.error(error);
+  process.exit(1);
+});

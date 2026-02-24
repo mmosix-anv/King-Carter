@@ -635,7 +635,7 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
 export interface ApiServiceService extends Struct.CollectionTypeSchema {
   collectionName: 'services';
   info: {
-    displayName: 'Service';
+    displayName: 'Services';
     pluralName: 'services';
     singularName: 'service';
   };
