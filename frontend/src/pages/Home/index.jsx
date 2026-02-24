@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { servicesData } from '../../data/services';
+import { fetchServices } from '../../data/sanityServices';
 import Layout from '../../components/Layout';
 import Fleet from '../../components/Fleet';
 import WhoWeAre from '../../components/WhoWeAre';
 import { useSEO } from '../../hooks/useSEO';
 import { pageSEO } from '../../config/seo';
 import styles from './index.module.scss';
-
-const services = Object.values(servicesData).map((service) => ({
-  id: service.id,
-  title: service.heroTitle,
-  image: service.heroImage,
-  link: `/services/${service.id}`,
-}));
 
 const whyItems = [
   { 
@@ -44,9 +37,22 @@ const whyItems = [
 ];
 
 const Home = () => {
+  const [services, setServices] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useSEO(pageSEO.home);
+
+  useEffect(() => {
+    fetchServices().then(data => {
+      const servicesList = Object.values(data).map(service => ({
+        id: service.id,
+        title: service.heroTitle,
+        image: service.heroImage,
+        link: `/services/${service.id}`,
+      }));
+      setServices(servicesList);
+    });
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {

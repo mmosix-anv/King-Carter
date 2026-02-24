@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
-import { getServiceById } from '../../data/services';
+import { fetchServiceById } from '../../data/sanityServices';
 import { useSEO } from '../../hooks/useSEO';
 import { pageSEO } from '../../config/seo';
 import styles from './index.module.scss';
@@ -9,7 +9,16 @@ import styles from './index.module.scss';
 const ServiceDetails = () => {
   const { serviceId } = useParams();
   const navigate = useNavigate();
-  const serviceData = getServiceById(serviceId);
+  const [serviceData, setServiceData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchServiceById(serviceId).then(data => {
+      setServiceData(data);
+      setLoading(false);
+      if (!data) navigate('/', { replace: true });
+    });
+  }, [serviceId, navigate]);
 
   const seoData = pageSEO.services[serviceId] || {
     title: serviceData?.heroTitle || 'Service Details',
@@ -19,15 +28,7 @@ const ServiceDetails = () => {
 
   useSEO(seoData);
 
-  // Redirect to home page if service not found
-  useEffect(() => {
-    if (!serviceData) {
-      navigate('/', { replace: true });
-    }
-  }, [serviceData, navigate]);
-
-  // Return null during redirect to avoid rendering invalid content
-  if (!serviceData) {
+  if (loading || !serviceData) {
     return null;
   }
 
