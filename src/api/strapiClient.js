@@ -401,7 +401,11 @@ export class StrapiClient {
       throw new Error('Strapi URL not configured');
     }
 
-    const url = `${this.config.baseURL}${endpoint}`;
+    // Remove trailing slash from baseURL and leading slash from endpoint, then join
+    const baseURL = this.config.baseURL.replace(/\/$/, '');
+    const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
+    const url = `${baseURL}${cleanEndpoint}`;
+    
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), this.config.timeout);
 
