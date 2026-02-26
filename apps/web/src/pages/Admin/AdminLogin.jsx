@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import getApiUrl from '../../utils/apiUrl';
 import styles from './AdminLogin.module.scss';
 
 const AdminLogin = () => {
@@ -11,7 +12,7 @@ const AdminLogin = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch(`${import.meta.env.VITE_CMS_URL || 'http://localhost:3001'}/api/auth/login`, {
+      const response = await fetch(`${getApiUrl()}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(credentials)

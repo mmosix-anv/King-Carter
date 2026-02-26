@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import getApiUrl from '../../utils/apiUrl';
 import styles from './AdminServices.module.scss';
 
 const AdminServices = () => {
@@ -10,7 +11,7 @@ const AdminServices = () => {
     description: '', highlights: '', images: '', ctaText: '', ctaButtonLabel: ''
   });
 
-  const API_URL = import.meta.env.VITE_CMS_URL || 'http://localhost:3001';
+  const API_URL = getApiUrl();
   const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
