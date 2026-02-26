@@ -1,16 +1,90 @@
-# React + Vite
+# King & Carter Premier - Luxury Transport Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React + Vite application for King & Carter Premier luxury transport services with an integrated CMS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Modern React frontend with Vite
+- Node.js/Express backend API
+- Supabase database integration
+- Admin CMS for content management
+- Responsive design
+- Service management system
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js 18+
+- npm or yarn
+- Supabase account
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   cp .env.template .env
+   ```
+   Fill in your Supabase credentials in `.env`
+
+4. Run the database migration:
+   ```bash
+   cd apps/api
+   node migrate.js --seed-services
+   ```
+
+5. Start the development servers:
+   ```bash
+   npm run dev
+   ```
+
+## Admin Access
+
+The CMS admin panel is available at `/admin`
+
+### Default Login Credentials
+
+**Username:** `admin`  
+**Password:** `admin123`
+
+> ⚠️ **Important:** Change these default credentials in production!
+
+### Admin Features
+
+- Service content management
+- Image upload and management
+- Navigation configuration
+- Global settings
+
+## Development
+
+### Project Structure
+
+```
+kc-web/
+├── apps/
+│   ├── api/          # Backend API
+│   └── web/          # Frontend React app
+├── .env              # Environment variables
+└── README.md
+```
+
+### Available Scripts
+
+- `npm run dev` - Start development servers
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+
+## Deployment
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for deployment instructions.
+
+## Database
+
+See [SUPABASE_MIGRATION.md](SUPABASE_MIGRATION.md) for database setup and migration details.
