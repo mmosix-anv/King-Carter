@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchServices } from '../../data/strapiServices';
+import { createApiClient } from '../../api/apiClient';
 import Layout from '../../components/Layout';
 import Fleet from '../../components/Fleet';
 import WhoWeAre from '../../components/WhoWeAre';
@@ -45,7 +45,8 @@ const Home = () => {
   useSEO(pageSEO.home);
 
   useEffect(() => {
-    fetchServices()
+    const client = createApiClient();
+    client.fetchServices()
       .then(data => {
         const servicesList = Object.values(data).map(service => ({
           id: service.id,

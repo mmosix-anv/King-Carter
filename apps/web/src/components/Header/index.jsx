@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { createStrapiClient } from '../../api/strapiClient';
+import { createApiClient } from '../../api/apiClient';
 import styles from './index.module.scss';
 
 const Header = () => {
@@ -10,7 +10,7 @@ const Header = () => {
   const [servicesData, setServicesData] = useState({});
 
   useEffect(() => {
-    const client = createStrapiClient();
+    const client = createApiClient();
     
     // Fetch navigation links
     client.fetchNavLinks().then(setNavLinks);

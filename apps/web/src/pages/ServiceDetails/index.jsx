@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
 import ServiceErrorBoundary from '../../components/ServiceErrorBoundary';
-import { fetchServiceById } from '../../data/strapiServices';
+import { createApiClient } from '../../api/apiClient';
 import { useSEO } from '../../hooks/useSEO';
 import { pageSEO } from '../../config/seo';
 import styles from './index.module.scss';
@@ -15,7 +15,8 @@ const ServiceDetails = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchServiceById(serviceId)
+    const client = createApiClient();
+    client.fetchServiceById(serviceId)
       .then(data => {
         setServiceData(data);
         setLoading(false);
