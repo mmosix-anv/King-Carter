@@ -7,24 +7,38 @@ const db = new SupabaseDatabase();
 
 // Get all services
 router.get('/', (req, res) => {
+  console.log('Fetching all services...');
   db.all('SELECT * FROM services', [], (err, rows) => {
     if (err) {
+      console.error('Database error:', err);
       return res.status(500).json({ error: err.message });
     }
 
-    const services = rows.map(row => ({
-      id: row.id,
-      serviceId: row.id,
-      heroTitle: row.hero_title,
-      heroTagline: row.hero_tagline,
-      heroImage: row.hero_image,
-      featuredImage: row.featured_image,
-      description: row.description || [],
-      highlights: row.highlights || [],
-      images: row.images || [],
-      cta: row.cta || {}
-    }));
+    console.log(`Found ${rows.length} services in database`);
+    const services = {};
+    rows.forEach(row => {
+      console.log(`Processing service: ${row.id}`);
+      try {
+        services[row.id] = {
+          id: row.id,
+          serviceId: row.id,
+          heroTitle: row.hero_title,
+          heroTagline: row.hero_tagline,
+          heroImage: row.hero_image,
+          featuredImage: row.featured_image,
+          description: Array.isArray(row.description) ? row.description : (row.description ? JSON.parse(row.description) : []),
+          highlights: Array.isArray(row.highlights) ? row.highlights : (row.highlights ? JSON.parse(row.highlights) : []),
+          images: Array.isArray(row.images) ? row.images : (row.images ? JSON.parse(row.images) : []),
+          cta: typeof row.cta === 'object' && row.cta !== null ? row.cta : (row.cta ? JSON.parse(row.cta) : {})
+        };
+      } catch (parseError) {
+        console.error(`Error parsing service ${row.id}:`, parseError);
+        console.error('Raw data:', row);
+        // Skip this service if parsing fails
+      }
+    });
 
+    console.log(`Returning ${Object.keys(services).length} services`);
     res.json({ data: services });
   });
 });
@@ -33,6 +47,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   db.get('SELECT * FROM services WHERE id = $1', [req.params.id], (err, row) => {
     if (err) {
+      console.error('Database error:', err);
       return res.status(500).json({ error: err.message });
     }
 
@@ -40,20 +55,25 @@ router.get('/:id', (req, res) => {
       return res.status(404).json({ error: 'Service not found' });
     }
 
-    const service = {
-      id: row.id,
-      serviceId: row.id,
-      heroTitle: row.hero_title,
-      heroTagline: row.hero_tagline,
-      heroImage: row.hero_image,
-      featuredImage: row.featured_image,
-      description: row.description || [],
-      highlights: row.highlights || [],
-      images: row.images || [],
-      cta: row.cta || {}
-    };
+    try {
+      const service = {
+        id: row.id,
+        serviceId: row.id,
+        heroTitle: row.hero_title,
+        heroTagline: row.hero_tagline,
+        heroImage: row.hero_image,
+        featuredImage: row.featured_image,
+        description: Array.isArray(row.description) ? row.description : (row.description ? JSON.parse(row.description) : []),
+        highlights: Array.isArray(row.highlights) ? row.highlights : (row.highlights ? JSON.parse(row.highlights) : []),
+        images: Array.isArray(row.images) ? row.images : (row.images ? JSON.parse(row.images) : []),
+        cta: typeof row.cta === 'object' && row.cta !== null ? row.cta : (row.cta ? JSON.parse(row.cta) : {})
+      };
 
-    res.json({ data: [service] });
+      res.json({ data: service });
+    } catch (parseError) {
+      console.error(`Error parsing service ${row.id}:`, parseError);
+      return res.status(500).json({ error: 'Error parsing service data' });
+    }
   });
 });
 

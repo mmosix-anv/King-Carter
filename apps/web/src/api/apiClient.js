@@ -1,4 +1,5 @@
 import getApiUrl from '../utils/apiUrl.js';
+import { servicesData } from '../data/services.js';
 
 class ApiClient {
   constructor() {
@@ -32,8 +33,9 @@ class ApiClient {
       const response = await this._makeRequest('/api/services');
       return response.data || {};
     } catch (error) {
-      // Return empty object on error - components will handle fallback
-      return {};
+      // Return fallback data when API is unavailable
+      console.log('Using fallback services data');
+      return servicesData;
     }
   }
 
@@ -42,16 +44,34 @@ class ApiClient {
       const response = await this._makeRequest(`/api/services/${serviceId}`);
       return response.data || null;
     } catch (error) {
-      return null;
+      // Return fallback data when API is unavailable
+      console.log(`Using fallback data for service: ${serviceId}`);
+      return servicesData[serviceId] || null;
     }
   }
 
   async fetchNavLinks() {
+    const fallbackNavLinks = {
+      leftLinks: [
+        { label: 'Services', url: '/services', openInNewTab: false },
+        { label: 'About Us', url: '/about', openInNewTab: false }
+      ],
+      rightLinks: [
+        { label: 'Experience', url: '/experience', openInNewTab: false },
+        { label: 'Contact', url: '/contact', openInNewTab: false }
+      ],
+      ctaButtons: {
+        primary: { label: 'Become a member', url: '/membership', variant: 'primary' },
+        secondary: { label: 'Login', url: '/login', variant: 'secondary' }
+      }
+    };
+
     try {
       const response = await this._makeRequest('/api/nav-links');
-      return response.data || null;
+      return response.data || fallbackNavLinks;
     } catch (error) {
-      return null;
+      console.log('Using fallback navigation data');
+      return fallbackNavLinks;
     }
   }
 }
