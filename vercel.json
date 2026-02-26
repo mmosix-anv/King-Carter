@@ -1,11 +1,11 @@
 {
-  "version": 2,
   "builds": [
     {
       "src": "apps/web/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"
+        "buildCommand": "cd apps/web && npm run build",
+        "outputDirectory": "apps/web/dist"
       }
     },
     {
@@ -20,7 +20,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/apps/web/$1"
+      "dest": "/apps/web/dist/index.html"
     }
   ]
 }
