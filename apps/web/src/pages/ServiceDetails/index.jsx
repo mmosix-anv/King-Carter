@@ -72,32 +72,32 @@ const ServiceDetails = () => {
             ))}
           </div>
 
+          {/* Highlights Section - NEW STANDALONE SECTION */}
+          {serviceData?.highlights && serviceData.highlights.length > 0 && (
+            <div className={styles.highlightsSection}>
+              <div className={styles.highlightsContainer}>
+                <h2 className={styles.highlightsTitle}>Service Highlights</h2>
+                <div className={styles.highlightsGrid}>
+                  {serviceData.highlights.map((highlight, index) => (
+                    <div key={index} className={styles.highlightCard}>
+                      <div className={styles.highlightIcon}>✓</div>
+                      <p className={styles.highlightText}>{highlight}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Gallery Section */}
           <div className={styles.gallery}>
             {(serviceData?.images || []).map((image, index) => (
-              <div 
-                key={index} 
-                className={index === 0 ? styles.galleryItemPrimary : styles.galleryItem}
-              >
+              <div key={index} className={styles.galleryItem}>
                 <img
                   src={image}
                   className={styles.galleryImage}
                   alt={`${serviceData?.heroTitle || 'Service'} - Gallery image ${index + 1}`}
                 />
-                {/* Highlights Section overlaid on first image */}
-                {index === 0 && serviceData?.highlights && serviceData.highlights.length > 0 && (
-                  <>
-                    <div className={styles.imageOverlay}></div>
-                    <div className={styles.highlights}>
-                      <h2>SERVICE HIGHLIGHTS</h2>
-                      <ul>
-                        {serviceData.highlights.map((highlight, index) => (
-                          <li key={index}>{highlight}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </>
-                )}
               </div>
             ))}
           </div>
