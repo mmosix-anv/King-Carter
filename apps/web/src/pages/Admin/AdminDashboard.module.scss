@@ -1,50 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import '../../admin/styles/base.scss';
 
 .dashboard {
-  font-family: 'Inter', sans-serif;
+  font-family: $font-family-base;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: $margin-xl * 1.5;
   
   h1 {
-    margin: 0 0 0.5rem 0;
-    color: #191919;
-    font-size: 2.5rem;
-    font-weight: 700;
+    margin: 0 0 $margin-xs 0;
+    color: $color-text-primary;
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
   }
   
   p {
     margin: 0;
-    color: #6c757d;
-    font-size: 1.1rem;
+    color: $color-text-muted;
+    font-size: $font-size-lg;
   }
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  gap: $spacing-8;
   max-width: 1000px;
   margin: 0 auto;
 }
 
 .card {
-  background: #fff;
-  border: 2px solid #e1e5e9;
-  border-radius: 16px;
-  padding: 2rem;
+  @include card;
   text-decoration: none;
   color: inherit;
-  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
   
   &:hover {
-    border-color: #D4AF37;
+    border-color: $color-primary;
     transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+    box-shadow: $shadow-lg;
   }
   
   &::before {
@@ -54,9 +50,9 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+    background: linear-gradient(90deg, $color-primary 0%, #FFD700 50%, $color-primary 100%);
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity $transition-slow;
   }
   
   &:hover::before {
@@ -65,36 +61,52 @@
 }
 
 .cardIcon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: $font-size-3xl * 1.5;
+  margin-bottom: $margin-base;
   display: block;
 }
 
 .card h3 {
-  margin: 0 0 0.5rem 0;
-  color: #191919;
-  font-size: 1.5rem;
-  font-weight: 600;
+  margin: 0 0 $margin-xs 0;
+  color: $color-text-primary;
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
 }
 
 .card p {
   margin: 0;
-  color: #6c757d;
-  font-size: 1rem;
-  line-height: 1.5;
+  color: $color-text-muted;
+  font-size: $font-size-base;
+  line-height: $line-height-normal;
 }
 
 .cardArrow {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
-  font-size: 1.5rem;
-  color: #D4AF37;
+  top: $spacing-8;
+  right: $spacing-8;
+  font-size: $font-size-2xl;
+  color: $color-primary;
   opacity: 0;
-  transition: all 0.3s ease;
+  transition: $transition-all;
 }
 
 .card:hover .cardArrow {
   opacity: 1;
   transform: translateX(4px);
+}
+
+// Responsive adjustments
+@include respond-to(md) {
+  .header h1 {
+    font-size: $font-size-3xl;
+  }
+
+  .header p {
+    font-size: $font-size-base;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: $spacing-6;
+  }
 }

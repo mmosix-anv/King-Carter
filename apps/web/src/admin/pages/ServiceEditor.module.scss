@@ -1,0 +1,199 @@
+@import '../styles/base.scss';
+
+.serviceEditor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-lg;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-xl;
+  padding-bottom: $spacing-md;
+  border-bottom: 1px solid $border-color;
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: $text-primary;
+  }
+}
+
+.statusBadge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  &[data-status="draft"] {
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+
+  &[data-status="published"] {
+    background-color: #d1fae5;
+    color: #065f46;
+  }
+}
+
+.auditTrail {
+  background-color: #f9fafb;
+  padding: $spacing-md;
+  border-radius: $border-radius;
+  margin-bottom: $spacing-lg;
+  border: 1px solid $border-color;
+}
+
+.auditItem {
+  display: flex;
+  gap: $spacing-sm;
+  font-size: 0.875rem;
+  color: $text-secondary;
+  margin-bottom: 0.5rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.auditLabel {
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.auditValue {
+  color: $text-secondary;
+}
+
+.actions {
+  display: flex;
+  gap: $spacing-sm;
+}
+
+.cancelButton,
+.draftButton,
+.publishButton {
+  padding: $spacing-sm $spacing-lg;
+  border: none;
+  border-radius: $border-radius;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.cancelButton {
+  background-color: $bg-secondary;
+  color: $text-primary;
+
+  &:hover:not(:disabled) {
+    background-color: darken($bg-secondary, 5%);
+  }
+}
+
+.draftButton {
+  background-color: $color-secondary;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: darken($color-secondary, 10%);
+  }
+}
+
+.publishButton {
+  background-color: $color-primary;
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: darken($color-primary, 10%);
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+}
+
+.section {
+  background-color: white;
+  padding: $spacing-lg;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+}
+
+.sectionTitle {
+  margin: 0 0 $spacing-lg 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $text-primary;
+  padding-bottom: $spacing-sm;
+  border-bottom: 2px solid $color-primary;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.spinner {
+  font-size: 1.2rem;
+  color: $color-primary;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .serviceEditor {
+    padding: $spacing-md;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-md;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .actions {
+    width: 100%;
+    flex-direction: column;
+
+    button {
+      width: 100%;
+    }
+  }
+
+  .section {
+    padding: $spacing-md;
+  }
+
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+}

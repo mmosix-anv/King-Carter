@@ -1,0 +1,127 @@
+@import '../styles/base.scss';
+
+.loginPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, $color-dark 0%, #2c2c2c 100%);
+  padding: $padding-base;
+}
+
+.loginContainer {
+  width: 100%;
+  max-width: 420px;
+}
+
+.loginCard {
+  background: $color-bg-card;
+  border-radius: $border-radius-xl;
+  box-shadow: $shadow-xl;
+  padding: $padding-xl;
+  animation: slideUp 0.4s ease;
+
+  @include respond-to(sm) {
+    padding: $padding-lg;
+  }
+}
+
+.loginHeader {
+  text-align: center;
+  margin-bottom: $margin-xl;
+}
+
+.title {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  margin: 0 0 $margin-sm 0;
+}
+
+.subtitle {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+  margin: 0;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-5;
+}
+
+.errorMessage {
+  padding: $padding-sm $padding-base;
+  background: rgba($color-danger, 0.1);
+  border: $border-width-thin solid $color-danger;
+  border-radius: $border-radius-base;
+  color: $color-danger;
+  font-size: $font-size-sm;
+  text-align: center;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+}
+
+.label {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  color: $color-text-primary;
+}
+
+.input {
+  width: 100%;
+  padding: $padding-sm $padding-base;
+  font-size: $font-size-base;
+  font-family: $font-family-base;
+  color: $color-text-primary;
+  background: $color-bg-input;
+  border: $border-width-base solid $color-border;
+  border-radius: $border-radius-base;
+  transition: $transition-colors;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: $shadow-focus;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &::placeholder {
+    color: $color-text-muted;
+  }
+}
+
+.submitButton {
+  width: 100%;
+  padding: $padding-sm $padding-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  font-family: $font-family-base;
+  color: $color-dark;
+  background: $color-primary;
+  border: none;
+  border-radius: $border-radius-base;
+  cursor: pointer;
+  transition: $transition-colors;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-dark;
+  }
+
+  &:active:not(:disabled) {
+    background: $color-primary-darker;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

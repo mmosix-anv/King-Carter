@@ -1,0 +1,117 @@
+@import '../styles/base.scss';
+
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background: $color-bg-card;
+  border-right: $border-width-base solid $color-border;
+  display: flex;
+  flex-direction: column;
+  transition: width $transition-base;
+  position: sticky;
+  top: 0;
+
+  &.collapsed {
+    width: 80px;
+  }
+
+  @include respond-to(md) {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: $z-index-fixed;
+    box-shadow: $shadow-lg;
+
+    &.collapsed {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+.sidebarHeader {
+  padding: $padding-lg;
+  border-bottom: $border-width-base solid $color-border;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-3;
+}
+
+.logo {
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-primary;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.toggleButton {
+  @include button-reset;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $border-radius-base;
+  color: $color-text-secondary;
+  transition: $transition-colors;
+
+  &:hover {
+    background: $color-bg-hover;
+    color: $color-text-primary;
+  }
+
+  @include respond-to(md) {
+    display: none;
+  }
+}
+
+.nav {
+  flex: 1;
+  padding: $padding-base;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2;
+  overflow-y: auto;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-3;
+  padding: $padding-sm $padding-base;
+  border-radius: $border-radius-base;
+  color: $color-text-secondary;
+  text-decoration: none;
+  font-size: $font-size-base;
+  font-weight: $font-weight-medium;
+  transition: $transition-colors;
+  white-space: nowrap;
+
+  &:hover {
+    background: $color-bg-hover;
+    color: $color-text-primary;
+  }
+
+  &.active {
+    background: $color-primary-light;
+    color: $color-primary;
+    font-weight: $font-weight-semibold;
+  }
+}
+
+.icon {
+  font-size: $font-size-xl;
+  flex-shrink: 0;
+}
+
+.label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.collapsed .label {
+  display: none;
+}

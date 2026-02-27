@@ -20,7 +20,11 @@ CREATE TABLE IF NOT EXISTS services (
   highlights JSONB,
   images JSONB,
   cta JSONB,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  status VARCHAR(20) DEFAULT 'published',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  created_by INTEGER REFERENCES users(id),
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_by INTEGER REFERENCES users(id)
 );
 
 -- Navigation links table
@@ -37,6 +41,20 @@ CREATE TABLE IF NOT EXISTS global_settings (
   key VARCHAR(255) PRIMARY KEY,
   value TEXT,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Media table
+CREATE TABLE IF NOT EXISTS media (
+  id SERIAL PRIMARY KEY,
+  filename VARCHAR(255) NOT NULL,
+  original_name VARCHAR(255) NOT NULL,
+  mime_type VARCHAR(100) NOT NULL,
+  file_size INTEGER NOT NULL,
+  url_original VARCHAR(500) NOT NULL,
+  url_thumbnail VARCHAR(500),
+  url_medium VARCHAR(500),
+  uploaded_by INTEGER REFERENCES users(id),
+  uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Insert default admin user (password: admin123)

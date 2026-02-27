@@ -1,0 +1,182 @@
+@import '../../admin/styles/base.scss';
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-index-modal;
+  backdrop-filter: blur(3px);
+  animation: fadeIn $transition-base;
+}
+
+.dialog {
+  background: $color-bg-card;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-xl;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow: auto;
+  animation: slideUp $transition-slow;
+  font-family: $font-family-base;
+}
+
+.header {
+  padding: $padding-lg $padding-lg $padding-base;
+  border-bottom: $border-width-thin solid $color-border;
+}
+
+.title {
+  margin: 0;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+}
+
+.body {
+  padding: $padding-lg;
+}
+
+.message {
+  margin: 0;
+  font-size: $font-size-base;
+  line-height: $line-height-relaxed;
+  color: $color-text-secondary;
+}
+
+.footer {
+  padding: $padding-base $padding-lg $padding-lg;
+  display: flex;
+  justify-content: flex-end;
+  gap: $spacing-3;
+  border-top: $border-width-thin solid $color-border;
+}
+
+.cancelButton,
+.confirmButton {
+  padding: $padding-sm $padding-lg;
+  border: none;
+  border-radius: $border-radius-base;
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+  font-family: $font-family-base;
+  cursor: pointer;
+  transition: $transition-all;
+  
+  &:focus {
+    @include focus-ring;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.cancelButton {
+  background: $color-bg-page;
+  color: $color-text-secondary;
+  border: $border-width-base solid $color-border;
+
+  &:hover:not(:disabled) {
+    background: $color-bg-hover;
+    border-color: $color-border-dark;
+  }
+
+  &:active:not(:disabled) {
+    background: $color-bg-active;
+  }
+}
+
+.confirmButton {
+  color: $color-white;
+
+  &.danger {
+    background: $color-danger;
+
+    &:hover:not(:disabled) {
+      background: $color-danger-dark;
+    }
+
+    &:active:not(:disabled) {
+      background: $color-danger-darker;
+    }
+
+    &:focus {
+      box-shadow: $shadow-focus-danger;
+    }
+  }
+
+  &.warning {
+    background: $color-warning;
+
+    &:hover:not(:disabled) {
+      background: $color-warning-dark;
+    }
+
+    &:active:not(:disabled) {
+      background: #d68910;
+    }
+
+    &:focus {
+      box-shadow: $shadow-focus-warning;
+    }
+  }
+
+  &.info {
+    background: $color-primary;
+
+    &:hover:not(:disabled) {
+      background: $color-primary-dark;
+    }
+
+    &:active:not(:disabled) {
+      background: $color-primary-darker;
+    }
+
+    &:focus {
+      @include focus-ring;
+    }
+  }
+}
+
+// Responsive adjustments
+@include respond-to(md) {
+  .dialog {
+    width: 95%;
+    max-width: none;
+  }
+
+  .header {
+    padding: $padding-base + $spacing-1 $padding-base + $spacing-1 $spacing-3;
+  }
+
+  .title {
+    font-size: $font-size-lg;
+  }
+
+  .body {
+    padding: $padding-base + $spacing-1;
+  }
+
+  .message {
+    font-size: $font-size-sm + 0.05rem;
+  }
+
+  .footer {
+    padding: $spacing-3 $padding-base + $spacing-1 $padding-base + $spacing-1;
+    flex-direction: column-reverse;
+  }
+
+  .cancelButton,
+  .confirmButton {
+    width: 100%;
+    padding: $font-size-sm - 0.025rem;
+  }
+}

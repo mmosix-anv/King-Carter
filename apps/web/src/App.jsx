@@ -6,12 +6,7 @@ import ServiceDetails from './pages/ServiceDetails';
 import Membership from './pages/Membership';
 import Experience from './pages/Experience';
 import Contact from './pages/Contact';
-import AdminLogin from './pages/Admin/AdminLogin';
-import AdminDashboard from './pages/Admin/AdminDashboard';
-import AdminServices from './pages/Admin/AdminServices';
-import AdminNavigation from './pages/Admin/AdminNavigation';
-import AdminSettings from './pages/Admin/AdminSettings';
-import AdminLayout from './components/AdminLayout';
+import AdminApp from './admin/App';
 import { trackPageView } from './config/analytics';
 import './App.css';
 
@@ -36,17 +31,7 @@ function App() {
         <Route path="/membership" element={<Membership />} />
         <Route path="/experience" element={<Experience />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/*" element={
-          <AdminLayout>
-            <Routes>
-              <Route path="" element={<AdminDashboard />} />
-              <Route path="services" element={<AdminServices />} />
-              <Route path="navigation" element={<AdminNavigation />} />
-              <Route path="settings" element={<AdminSettings />} />
-            </Routes>
-          </AdminLayout>
-        } />
+        <Route path="/admin/*" element={<AdminApp />} />
       </Routes>
     </Router>
   );
