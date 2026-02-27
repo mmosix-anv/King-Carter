@@ -32,13 +32,17 @@ export const AuthProvider = ({ children }) => {
       if (response.ok) {
         const data = await response.json();
         setUser(data.user);
-      } else {
-        // Token invalid, clear it
+      } else if (response.status === 401) {
+        // Only logout on 401 (unauthorized/invalid token)
+        console.log('Token is invalid or expired, logging out');
         logout();
+      } else {
+        // Server error (500, etc.) - don't logout, just log the error
+        console.error('Token verification failed with status:', response.status);
       }
     } catch (error) {
-      console.error('Token verification failed:', error);
-      logout();
+      // Network error - don't logout, the API might be temporarily unavailable
+      console.error('Token verification network error:', error);
     } finally {
       setLoading(false);
     }

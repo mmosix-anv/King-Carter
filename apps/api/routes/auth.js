@@ -83,4 +83,59 @@ router.post('/login', (req, res) => {
   });
 });
 
+/**
+ * GET /api/auth/verify
+ * Verify JWT token validity
+ * 
+ * Headers:
+ * - Authorization: Bearer <token>
+ * 
+ * Response:
+ * - success: boolean
+ * - user: object { id, username, email }
+ */
+router.get('/verify', async (req, res) => {
+  const authHeader = req.headers.authorization;
+  
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ 
+      success: false,
+      error: 'No token provided' 
+    });
+  }
+
+  const token = authHeader.substring(7);
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    
+    // Fetch user from database using promise-based approach
+    const pool = db.getPool();
+    const result = await pool.query('SELECT id, username, email FROM users WHERE id = $1', [decoded.userId]);
+    
+    if (!result.rows || result.rows.length === 0) {
+      return res.status(401).json({ 
+        success: false,
+        error: 'User not found' 
+      });
+    }
+
+    const user = result.rows[0];
+    res.json({ 
+      success: true,
+      user: {
+        id: user.id,
+        username: user.username,
+        email: user.email || null
+      }
+    });
+  } catch (error) {
+    console.error('Token verification error:', error);
+    return res.status(401).json({ 
+      success: false,
+      error: 'Invalid token' 
+    });
+  }
+});
+
 module.exports = { router };

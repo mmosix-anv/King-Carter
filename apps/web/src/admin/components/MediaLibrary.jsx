@@ -35,6 +35,7 @@ const MediaLibrary = ({
   const [deleting, setDeleting] = useState(false);
 
   const itemsPerPage = 50;
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001';
 
   // Fetch media from API
   const fetchMedia = useCallback(async () => {
@@ -48,7 +49,7 @@ const MediaLibrary = ({
         ...(searchQuery && { search: searchQuery })
       });
 
-      const response = await fetch(`/api/media?${params}`, {
+      const response = await fetch(`${API_BASE_URL}/api/media?${params}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -137,7 +138,7 @@ const MediaLibrary = ({
     setError('');
 
     try {
-      const response = await fetch(`/api/media/${deleteConfirm.id}`, {
+      const response = await fetch(`${API_BASE_URL}/api/media/${deleteConfirm.id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

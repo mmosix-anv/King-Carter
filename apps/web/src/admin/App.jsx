@@ -1,6 +1,6 @@
-import React from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { NotificationProvider } from './components/NotificationContainer';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminLayout from './components/AdminLayout';
@@ -12,6 +12,12 @@ import MediaLibrary from './components/MediaLibrary';
 import SettingsForm from './pages/SettingsForm';
 import NavigationManager from './pages/NavigationManager';
 import './styles/base.scss';
+
+// Wrapper component to pass token to MediaLibrary
+const MediaLibraryWrapper = () => {
+  const { token } = useAuth();
+  return <MediaLibrary mode="manage" token={token} />;
+};
 
 const AdminApp = () => {
   return (
@@ -68,7 +74,7 @@ const AdminApp = () => {
               element={
                 <ProtectedRoute>
                   <AdminLayout>
-                    <MediaLibrary />
+                    <MediaLibraryWrapper />
                   </AdminLayout>
                 </ProtectedRoute>
               }
