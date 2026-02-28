@@ -16,18 +16,21 @@ This guide walks you through setting up Resend for contact form email notificati
 
 ## Step 2: Deploy the Edge Function
 
-The contact form uses a Supabase Edge Function to send emails. Deploy it:
+The contact form uses a Supabase Edge Function to send emails. You MUST deploy it before the contact form will work:
 
 ```bash
 # Login to Supabase (if not already logged in)
 supabase login
 
-# Link your project
-supabase link --project-ref YOUR_PROJECT_REF
+# Link your project (replace YOUR_PROJECT_REF with your actual project reference)
+# You can find this in your Supabase dashboard URL: https://supabase.com/dashboard/project/YOUR_PROJECT_REF
+supabase link --project-ref vorjmpkirjpgeawkpfen
 
 # Deploy the function
 supabase functions deploy send-contact-email
 ```
+
+**Important**: The function will not work until you deploy it. The CORS error you're seeing means the function hasn't been deployed yet.
 
 ## Step 3: Configure Mail Settings in Admin
 
