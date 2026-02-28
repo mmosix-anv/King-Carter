@@ -67,7 +67,7 @@ serve(async (req) => {
 
     // Create contact in Resend
     try {
-      const contactResponse = await fetch('https://api.resend.com/audiences/contacts', {
+      const contactResponse = await fetch('https://api.resend.com/contacts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -75,8 +75,8 @@ serve(async (req) => {
         },
         body: JSON.stringify({
           email,
-          firstName: '',
-          lastName: '',
+          first_name: '',
+          last_name: '',
           unsubscribed: false,
         }),
       })
@@ -85,6 +85,9 @@ serve(async (req) => {
         const error = await contactResponse.text()
         console.error('Failed to create Resend contact:', error)
         // Don't throw - continue with subscription even if contact creation fails
+      } else {
+        const result = await contactResponse.json()
+        console.log('Resend contact created:', result)
       }
     } catch (error) {
       console.error('Error creating Resend contact:', error)
