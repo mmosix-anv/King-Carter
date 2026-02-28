@@ -1,5 +1,5 @@
 /*
- * DESIGN: Cinematic Noir — Homepage
+ * DESIGN: Cinematic Noir Homepage
  * Full-bleed hero with cinematic hotel arrival image.
  * 4-card services grid with unique imagery per service.
  * Dark palette, gold accents, Playfair Display headings, Inter body.
@@ -179,7 +179,7 @@ export default function Home() {
                 <span className="font-light text-gold">Impeccably Presented</span>
               </h2>
               <p className="text-ivory/50 font-light leading-relaxed mb-8 max-w-md">
-                Each vehicle in our fleet is selected for comfort, discretion, and performance. Professionally maintained and presented to reflect our standards — because the details matter.
+                Each vehicle in our fleet is selected for comfort, discretion, and performance. Professionally maintained and presented to reflect our standards because the details matter.
               </p>
               <hr className="gold-rule w-24 mb-8 opacity-40" />
               <div className="grid grid-cols-2 gap-6">

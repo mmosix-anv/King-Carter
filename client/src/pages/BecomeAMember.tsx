@@ -1,5 +1,5 @@
 /*
- * DESIGN: Cinematic Noir — Become a Member Coming Soon Page
+ * DESIGN: Cinematic Noir Become a Member Coming Soon Page
  * Editorial layout with membership tier previews, benefits, and notify form.
  */
 import { useEffect, useState } from "react";
@@ -49,7 +49,7 @@ const membershipTiers = [
 
 const memberBenefits = [
   { icon: Clock, title: "Priority Access", text: "Members are always first. Guaranteed availability, even during peak demand." },
-  { icon: Star, title: "Personalized Service", text: "Your preferences remembered. Vehicle temperature, music, refreshments — every detail." },
+  { icon: Star, title: "Personalized Service", text: "Your preferences remembered. Vehicle temperature, music, refreshments every detail." },
   { icon: Users, title: "Dedicated Team", text: "A personal coordinator who knows your schedule, your routes, and your standards." },
 ];
 
@@ -109,7 +109,7 @@ export default function BecomeAMember() {
         <div className="container max-w-3xl">
           <FadeUp>
             <p className="text-lg lg:text-xl text-ivory/70 font-light leading-relaxed mb-8">
-              King & Carter Membership is designed for clients who value consistency above all else. Rather than booking individual trips, members enjoy a dedicated relationship — a team that knows your preferences, anticipates your needs, and ensures every journey reflects your standards.
+              King & Carter Membership is designed for clients who value consistency above all else. Rather than booking individual trips, members enjoy a dedicated relationship a team that knows your preferences, anticipates your needs, and ensures every journey reflects your standards.
             </p>
             <hr className="gold-rule w-20 opacity-40 mb-8" />
             <p className="text-base text-ivory/50 font-light leading-relaxed">

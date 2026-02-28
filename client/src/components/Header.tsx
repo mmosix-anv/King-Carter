@@ -1,5 +1,5 @@
 /*
- * DESIGN: Cinematic Noir — Header
+ * DESIGN: Cinematic Noir Header
  * Transparent header with King & Carter logo, letter-spaced nav links.
  * Fixed position, blurs on scroll. Services dropdown on hover.
  * Mobile: hamburger with expandable Services sub-menu.

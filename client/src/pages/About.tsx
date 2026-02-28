@@ -1,5 +1,5 @@
 /*
- * DESIGN: Cinematic Noir — About Us
+ * DESIGN: Cinematic Noir About Us
  * Editorial layout with Atlanta skyline hero, lifestyle image grid,
  * founder's letter section, and brand values. Playfair Display headings, Inter body.
  */
@@ -68,7 +68,7 @@ export default function About() {
       <section className="py-24 lg:py-36">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
-            {/* Left column — large text */}
+            {/* Left column large text */}
             <div className="lg:col-span-5">
               <FadeUp>
                 <p className="section-label mb-6">Our Story</p>
@@ -79,14 +79,14 @@ export default function About() {
               </FadeUp>
             </div>
 
-            {/* Right column — body text */}
+            {/* Right column body text */}
             <div className="lg:col-span-7">
               <FadeUp delay={0.15}>
                 <p className="text-ivory/60 font-light leading-relaxed text-base lg:text-lg mb-6">
-                  King & Carter Premier was founded with a clear vision: to bring the standards of the finest hospitality to private ground transportation. Based in Atlanta, we serve discerning clients who expect more than just a ride — they expect an experience that reflects their values and lifestyle.
+                  King & Carter Premier was founded with a clear vision: to bring the standards of the finest hospitality to private ground transportation. Based in Atlanta, we serve discerning clients who expect more than just a ride they expect an experience that reflects their values and lifestyle.
                 </p>
                 <p className="text-ivory/60 font-light leading-relaxed text-base lg:text-lg mb-6">
-                  Our approach is shaped by the principles of luxury hospitality — anticipation, discretion, and attention to detail. Every vehicle is meticulously prepared. Every chauffeur is professionally trained. Every journey is coordinated with the kind of care that turns transportation into a seamless extension of your day.
+                  Our approach is shaped by the principles of luxury hospitality anticipation, discretion, and attention to detail. Every vehicle is meticulously prepared. Every chauffeur is professionally trained. Every journey is coordinated with the kind of care that turns transportation into a seamless extension of your day.
                 </p>
                 <p className="text-ivory/60 font-light leading-relaxed text-base lg:text-lg">
                   We don't believe luxury needs to be loud. We believe it should be intentional, consistent, and quietly exceptional. That's the King & Carter standard.
@@ -126,7 +126,7 @@ export default function About() {
             <p className="section-label mb-6 text-center">A Letter from Our Founder</p>
             <hr className="gold-rule w-16 mx-auto mb-10 opacity-40" />
             <blockquote className="font-serif text-xl lg:text-2xl text-ivory/80 leading-relaxed text-center italic mb-8">
-              "I started King & Carter because I believed Atlanta deserved a transportation brand that matched the city's ambition. Not louder — just better. More thoughtful. More intentional. Every detail, from the vehicle to the greeting, should communicate one thing: we care about your experience."
+              "I started King & Carter because I believed Atlanta deserved a transportation brand that matched the city's ambition. Not louder just better. More thoughtful. More intentional. Every detail, from the vehicle to the greeting, should communicate one thing: we care about your experience."
             </blockquote>
             <p className="text-center">
               <span className="text-gold font-serif text-lg">— Karton Zawolo</span>
@@ -150,7 +150,7 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 max-w-4xl mx-auto">
             {[
               { title: "Hospitality First", text: "We approach every engagement as hosts, not vendors. Your comfort and experience are our primary concern." },
-              { title: "Quiet Excellence", text: "We don't need to announce our standards — they speak through every interaction, every vehicle, every journey." },
+              { title: "Quiet Excellence", text: "We don't need to announce our standards they speak through every interaction, every vehicle, every journey." },
               { title: "Intentional Detail", text: "From the temperature of the cabin to the timing of the arrival, nothing is left to chance." },
             ].map((value, i) => (
               <FadeUp key={value.title} delay={i * 0.1}>

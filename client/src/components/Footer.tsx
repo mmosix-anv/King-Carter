@@ -1,5 +1,5 @@
 /*
- * DESIGN: Cinematic Noir — Footer
+ * DESIGN: Cinematic Noir Footer
  * Minimal, dark footer with gold accents and thin rule divider.
  */
 import { useEffect, useState } from "react";

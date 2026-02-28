@@ -1,5 +1,5 @@
 /*
- * DESIGN: Cinematic Noir — Service Pages
+ * DESIGN: Cinematic Noir Service Pages
  * Each service gets a unique cinematic hero image.
  * Full-bleed hero, service highlights with gold accents, CTA.
  */

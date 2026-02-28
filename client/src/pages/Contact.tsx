@@ -1,5 +1,5 @@
 /*
- * DESIGN: Cinematic Noir — Contact Page
+ * DESIGN: Cinematic Noir Contact Page
  * Atmospheric lounge background with frosted-glass form overlay.
  * Split layout: contact info left, form right. Gold accents throughout.
  */
@@ -101,7 +101,7 @@ export default function Contact() {
       <section className="py-24 lg:py-36">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20">
-            {/* Left — Contact Info */}
+            {/* Left Contact Info */}
             <div className="lg:col-span-5">
               <FadeUp>
                 <h2 className="font-serif text-2xl lg:text-3xl text-ivory mb-4 font-medium">
@@ -128,7 +128,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Right — Form */}
+            {/* Right Form */}
             <div className="lg:col-span-7">
               <FadeUp delay={0.15}>
                 <div className="bg-[#0F0F0F] border border-white/5 p-8 lg:p-12">

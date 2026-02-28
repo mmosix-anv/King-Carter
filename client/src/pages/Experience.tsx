@@ -1,5 +1,5 @@
 /*
- * DESIGN: Cinematic Noir — Experience Coming Soon Page
+ * DESIGN: Cinematic Noir Experience Coming Soon Page
  * Full-bleed hero with atmospheric background, editorial layout describing
  * upcoming curated experiences with a notify form.
  */
@@ -92,7 +92,7 @@ export default function Experience() {
         <div className="container max-w-3xl">
           <FadeUp>
             <p className="text-lg lg:text-xl text-ivory/70 font-light leading-relaxed mb-8">
-              We are building something new. The King & Carter Experience will bring together luxury ground transportation with curated lifestyle moments — private dining, cultural events, weekend retreats, and celebrations — all coordinated with the same care and discretion you expect from us.
+              We are building something new. The King & Carter Experience will bring together luxury ground transportation with curated lifestyle moments private dining, cultural events, weekend retreats, and celebrations all coordinated with the same care and discretion you expect from us.
             </p>
             <hr className="gold-rule w-20 opacity-40 mb-8" />
             <p className="text-base text-ivory/50 font-light leading-relaxed">
