@@ -11,6 +11,7 @@ const companyLinks = [
   { label: "Experience", href: "/experience" },
   { label: "Become a Member", href: "/become-a-member" },
   { label: "Contact", href: "/contact" },
+  { label: "Brochure", href: "https://brochure.kingandcarter.com", external: true },
 ];
 
 export default function Footer() {
@@ -51,6 +52,10 @@ export default function Footer() {
             <p className="mt-6 text-sm text-ivory/40 leading-relaxed font-light max-w-xs">
               Premium ground transportation shaped by hospitality, discretion, and modern elegance.
             </p>
+                <div className="mt-2 ml-0">
+                  <p className="text-sm text-ivory/40 font-light">Atlanta, Georgia</p>
+                  <p className="text-sm text-ivory/40 font-light mt-1">info@kingandcarter.com</p>
+                </div>
           </div>
 
           {/* Services */}
@@ -77,20 +82,34 @@ export default function Footer() {
           <div>
             <h4 className="section-label mb-6">Company</h4>
             <ul className="space-y-3">
-              {companyLinks.map((link) => (
+              <li>
+                <Link href="/about">
+                  <span className="text-sm text-ivory/50 hover:text-gold transition-colors duration-300 font-light">
+                    About Us
+                  </span>
+                </Link>
+              </li>
+              {companyLinks.slice(1).map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href}>
-                    <span className="text-sm text-ivory/50 hover:text-gold transition-colors duration-300 font-light">
+                  {link.external ? (
+                    <a 
+                      href={link.href} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-sm text-ivory/50 hover:text-gold transition-colors duration-300 font-light"
+                    >
                       {link.label}
-                    </span>
-                  </Link>
+                    </a>
+                  ) : (
+                    <Link href={link.href}>
+                      <span className="text-sm text-ivory/50 hover:text-gold transition-colors duration-300 font-light">
+                        {link.label}
+                      </span>
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
-            <div className="mt-8">
-              <p className="text-sm text-ivory/40 font-light">Atlanta, Georgia</p>
-              <p className="text-sm text-ivory/40 font-light mt-1">info@kingandcarter.com</p>
-            </div>
           </div>
         </div>
 
