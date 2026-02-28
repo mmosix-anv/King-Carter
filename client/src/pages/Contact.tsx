@@ -55,11 +55,22 @@ export default function Contact() {
     setSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: formData,
-      });
+      // Call Edge Function directly with fetch (no auth required)
+      const response = await fetch(
+        `${import.meta.env.VITE_PUBLIC_SUPABASE_URL}/functions/v1/send-contact-email`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-      if (error) throw error;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to send message');
+      }
 
       toast.success("Thank you for your inquiry. We'll be in touch shortly.");
       setFormData({ name: "", email: "", phone: "", service: "", message: "" });

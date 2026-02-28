@@ -161,7 +161,22 @@ Look for:
 
 ### Contact Not Created
 
-**Possible causes:**
+**Error: "This API key is restricted to only send emails"**
+
+**Cause:** Your Resend API key has "Sending access" only, not "Full Access"
+
+**Solution:**
+1. Go to https://resend.com/api-keys
+2. Create a NEW API key
+3. Select **"Full Access"** permissions (not just "Sending access")
+4. Copy the new API key
+5. Update it in your admin panel: `/admin/settings` > Mail tab
+6. Save settings
+7. Test again
+
+**Note:** The functions will still work for sending emails even if contact creation fails. Contact creation is a bonus feature that requires Full Access permissions.
+
+### Other Possible Causes:
 1. Invalid API key
 2. Invalid email format
 3. Resend API rate limits

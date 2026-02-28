@@ -11,8 +11,13 @@ This guide walks you through setting up Resend for contact form email notificati
 ## Step 1: Get Resend API Key
 
 1. Go to https://resend.com/api-keys
-2. Create a new API key
-3. Copy the API key (starts with `re_...`)
+2. Create a new API key with **Full Access** permissions (not just "Sending access")
+   - Click "Create API Key"
+   - Name it something like "King & Carter - Full Access"
+   - Select **"Full Access"** (this allows both sending emails AND managing contacts)
+   - Copy the API key (starts with `re_...`)
+
+**Important**: If you already have an API key with only "Sending access", you need to create a new one with "Full Access" permissions to enable contact management.
 
 ## Step 1.5: Set Up Audience (Optional but Recommended)
 
@@ -99,6 +104,19 @@ supabase functions deploy send-contact-email
 3. Verify your Resend API key is correct
 4. Ensure your domain is verified in Resend
 5. Check that "From Email" uses your verified domain
+
+### "This API key is restricted to only send emails" error
+
+**Cause**: Your Resend API key has "Sending access" only, not "Full Access"
+
+**Solution**:
+1. Go to https://resend.com/api-keys
+2. Create a NEW API key with **"Full Access"** permissions
+3. Update the API key in your admin settings (`/admin/settings` > Mail tab)
+4. Save the settings
+5. Test again
+
+**Note**: You cannot change permissions on an existing API key - you must create a new one.
 
 ### Contact form submission fails
 

@@ -66,11 +66,22 @@ export default function Experience() {
     setSubmitting(true);
 
     try {
-      const { data, error } = await supabase.functions.invoke('subscribe-newsletter', {
-        body: { email },
-      });
+      // Call Edge Function directly with fetch (no auth required)
+      const response = await fetch(
+        `${import.meta.env.VITE_PUBLIC_SUPABASE_URL}/functions/v1/subscribe-newsletter`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
 
-      if (error) throw error;
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to subscribe');
+      }
 
       setSubmitted(true);
       toast.success("Thank you! We'll notify you when The Experience launches.");
