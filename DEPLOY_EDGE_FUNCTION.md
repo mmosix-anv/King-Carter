@@ -29,7 +29,14 @@ supabase functions deploy subscribe-newsletter
 
 - Uploads the Edge Functions to Supabase:
   - `send-contact-email`: Handles contact form submissions
+    - Creates contact in Resend audience
+    - Sends notification email to admin
+    - Logs submission to database
   - `subscribe-newsletter`: Handles newsletter subscriptions
+    - Creates contact in Resend audience
+    - Sends welcome email to subscriber
+    - Sends notification email to admin
+    - Stores subscriber in database
 - Makes them available at:
   - `https://vorjmpkirjpgeawkpfen.supabase.co/functions/v1/send-contact-email`
   - `https://vorjmpkirjpgeawkpfen.supabase.co/functions/v1/subscribe-newsletter`

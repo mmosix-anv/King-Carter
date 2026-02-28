@@ -62,6 +62,32 @@ serve(async (req) => {
       )
     }
 
+    // Create contact in Resend
+    try {
+      const contactResponse = await fetch('https://api.resend.com/audiences/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          email,
+          firstName: '',
+          lastName: '',
+          unsubscribed: false,
+        }),
+      })
+
+      if (!contactResponse.ok) {
+        const error = await contactResponse.text()
+        console.error('Failed to create Resend contact:', error)
+        // Don't throw - continue with subscription even if contact creation fails
+      }
+    } catch (error) {
+      console.error('Error creating Resend contact:', error)
+      // Don't throw - continue with subscription
+    }
+
     // Add to newsletter subscribers table
     const { error: insertError } = await supabaseClient
       .from('newsletter_subscribers')
@@ -134,6 +160,47 @@ serve(async (req) => {
       const error = await emailResponse.text()
       console.error('Resend API error:', error)
       // Don't throw error - subscriber is saved even if email fails
+    }
+
+    // Send notification email to admin
+    try {
+      const notificationResponse = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          from: `${config.fromName} <${config.fromEmail}>`,
+          to: [config.toEmail || 'info@kingandcarter.com'],
+          subject: 'New Newsletter Subscription',
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h2 style="color: #C9A961;">New Newsletter Subscription</h2>
+              <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Source:</strong> Experience Page</p>
+                <p><strong>Subscribed:</strong> ${new Date().toLocaleString()}</p>
+              </div>
+              <p style="color: #666; font-size: 14px;">
+                This subscriber has been added to your newsletter list and will receive updates about The King & Carter Experience.
+              </p>
+              <hr style="border: none; border-top: 1px solid #ddd; margin: 30px 0;">
+              <p style="color: #666; font-size: 12px;">
+                View all subscribers in your admin panel at /admin/newsletter
+              </p>
+            </div>
+          `,
+        }),
+      })
+
+      if (!notificationResponse.ok) {
+        const error = await notificationResponse.text()
+        console.error('Failed to send admin notification:', error)
+      }
+    } catch (error) {
+      console.error('Error sending admin notification:', error)
+      // Don't throw - subscriber is saved even if notification fails
     }
 
     return new Response(

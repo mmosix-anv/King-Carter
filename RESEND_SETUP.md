@@ -14,6 +14,17 @@ This guide walks you through setting up Resend for contact form email notificati
 2. Create a new API key
 3. Copy the API key (starts with `re_...`)
 
+## Step 1.5: Set Up Audience (Optional but Recommended)
+
+Resend will automatically create contacts in your default audience. To organize contacts better:
+
+1. Go to https://resend.com/audiences
+2. Create an audience (e.g., "King & Carter Contacts")
+3. Note: The Edge Functions will automatically add contacts to your Resend audience
+4. You can segment contacts later based on:
+   - Contact form submissions (will have firstName and lastName)
+   - Newsletter subscribers (from Experience page)
+
 ## Step 2: Deploy the Edge Function
 
 The contact form uses a Supabase Edge Function to send emails. You MUST deploy it before the contact form will work:
@@ -60,6 +71,16 @@ supabase functions deploy send-contact-email
 2. Fill out and submit the form
 3. Check your "To Email" inbox for the notification
 4. Check the admin portal at `/admin/contact-submissions` to see the logged submission
+5. Check Resend dashboard at https://resend.com/audiences to see the new contact
+
+## Step 6: Test Newsletter Subscription
+
+1. Go to `/experience` page
+2. Enter an email in the "Stay Informed" section
+3. Check the subscriber's inbox for the welcome message
+4. Check info@kingandcarter.com (or your configured admin email) for the notification
+5. Check the admin portal at `/admin/newsletter` to see the subscriber
+6. Check Resend dashboard to see the contact added
 
 ## Troubleshooting
 

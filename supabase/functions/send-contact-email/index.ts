@@ -48,6 +48,37 @@ serve(async (req) => {
       )
     }
 
+    // Split name into first and last name
+    const nameParts = name.trim().split(' ')
+    const firstName = nameParts[0] || ''
+    const lastName = nameParts.slice(1).join(' ') || ''
+
+    // Create contact in Resend
+    try {
+      const contactResponse = await fetch('https://api.resend.com/audiences/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${resendApiKey}`,
+        },
+        body: JSON.stringify({
+          email,
+          firstName,
+          lastName,
+          unsubscribed: false,
+        }),
+      })
+
+      if (!contactResponse.ok) {
+        const error = await contactResponse.text()
+        console.error('Failed to create Resend contact:', error)
+        // Don't throw - continue with email sending even if contact creation fails
+      }
+    } catch (error) {
+      console.error('Error creating Resend contact:', error)
+      // Don't throw - continue with email sending
+    }
+
     // Send email using Resend
     const emailResponse = await fetch('https://api.resend.com/emails', {
       method: 'POST',
