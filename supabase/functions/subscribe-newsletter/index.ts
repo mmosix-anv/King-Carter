@@ -38,7 +38,7 @@ serve(async (req) => {
     }
 
     // Parse request body
-    const { email } = await req.json()
+    const { email, source } = await req.json()
 
     // Validate email
     if (!email || !email.includes('@')) {
@@ -47,6 +47,9 @@ serve(async (req) => {
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
+
+    // Determine source (default to experience_page for backward compatibility)
+    const subscriptionSource = source || 'experience_page'
 
     // Check if email already subscribed
     const { data: existing } = await supabaseClient
@@ -93,7 +96,7 @@ serve(async (req) => {
       .from('newsletter_subscribers')
       .insert({
         email,
-        source: 'experience_page',
+        source: subscriptionSource,
         status: 'active'
       })
 
@@ -179,7 +182,7 @@ serve(async (req) => {
               <h2 style="color: #C9A961;">New Newsletter Subscription</h2>
               <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
                 <p><strong>Email:</strong> ${email}</p>
-                <p><strong>Source:</strong> Experience Page</p>
+                <p><strong>Source:</strong> ${subscriptionSource === 'membership_waitlist' ? 'Membership Waitlist' : 'Experience Page'}</p>
                 <p><strong>Subscribed:</strong> ${new Date().toLocaleString()}</p>
               </div>
               <p style="color: #666; font-size: 14px;">

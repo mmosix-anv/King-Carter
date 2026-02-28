@@ -8,6 +8,7 @@ import { useRef } from "react";
 import { ArrowRight, Crown, Shield, Gem, Clock, Star, Users } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { toast } from "sonner";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/fleet-escalade-crnVmWMFtCKEbCWw4UKNdP.webp";
 
@@ -71,12 +72,47 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 export default function BecomeAMember() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) setSubmitted(true);
+    if (!email) return;
+
+    setSubmitting(true);
+
+    try {
+      // Call Edge Function with anon key for authentication
+      const response = await fetch(
+        `${import.meta.env.VITE_PUBLIC_SUPABASE_URL}/functions/v1/subscribe-newsletter`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.SUPABASE_ANON_KEY}`,
+          },
+          body: JSON.stringify({ 
+            email,
+            source: 'membership_waitlist' 
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to join waitlist');
+      }
+
+      setSubmitted(true);
+      toast.success("You're on the list! We'll notify you when membership opens.");
+      setEmail("");
+    } catch (error: any) {
+      console.error('Waitlist subscription error:', error);
+      toast.error(error.message || 'Failed to join waitlist. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -209,9 +245,10 @@ export default function BecomeAMember() {
                 />
                 <button
                   type="submit"
-                  className="text-xs tracking-[0.2em] uppercase bg-gold text-[#0A0A0A] px-8 py-3.5 hover:bg-gold-light transition-all duration-400 font-medium flex items-center justify-center gap-2"
+                  disabled={submitting}
+                  className="text-xs tracking-[0.2em] uppercase bg-gold text-[#0A0A0A] px-8 py-3.5 hover:bg-gold-light transition-all duration-400 font-medium flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Join Waitlist <ArrowRight size={14} />
+                  {submitting ? 'Joining...' : 'Join Waitlist'} <ArrowRight size={14} />
                 </button>
               </form>
             )}
