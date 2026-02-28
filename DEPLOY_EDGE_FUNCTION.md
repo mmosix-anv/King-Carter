@@ -20,21 +20,31 @@ supabase login
 # 2. Link to your project
 supabase link --project-ref vorjmpkirjpgeawkpfen
 
-# 3. Deploy the function
+# 3. Deploy both functions
 supabase functions deploy send-contact-email
+supabase functions deploy subscribe-newsletter
 ```
 
 ## What This Does
 
-- Uploads the `supabase/functions/send-contact-email/index.ts` file to Supabase
-- Makes it available at: `https://vorjmpkirjpgeawkpfen.supabase.co/functions/v1/send-contact-email`
-- Enables CORS so your website can call it
+- Uploads the Edge Functions to Supabase:
+  - `send-contact-email`: Handles contact form submissions
+  - `subscribe-newsletter`: Handles newsletter subscriptions
+- Makes them available at:
+  - `https://vorjmpkirjpgeawkpfen.supabase.co/functions/v1/send-contact-email`
+  - `https://vorjmpkirjpgeawkpfen.supabase.co/functions/v1/subscribe-newsletter`
+- Enables CORS so your website can call them
 
 ## After Deployment
 
 1. The contact form will work immediately
-2. Test it by submitting the form on your website
-3. Check submissions in admin panel: `/admin/contact-submissions`
+2. The newsletter subscription on Experience page will work
+3. Test both by:
+   - Submitting the contact form
+   - Subscribing to newsletter on /experience page
+4. Check submissions in admin panel:
+   - Contact: `/admin/contact-submissions`
+   - Newsletter: `/admin/newsletter`
 
 ## Verify Deployment
 

@@ -205,3 +205,31 @@ CREATE POLICY "Public read site config" ON site_config
 
 CREATE POLICY "Public read seo settings" ON seo_settings
   FOR SELECT USING (true);
+
+-- ============================================
+-- NEWSLETTER SUBSCRIBERS TABLE
+-- ============================================
+
+CREATE TABLE newsletter_subscribers (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT NOT NULL UNIQUE,
+  source TEXT DEFAULT 'experience_page',
+  status TEXT DEFAULT 'active' CHECK (status IN ('active', 'unsubscribed')),
+  subscribed_at TIMESTAMPTZ DEFAULT NOW(),
+  unsubscribed_at TIMESTAMPTZ,
+  CONSTRAINT valid_email CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$')
+);
+
+-- Index for faster lookups
+CREATE INDEX idx_newsletter_email ON newsletter_subscribers(email);
+CREATE INDEX idx_newsletter_status ON newsletter_subscribers(status);
+
+-- RLS for newsletter subscribers
+ALTER TABLE newsletter_subscribers ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Admin newsletter full access" ON newsletter_subscribers
+  FOR ALL USING (true);
+
+-- Allow public to insert (subscribe)
+CREATE POLICY "Public can subscribe" ON newsletter_subscribers
+  FOR INSERT WITH CHECK (true);

@@ -21,6 +21,7 @@ import ServiceEditor from "./pages/admin/ServiceEditor";
 import Media from "./pages/admin/Media";
 import Settings from "./pages/admin/Settings";
 import ContactSubmissions from "./pages/admin/ContactSubmissions";
+import Newsletter from "./pages/admin/Newsletter";
 
 function Router() {
   return (
@@ -63,6 +64,11 @@ function Router() {
       <Route path="/admin/contact-submissions">
         <ProtectedRoute>
           <ContactSubmissions />
+        </ProtectedRoute>
+      </Route>
+      <Route path="/admin/newsletter">
+        <ProtectedRoute>
+          <Newsletter />
         </ProtectedRoute>
       </Route>
       

@@ -9,6 +9,8 @@ import { useRef } from "react";
 import { ArrowRight, Sparkles, Wine, Plane, Music } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { supabase } from "@/lib/supabase";
+import { toast } from "sonner";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/events-diverse-VdNwYEZNA9dqJ3nJssANxj.webp";
 
@@ -53,12 +55,32 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 export default function Experience() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) setSubmitted(true);
+    if (!email) return;
+
+    setSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('subscribe-newsletter', {
+        body: { email },
+      });
+
+      if (error) throw error;
+
+      setSubmitted(true);
+      toast.success("Thank you! We'll notify you when The Experience launches.");
+      setEmail("");
+    } catch (error: any) {
+      console.error('Newsletter subscription error:', error);
+      toast.error(error.message || 'Failed to subscribe. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -158,9 +180,10 @@ export default function Experience() {
                 />
                 <button
                   type="submit"
-                  className="text-xs tracking-[0.2em] uppercase bg-gold text-[#0A0A0A] px-8 py-3.5 hover:bg-gold-light transition-all duration-400 font-medium flex items-center justify-center gap-2"
+                  disabled={submitting}
+                  className="text-xs tracking-[0.2em] uppercase bg-gold text-[#0A0A0A] px-8 py-3.5 hover:bg-gold-light transition-all duration-400 font-medium flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Notify Me <ArrowRight size={14} />
+                  {submitting ? 'Subscribing...' : 'Notify Me'} <ArrowRight size={14} />
                 </button>
               </form>
             )}
