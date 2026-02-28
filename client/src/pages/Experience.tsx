@@ -66,13 +66,14 @@ export default function Experience() {
     setSubmitting(true);
 
     try {
-      // Call Edge Function directly with fetch (no auth required)
+      // Call Edge Function with anon key for authentication
       const response = await fetch(
         `${import.meta.env.VITE_PUBLIC_SUPABASE_URL}/functions/v1/subscribe-newsletter`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${import.meta.env.SUPABASE_ANON_KEY}`,
           },
           body: JSON.stringify({ email }),
         }
