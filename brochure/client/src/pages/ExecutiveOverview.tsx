@@ -48,7 +48,7 @@ function OverviewNav() {
         </Link>
         <div className="flex items-center gap-4">
           <a
-            href="https://www.kingandcarter.com"
+            href=" https://kingandcarter.com"
             target="_blank"
             rel="noopener noreferrer"
             className="nav-label text-[#f5f0e8]/60 hover:text-[#b8965a] transition-colors hidden sm:inline"
@@ -59,7 +59,7 @@ function OverviewNav() {
             Full Brochure
           </Link>
           <a
-            href="https://www.kingandcarter.com"
+            href=" https://kingandcarter.com"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-pill btn-pill-dark text-[10px] py-2 px-5"
@@ -289,7 +289,7 @@ function CTASection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://www.kingandcarter.com"
+              href=" https://kingandcarter.com"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-pill btn-pill-light inline-flex items-center justify-center gap-2"

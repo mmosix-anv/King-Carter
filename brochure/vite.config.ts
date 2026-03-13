@@ -179,6 +179,7 @@ export default defineConfig({
       ".manusvm.computer",
       "localhost",
       "127.0.0.1",
+      ".kingandcarter.com",
     ],
     fs: {
       strict: true,

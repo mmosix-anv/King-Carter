@@ -83,13 +83,16 @@ export default function About() {
             <div className="lg:col-span-7">
               <FadeUp delay={0.15}>
                 <p className="text-ivory/60 font-light leading-relaxed text-base lg:text-lg mb-6">
-                  King & Carter Premier was founded with a clear vision: to bring the standards of the finest hospitality to private ground transportation. Based in Atlanta, we serve discerning clients who expect more than just a ride they expect an experience that reflects their values and lifestyle.
+                  King & Carter Premier was founded with a clear vision: to bring the standards of the finest hospitality to private ground transportation. Based in Atlanta, we serve discerning clients who expect more than a ride. They expect an experience that reflects their values and lifestyle.
                 </p>
                 <p className="text-ivory/60 font-light leading-relaxed text-base lg:text-lg mb-6">
-                  Our approach is shaped by the principles of luxury hospitality anticipation, discretion, and attention to detail. Every vehicle is meticulously prepared. Every chauffeur is professionally trained. Every journey is coordinated with the kind of care that turns transportation into a seamless extension of your day.
+                  Our approach is shaped by the principles of luxury hospitality: anticipation, discretion, and attention to detail. Every vehicle is meticulously prepared. Every chauffeur is professionally trained. Every journey is coordinated with the kind of care that turns transportation into a seamless extension of your day.
+                </p>
+                <p className="text-ivory/60 font-light leading-relaxed text-base lg:text-lg mb-6">
+                  We don't believe luxury needs to be loud. We believe it should be intentional, consistent, and quietly exceptional. That's the King & Carter standard.
                 </p>
                 <p className="text-ivory/60 font-light leading-relaxed text-base lg:text-lg">
-                  We don't believe luxury needs to be loud. We believe it should be intentional, consistent, and quietly exceptional. That's the King & Carter standard.
+                  The name King & Carter reflects a legacy rooted in Georgia. Inspired by Dr. Martin Luther King Jr. and President Jimmy Carter, two leaders whose lives demonstrated a profound commitment to service, the brand draws from their example of integrity, humility, and dedication to others. While King & Carter is a modern hospitality and transportation brand, its philosophy is grounded in the belief that service, when delivered with intention and excellence, is the highest standard. That principle guides how we serve every client.
                 </p>
               </FadeUp>
             </div>

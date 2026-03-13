@@ -178,6 +178,7 @@ export default defineConfig({
       ".manus-asia.computer",
       ".manuscomputer.ai",
       ".manusvm.computer",
+      ".kingandcarter.com",
       "localhost",
       "127.0.0.1",
     ],

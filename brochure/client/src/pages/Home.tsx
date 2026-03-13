@@ -77,7 +77,7 @@ function Navigation() {
           </a>
         </div>
         <a
-          href="https://www.kingandcarter.com"
+          href=" https://kingandcarter.com"
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:inline-block px-6 py-2.5 bg-[#b8965a] text-[#0a0a0a] text-[10px] tracking-[0.2em] uppercase font-semibold hover:bg-[#d4b87a] transition-colors duration-300"
@@ -119,7 +119,7 @@ function Navigation() {
             Executive Overview
           </a>
           <a
-            href="https://www.kingandcarter.com"
+            href=" https://kingandcarter.com"
             target="_blank"
             rel="noopener noreferrer"
             className="block py-3 nav-label text-[#f5f0e8]/70 hover:text-[#b8965a] transition-colors border-b border-[#f5f0e8]/5"
@@ -128,7 +128,7 @@ function Navigation() {
             Visit Website ↗
           </a>
           <a
-            href="https://www.kingandcarter.com"
+            href=" https://kingandcarter.com"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-4 inline-block px-6 py-2.5 bg-[#b8965a] text-[#0a0a0a] text-[10px] tracking-[0.2em] uppercase font-semibold hover:bg-[#d4b87a] transition-colors duration-300"
@@ -188,7 +188,7 @@ function HeroSection() {
               Explore services
             </a>
             <a
-              href="https://www.kingandcarter.com"
+              href=" https://kingandcarter.com"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-8 py-3 bg-[#b8965a] text-[#0a0a0a] text-[10px] tracking-[0.2em] uppercase font-semibold hover:bg-[#d4b87a] transition-colors duration-300"
@@ -684,7 +684,7 @@ function Footer() {
               <p className="body-text text-[#f5f0e8]/40 text-sm">+1 (770) 766-0383</p>
               <p className="body-text text-[#f5f0e8]/40 text-sm">Atlanta, Georgia</p>
               <a
-                href="https://www.kingandcarter.com"
+                href=" https://kingandcarter.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="body-text text-[#b8965a]/60 hover:text-[#b8965a] text-sm transition-colors inline-block mt-2"
