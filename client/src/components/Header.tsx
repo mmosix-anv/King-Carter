@@ -73,7 +73,7 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/5"
-          : "bg-transparent"
+          : "bg-gradient-to-b from-black/85 via-black/50 to-transparent"
       }`}
     >
       <div className="container flex items-center justify-between h-20 lg:h-24">

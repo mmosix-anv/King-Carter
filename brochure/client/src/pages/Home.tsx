@@ -48,7 +48,7 @@ function Navigation() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-[#1a1a1a]/95 backdrop-blur-sm" : "bg-transparent"
+        scrolled ? "bg-[#1a1a1a]/95 backdrop-blur-sm" : "bg-gradient-to-b from-black/70 to-transparent"
       }`}
     >
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 flex items-center justify-between h-20">
@@ -163,6 +163,7 @@ function HeroSection() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/30 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/60 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black/80 via-black/40 to-transparent" />
       </motion.div>
 
       <motion.div
