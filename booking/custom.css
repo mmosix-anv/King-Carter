@@ -508,3 +508,45 @@ table { color: var(--text) !important; }
   .panel-body, .panel-body-book { padding: 16px !important; }
   .vehicle-grid-item-price-numb { font-size: 20px !important; }
 }
+
+/* ── INPUT GROUP ADDON (calendar/clock icons) ─────────────────────────────── */
+.input-group-addon {
+  background-color: var(--bg-alt) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--gold) !important;
+}
+
+.input-group-addon:first-child {
+  border-right: 0 !important;
+}
+
+.input-group-addon:last-child {
+  border-left: 0 !important;
+}
+
+.input-group-addon .glyphicon,
+.input-group-addon i,
+.input-group-addon svg {
+  color: var(--gold) !important;
+  fill: var(--gold) !important;
+}
+
+/* ── TOGGLE SWITCH TRACK & THUMB ──────────────────────────────────────────── */
+.switch input.toggle + label {
+  background-color: var(--border) !important;
+  border-color: var(--border) !important;
+}
+
+.switch input.toggle + label::after {
+  background-color: var(--text-muted) !important;
+  border-color: transparent !important;
+}
+
+.switch input.toggle:checked + label {
+  background-color: var(--gold) !important;
+  border-color: var(--gold) !important;
+}
+
+.switch input.toggle:checked + label::after {
+  background-color: var(--bg) !important;
+}
