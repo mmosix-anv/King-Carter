@@ -16,6 +16,7 @@ import ClientLogin from "./pages/ClientLogin";
 import Reservations from "./pages/Reservations";
 import Test from "./pages/Test";
 import Terms from "./pages/Terms";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 // Admin pages
 import Login from "./pages/admin/Login";
@@ -40,6 +41,7 @@ function Router() {
       <Route path="/reservations" component={Reservations} />
       <Route path="/test" component={Test} />
       <Route path="/terms" component={Terms} />
+      <Route path="/privacy" component={PrivacyPolicy} />
       <Route path="/services/:slug" component={ServicePage} />
       
       {/* Admin routes */}

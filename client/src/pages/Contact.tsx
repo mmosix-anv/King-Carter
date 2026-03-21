@@ -217,7 +217,7 @@ export default function Contact() {
                     {/* SMS Consent */}
                     <div className="border border-white/10 p-5 space-y-4">
                       <p className="text-xs text-ivory/50 font-light leading-relaxed">
-                        Do you agree to receive text messages from King and Carter sent from 7707660383? Message frequency varies and may include general conversational messaging to answer questions and provide support to customers. Message and data rates may apply. Reply STOP or CANCEL at any time to end or unsubscribe. For assistance, reply HELP or contact support at 7707660383.{" "}
+                        Do you agree to receive text messages from King and Carter Group DBA King & Carter Premier sent from 7707660383? Message frequency varies and may include informational messages. Message and data rates may apply. Reply STOP or CANCEL at any time to end or unsubscribe. For assistance, reply HELP or contact support at 7707660383.{" "}
                         <a href="/terms#privacy" className="text-gold/70 hover:text-gold transition-colors underline underline-offset-2">
                           Check our privacy policy for more details.
                         </a>
@@ -233,7 +233,7 @@ export default function Contact() {
                             className="mt-0.5 accent-[#C9A84C] shrink-0"
                           />
                           <span className="text-xs text-ivory/60 font-light leading-relaxed group-hover:text-ivory/80 transition-colors">
-                            Yes, I agree to receive text messages from King and Carter sent from 7707660383.
+                            Yes, I agree to receive text messages from King and Carter Group DBA King & Carter Premier sent from 7707660383.
                           </span>
                         </label>
                         <label className="flex items-start gap-3 cursor-pointer group">
@@ -246,7 +246,7 @@ export default function Contact() {
                             className="mt-0.5 accent-[#C9A84C] shrink-0"
                           />
                           <span className="text-xs text-ivory/60 font-light leading-relaxed group-hover:text-ivory/80 transition-colors">
-                            No, I do not want to receive text messages from King and Carter.
+                            No, I do not want to receive text messages from King and Carter Group DBA King & Carter Premier.
                           </span>
                         </label>
                       </div>

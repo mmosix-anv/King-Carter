@@ -114,11 +114,11 @@ export default function Header() {
                 >
                   <div className="py-2">
                     {services.length === 0 ? (
-                      <div className="px-6 py-3 text-xs text-ivory/40">No services available</div>
+                      <div className="px-6 py-3 text-xs text-ivory/65">No services available</div>
                     ) : (
                       services.map((service) => (
                         <Link key={service.slug} href={`/services/${service.slug}`}>
-                          <span className="block px-6 py-3 text-xs tracking-[0.15em] uppercase text-ivory/60 hover:text-gold hover:bg-white/[0.03] transition-all duration-300 font-sans">
+                          <span className="block px-6 py-3 text-xs tracking-[0.15em] uppercase text-ivory/80 hover:text-gold hover:bg-white/[0.03] transition-all duration-300 font-sans">
                             {service.title}
                           </span>
                         </Link>
@@ -152,10 +152,10 @@ export default function Header() {
               </span>
             </Link>
 
-            <span className="text-ivory/25 font-light select-none">|</span>
+            <span className="text-ivory/50 font-light select-none">|</span>
 
             <Link href="/login">
-              <span className="inline-flex items-center gap-1.5 text-xs tracking-[0.2em] uppercase text-ivory/55 hover:text-ivory/80 transition-colors duration-300 font-sans font-normal">
+              <span className="inline-flex items-center gap-1.5 text-xs tracking-[0.2em] uppercase text-ivory/75 hover:text-white transition-colors duration-300 font-sans font-normal">
                 <LogIn size={12} strokeWidth={1.5} />
                 Login
               </span>
@@ -204,11 +204,11 @@ export default function Header() {
                     >
                       <div className="pl-4 pt-3 flex flex-col gap-3 border-l border-gold/20 ml-1">
                         {services.length === 0 ? (
-                          <span className="text-xs text-ivory/40">No services available</span>
+                          <span className="text-xs text-ivory/65">No services available</span>
                         ) : (
                           services.map((service) => (
                             <Link key={service.slug} href={`/services/${service.slug}`}>
-                              <span className="text-xs tracking-[0.15em] uppercase text-ivory/50 hover:text-gold transition-colors font-sans">
+                              <span className="text-xs tracking-[0.15em] uppercase text-ivory/75 hover:text-gold transition-colors font-sans">
                                 {service.title}
                               </span>
                             </Link>
@@ -223,7 +223,7 @@ export default function Header() {
               {/* Other Links */}
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href}>
-                  <span className="text-sm tracking-[0.2em] uppercase text-ivory/70 hover:text-gold transition-colors font-sans">
+                  <span className="text-sm tracking-[0.2em] uppercase text-ivory/85 hover:text-gold transition-colors font-sans">
                     {link.label}
                   </span>
                 </Link>
@@ -242,7 +242,7 @@ export default function Header() {
               </Link>
 
               <Link href="/login">
-                <span className="text-sm tracking-[0.2em] uppercase text-ivory/40 hover:text-ivory/60 transition-colors font-sans inline-flex items-center gap-2">
+                <span className="text-sm tracking-[0.2em] uppercase text-ivory/65 hover:text-ivory/90 transition-colors font-sans inline-flex items-center gap-2">
                   <LogIn size={13} strokeWidth={1.5} />
                   Login
                 </span>

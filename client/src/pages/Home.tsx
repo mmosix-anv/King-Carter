@@ -92,7 +92,7 @@ export default function Home() {
               Premium Service,<br />
               <span className="font-light text-gold">Delivered with Intention</span>
             </h1>
-            <p className="text-base lg:text-lg text-ivory/60 font-light leading-relaxed max-w-lg mb-10">
+            <p className="text-base lg:text-lg text-ivory/80 font-light leading-relaxed max-w-lg mb-10">
               Private transport experiences shaped by hospitality, discretion, and modern elegance.
             </p>
             <Link href="/reservations">
@@ -123,7 +123,7 @@ export default function Home() {
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-ivory text-center mb-4 font-medium">
               Curated for Every Occasion
             </h2>
-            <p className="text-ivory/50 text-center font-light max-w-xl mx-auto mb-16 lg:mb-20">
+            <p className="text-ivory/75 text-center font-light max-w-xl mx-auto mb-16 lg:mb-20">
               From executive travel to special celebrations, each service is designed with the same commitment to excellence.
             </p>
           </FadeUp>
@@ -131,11 +131,11 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-5">
             {loading ? (
               <div className="col-span-2 text-center py-12">
-                <p className="text-ivory/50">Loading services...</p>
+                <p className="text-ivory/75">Loading services...</p>
               </div>
             ) : services.length === 0 ? (
               <div className="col-span-2 text-center py-12">
-                <p className="text-ivory/50">No services available</p>
+                <p className="text-ivory/75">No services available</p>
               </div>
             ) : (
               services.map((service, i) => (
@@ -152,7 +152,7 @@ export default function Home() {
                         <h3 className="font-serif text-xl lg:text-2xl text-ivory mb-2 font-medium">
                           {service.title}
                         </h3>
-                        <p className="text-sm text-ivory/50 font-light mb-4 max-w-sm">
+                        <p className="text-sm text-ivory/75 font-light mb-4 max-w-sm">
                           {service.tagline}
                         </p>
                         <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold opacity-0 group-hover:opacity-100 transition-opacity duration-400">
@@ -178,18 +178,18 @@ export default function Home() {
                 Modern Luxury,<br />
                 <span className="font-light text-gold">Impeccably Presented</span>
               </h2>
-              <p className="text-ivory/50 font-light leading-relaxed mb-8 max-w-md">
+              <p className="text-ivory/75 font-light leading-relaxed mb-8 max-w-md">
                 Each vehicle in our fleet is selected for comfort, discretion, and performance. Professionally maintained and presented to reflect our standards because the details matter.
               </p>
               <hr className="gold-rule w-24 mb-8 opacity-40" />
               <div className="grid grid-cols-2 gap-6">
                 <div>
                   <p className="font-serif text-3xl text-gold mb-1">100%</p>
-                  <p className="text-xs text-ivory/40 tracking-wide uppercase">Luxury Fleet</p>
+                  <p className="text-xs text-ivory/65 tracking-wide uppercase">Luxury Fleet</p>
                 </div>
                 <div>
                   <p className="font-serif text-3xl text-gold mb-1">24/7</p>
-                  <p className="text-xs text-ivory/40 tracking-wide uppercase">Availability</p>
+                  <p className="text-xs text-ivory/65 tracking-wide uppercase">Availability</p>
                 </div>
               </div>
             </FadeUp>
@@ -216,7 +216,7 @@ export default function Home() {
               True Luxury Is Not Loud,<br />
               <span className="font-light text-gold">It Is Intentional</span>
             </h2>
-            <p className="text-ivory/50 font-light leading-relaxed text-lg mb-10">
+            <p className="text-ivory/75 font-light leading-relaxed text-lg mb-10">
               King & Carter Premier is built on a simple belief: that premium service should be felt, not announced. Inspired by the finest hospitality standards, we focus on calm, carefully coordinated experiences rather than excess. Every journey is designed to feel seamless, personal, and refined.
             </p>
             <Link href="/about">
@@ -245,7 +245,7 @@ export default function Home() {
                 <div className="text-center p-6 lg:p-4 border border-white/5 hover:border-gold/20 transition-colors duration-400">
                   <reason.icon size={24} className="text-gold mx-auto mb-4" strokeWidth={1.5} />
                   <h4 className="font-serif text-base text-ivory mb-2">{reason.title}</h4>
-                  <p className="text-xs text-ivory/40 font-light leading-relaxed">{reason.text}</p>
+                  <p className="text-xs text-ivory/65 font-light leading-relaxed">{reason.text}</p>
                 </div>
               </FadeUp>
             ))}
@@ -262,7 +262,7 @@ export default function Home() {
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-ivory mb-6 font-medium">
               Ready to Experience <span className="font-light text-gold">the Difference?</span>
             </h2>
-            <p className="text-ivory/50 font-light max-w-lg mx-auto mb-10">
+            <p className="text-ivory/75 font-light max-w-lg mx-auto mb-10">
               Let us coordinate your next journey with the care and attention it deserves.
             </p>
             <Link href="/reservations">
