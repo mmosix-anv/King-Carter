@@ -126,7 +126,7 @@ export default function Reservations() {
           <div className={`max-w-7xl mx-auto transition-all duration-900 ease-out ${formSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "300ms", backgroundColor: "#060606" }}>
             <iframe
               ref={iframeRef}
-              src="/booking"
+              src="https://booking.kingandcarter.com/booking"
               title="King & Carter Online Reservations"
               scrolling="no"
               allowtransparency="true"
