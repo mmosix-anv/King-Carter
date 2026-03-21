@@ -14,6 +14,7 @@ import Experience from "./pages/Experience";
 import BecomeAMember from "./pages/BecomeAMember";
 import ClientLogin from "./pages/ClientLogin";
 import Reservations from "./pages/Reservations";
+import Test from "./pages/Test";
 import Terms from "./pages/Terms";
 
 // Admin pages
@@ -37,6 +38,7 @@ function Router() {
       <Route path="/become-a-member" component={BecomeAMember} />
       <Route path="/login" component={ClientLogin} />
       <Route path="/reservations" component={Reservations} />
+      <Route path="/test" component={Test} />
       <Route path="/terms" component={Terms} />
       <Route path="/services/:slug" component={ServicePage} />
       
