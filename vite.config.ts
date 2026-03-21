@@ -173,15 +173,10 @@ export default defineConfig({
     strictPort: false, // Will find next available port if 3000 is busy
     host: true,
     proxy: {
-      // Dev proxy: forwards to the booking proxy server
+      // Dev: forward /booking routes to the Express server running alongside Vite
       '/booking': {
-        target: 'http://127.0.0.1:3002',
+        target: 'http://127.0.0.1:3001',
         changeOrigin: true,
-      },
-      '/proxy/login': {
-        target: 'http://127.0.0.1:3002',
-        changeOrigin: true,
-        rewrite: (path: string) => path.replace(/^\/proxy/, ''),
       },
     },
     allowedHosts: [

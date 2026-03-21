@@ -54,6 +54,17 @@ function rewriteUrls(html) {
       (_, a, p) => `${a}'${TARGET_ORIGIN}${p}'`);
 }
 
+// Swap LimoAnywhere's Google Maps client ID for your own API key
+function swapGoogleMapsKey(html) {
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+  if (!apiKey) return html;
+  // Replace ?client=gme-limoanywhere... with ?key=YOUR_KEY
+  return html
+    .replace(/[?&]client=gme-[^&"'\s]*/g, `?key=${apiKey}`)
+    .replace(/(maps\.googleapis\.com\/maps\/api\/js[^"']*)\?client=gme-[^&"'\s]*/g,
+      `$1?key=${apiKey}`);
+}
+
 // Remove any meta tags that set X-Frame-Options inline
 function stripRestrictiveMetaTags(html) {
   return html.replace(
@@ -115,6 +126,7 @@ async function buildPage(req, upstreamUrl, iframeId = 'booking-iframe') {
   let html = raw;
   html = injectBase(html);
   html = rewriteUrls(html);
+  html = swapGoogleMapsKey(html);
   html = stripRestrictiveMetaTags(html);
   html = html.replace('</head>', `${headBlock}\n</head>`);
   html = html.replace('</body>', `${bodyBlock}\n</body>`);

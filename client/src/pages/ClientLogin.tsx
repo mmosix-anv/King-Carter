@@ -73,7 +73,7 @@ export default function ClientLogin() {
 
             <iframe
               ref={iframeRef}
-              src={`https://booking.kingandcarter.com/login?redirect=${encodeURIComponent(window.location.origin + '/')}`}
+              src={`/booking/login?redirect=${encodeURIComponent(window.location.origin + '/')}`}
               id="login-iframe"
               title="King & Carter Client Login"
               scrolling="no"
