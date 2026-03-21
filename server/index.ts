@@ -36,6 +36,15 @@ function rewriteUrls(html: string): string {
     .replace(/((?:src|href|action)=)'(\/v4\/[^']+)'/g, (_, a, p) => `${a}'${TARGET_ORIGIN}${p}'`);
 }
 
+function replaceGoogleMapsKey(html: string): string {
+  // Remove their client-ID-based Maps script entirely
+  html = html.replace(
+    /<script[^>]+maps\.googleapis\.com\/maps\/api\/js[^>]*><\/script>/gi,
+    ""
+  );
+  return html;
+}
+
 function swapGoogleMapsKey(html: string): string {
   const apiKey = process.env.GOOGLE_MAPS_API_KEY;
   if (!apiKey) return html;
@@ -71,9 +80,15 @@ async function buildPage(userAgent: string, upstreamUrl: string): Promise<string
     console.log(`[booking-proxy] fetched: ${upstreamUrl}`);
   }
 
+  const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+  const mapsScript = apiKey
+    ? `<script src="https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places,geometry&language=en&callback=GoogleGeoCore.InitGoogleServices" async defer></script>`
+    : "";
+
   const headBlock = [
     loadFonts(),
     loadCSS(),
+    mapsScript,
     "<style>html,body{background:transparent!important}</style>",
   ].filter(Boolean).join("\n");
 
@@ -82,7 +97,7 @@ async function buildPage(userAgent: string, upstreamUrl: string): Promise<string
   let html = raw;
   html = injectBase(html);
   html = rewriteUrls(html);
-  html = swapGoogleMapsKey(html);
+  html = replaceGoogleMapsKey(html);
   html = stripRestrictiveMetaTags(html);
   html = html.replace("</head>", `${headBlock}\n</head>`);
   html = html.replace("</body>", `${bodyBlock}\n</body>`);
