@@ -3,7 +3,7 @@
  * Matches the root app's dark luxury aesthetic.
  * Centered card layout with LimoAnywhere login widget embedded.
  */
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -12,27 +12,23 @@ const BG_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/contact-concierge-LparVqG2GsRJcjhJjau9GV.webp";
 
 export default function ClientLogin() {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const existing = document.querySelector('script[src="https://book.mylimobiz.com/v4/widgets/widget-loader.js"]');
+    if (existing) existing.remove();
+
     const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/npm/iframe-resizer@4.3.9/js/iframeResizer.min.js";
+    script.type = "text/javascript";
+    script.src = "https://book.mylimobiz.com/v4/widgets/widget-loader.js";
     script.async = true;
-    script.onload = () => {
-      if (iframeRef.current && (window as any).iFrameResize) {
-        (window as any).iFrameResize(
-          { log: false, checkOrigin: false, scrolling: false, heightCalculationMethod: "lowestElement" },
-          iframeRef.current
-        );
-      }
-    };
-    document.head.appendChild(script);
+    document.body.appendChild(script);
+
     return () => { script.remove(); };
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0A]">
+    <div className="min-h-screen bg-[#000000]">
       <Header />
 
       {/* ===== HERO ===== */}
@@ -41,7 +37,7 @@ export default function ClientLogin() {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${BG_IMAGE})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-[#0A0A0A]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#000000] via-[#000000]/60 to-[#000000]/30" />
 
         <div className="relative h-full container flex flex-col justify-end pb-16 lg:pb-20">
           <motion.div
@@ -58,7 +54,7 @@ export default function ClientLogin() {
       </section>
 
       {/* ===== LOGIN WIDGET ===== */}
-      <section className="py-24 lg:py-32" style={{ backgroundColor: "#0A0A0A" }}>
+      <section className="py-24 lg:py-32" style={{ backgroundColor: "#000000" }}>
         <div className="container max-w-lg">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -71,22 +67,14 @@ export default function ClientLogin() {
             </p>
             <div className="gold-rule mb-8" />
 
-            <iframe
-              ref={iframeRef}
-              src={`/booking/login?redirect=${encodeURIComponent(window.location.origin + '/')}`}
-              id="login-iframe"
-              title="King & Carter Client Login"
-              scrolling="no"
-              allowtransparency="true"
-              style={{
-                border: "none",
-                width: "1px",
-                minWidth: "100%",
-                display: "block",
-                overflow: "hidden",
-                backgroundColor: "transparent",
-              }}
-            />
+            <a
+              href="https://book.mylimobiz.com/v4/kingandcarter/widget/login"
+              data-ores-widget="login"
+              data-ores-alias="kingandcarter"
+              data-redirect-url={window.location.origin + '/'}
+            >
+              Login
+            </a>
           </motion.div>
         </div>
       </section>
@@ -95,3 +83,4 @@ export default function ClientLogin() {
     </div>
   );
 }
+

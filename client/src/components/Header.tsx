@@ -95,7 +95,7 @@ export default function Header() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <span className="text-xs tracking-[0.15em] xl:tracking-[0.25em] uppercase text-ivory/70 hover:text-gold transition-colors duration-300 font-sans font-normal inline-flex items-center gap-1.5 cursor-pointer select-none whitespace-nowrap">
+            <span className={`text-xs tracking-[0.15em] xl:tracking-[0.25em] uppercase transition-colors duration-300 font-sans font-normal inline-flex items-center gap-1.5 cursor-pointer select-none whitespace-nowrap ${location.startsWith("/services") ? "text-gold" : "text-white/80 hover:text-white"}`}>
               Services
               <ChevronDown
                 size={12}
@@ -133,14 +133,14 @@ export default function Header() {
           {/* Other Nav Links */}
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href}>
-              <span className="text-xs tracking-[0.15em] xl:tracking-[0.25em] uppercase text-ivory/70 hover:text-gold transition-colors duration-300 font-sans font-normal leading-none whitespace-nowrap">
+              <span className={`text-xs tracking-[0.15em] xl:tracking-[0.25em] uppercase transition-colors duration-300 font-sans font-normal leading-none whitespace-nowrap ${location === link.href ? "text-gold" : "text-white/80 hover:text-white"}`}>
                 {link.label}
               </span>
             </Link>
           ))}
 
           <Link href="/become-a-member">
-            <span className="text-xs tracking-[0.15em] xl:tracking-[0.2em] uppercase text-gold/80 hover:text-gold transition-colors duration-300 font-sans font-normal leading-none whitespace-nowrap">
+            <span className={`text-xs tracking-[0.15em] xl:tracking-[0.2em] uppercase transition-colors duration-300 font-sans font-normal leading-none whitespace-nowrap ${location === "/become-a-member" ? "text-gold" : "text-white/80 hover:text-white"}`}>
               Become a Member
             </span>
           </Link>
@@ -186,7 +186,7 @@ export default function Header() {
               <div>
                 <button
                   onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                  className="flex items-center gap-2 text-sm tracking-[0.2em] uppercase text-ivory/70 hover:text-gold transition-colors font-sans w-full"
+                  className={`flex items-center gap-2 text-sm tracking-[0.2em] uppercase transition-colors font-sans w-full ${location.startsWith("/services") ? "text-gold" : "text-white/80 hover:text-white"}`}
                 >
                   Services
                   <ChevronDown

@@ -37,9 +37,9 @@ function rewriteUrls(html: string): string {
 }
 
 function replaceGoogleMapsKey(html: string): string {
-  // Remove their client-ID-based Maps script entirely
+  // Remove ALL Google Maps script tags (their client-ID version)
   html = html.replace(
-    /<script[^>]+maps\.googleapis\.com\/maps\/api\/js[^>]*><\/script>/gi,
+    /<script[^>]*maps\.googleapis\.com[^>]*>(\s*<\/script>)?/gi,
     ""
   );
   return html;

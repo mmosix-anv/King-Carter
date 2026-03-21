@@ -39,24 +39,19 @@ export default function Reservations() {
   const brandSection = useInView(0.2);
   const formSection = useInView(0.1);
   const trustSection = useInView(0.15);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // Load iframeResizer and init once the script is ready
+    const existing = document.querySelector('script[src="https://book.mylimobiz.com/v4/widgets/widget-loader.js"]');
+    if (existing) existing.remove();
+
     const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/npm/iframe-resizer@4.3.9/js/iframeResizer.min.js";
+    script.type = "text/javascript";
+    script.src = "https://book.mylimobiz.com/v4/widgets/widget-loader.js";
     script.async = true;
-    script.onload = () => {
-      if (iframeRef.current && (window as any).iFrameResize) {
-        (window as any).iFrameResize(
-          { log: false, checkOrigin: false, scrolling: false, heightCalculationMethod: "lowestElement" },
-          iframeRef.current
-        );
-      }
-    };
-    document.head.appendChild(script);
+    document.body.appendChild(script);
+
     return () => { script.remove(); };
   }, []);
 
@@ -114,7 +109,7 @@ export default function Reservations() {
       </section>
 
       {/* BOOKING WIDGET */}
-      <section id="book" ref={formSection.ref} className="py-16 lg:py-24" style={{ backgroundColor: "#060606" }}>
+      <section id="book" ref={formSection.ref} className="py-16 lg:py-24" style={{ backgroundColor: "#000000" }}>
         <div className="container">
           <div className={`text-center mb-10 lg:mb-14 transition-all duration-700 ease-out ${formSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
             <p className="section-label mb-4">Complete Your Reservation</p>
@@ -123,22 +118,14 @@ export default function Reservations() {
             </h2>
           </div>
 
-          <div className={`max-w-7xl mx-auto transition-all duration-900 ease-out ${formSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "300ms", backgroundColor: "#060606" }}>
-            <iframe
-              ref={iframeRef}
-              src="/booking"              title="King & Carter Online Reservations"
-              scrolling="no"
-              allow="geolocation"
-              allowtransparency="true"
-              style={{
-                border: "none",
-                width: "1px",
-                minWidth: "100%",
-                display: "block",
-                overflow: "hidden",
-                backgroundColor: "transparent",
-              }}
-            />
+          <div className={`max-w-7xl mx-auto transition-all duration-900 ease-out ${formSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "300ms" }}>
+            <a
+              href="https://book.mylimobiz.com/v4/kingandcarter"
+              data-ores-widget="website"
+              data-ores-alias="kingandcarter"
+            >
+              Online Reservations
+            </a>
           </div>
 
           <div className={`text-center mt-10 lg:mt-14 transition-all duration-700 ease-out ${formSection.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "600ms" }}>
@@ -175,7 +162,7 @@ export default function Reservations() {
       </section>
 
       {/* FINAL CTA */}
-      <section className="py-24 lg:py-36" style={{ backgroundColor: "#060606" }}>
+      <section className="py-24 lg:py-36" style={{ backgroundColor: "#000000" }}>
         <div className="container text-center">
           <div className="gold-divider mx-auto w-16 mb-10" />
           <h2 className="heading-display text-2xl sm:text-3xl lg:text-[42px] mb-5">
@@ -197,3 +184,4 @@ export default function Reservations() {
     </div>
   );
 }
+
