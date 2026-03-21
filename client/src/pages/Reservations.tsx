@@ -129,6 +129,7 @@ export default function Reservations() {
               src="https://booking.kingandcarter.com/booking"
               title="King & Carter Online Reservations"
               scrolling="no"
+              allow="geolocation"
               allowtransparency="true"
               style={{
                 border: "none",
