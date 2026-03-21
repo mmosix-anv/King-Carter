@@ -172,6 +172,18 @@ export default defineConfig({
     port: 3000,
     strictPort: false, // Will find next available port if 3000 is busy
     host: true,
+    proxy: {
+      // Dev proxy: forwards to the booking proxy server
+      '/booking': {
+        target: 'http://127.0.0.1:3002',
+        changeOrigin: true,
+      },
+      '/proxy/login': {
+        target: 'http://127.0.0.1:3002',
+        changeOrigin: true,
+        rewrite: (path: string) => path.replace(/^\/proxy/, ''),
+      },
+    },
     allowedHosts: [
       ".manuspre.computer",
       ".manus.computer",

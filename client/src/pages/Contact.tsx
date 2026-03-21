@@ -45,6 +45,7 @@ export default function Contact() {
     phone: "",
     service: "",
     message: "",
+    smsConsent: "" as "" | "yes" | "no",
   });
   const [submitting, setSubmitting] = useState(false);
 
@@ -74,7 +75,7 @@ export default function Contact() {
       }
 
       toast.success("Thank you for your inquiry. We'll be in touch shortly.");
-      setFormData({ name: "", email: "", phone: "", service: "", message: "" });
+      setFormData({ name: "", email: "", phone: "", service: "", message: "", smsConsent: "" });
     } catch (error: any) {
       console.error('Contact form error:', error);
       toast.error(error.message || 'Failed to send message. Please try again or email us directly.');
@@ -144,7 +145,7 @@ export default function Contact() {
             <div className="lg:col-span-7">
               <FadeUp delay={0.15}>
                 <div className="bg-[#0F0F0F] border border-white/5 p-8 lg:p-12">
-                  <h3 className="font-serif text-xl text-ivory mb-2 font-medium">Book an Experience</h3>
+                  <h3 className="font-serif text-xl text-ivory mb-2 font-medium">Contact Form</h3>
                   <p className="text-ivory/40 font-light text-sm mb-8">
                     Fill in the details below and we'll be in touch to coordinate your journey.
                   </p>
@@ -211,6 +212,44 @@ export default function Contact() {
                         className="w-full bg-transparent border border-white/10 text-ivory/80 text-sm px-4 py-3 focus:border-gold/40 focus:outline-none transition-colors font-light resize-none placeholder:text-ivory/20"
                         placeholder="Tell us about your upcoming journey or event..."
                       />
+                    </div>
+
+                    {/* SMS Consent */}
+                    <div className="border border-white/10 p-5 space-y-4">
+                      <p className="text-xs text-ivory/50 font-light leading-relaxed">
+                        Do you agree to receive text messages from King and Carter sent from 7707660383? Message frequency varies and may include general conversational messaging to answer questions and provide support to customers. Message and data rates may apply. Reply STOP or CANCEL at any time to end or unsubscribe. For assistance, reply HELP or contact support at 7707660383.{" "}
+                        <a href="/terms#privacy" className="text-gold/70 hover:text-gold transition-colors underline underline-offset-2">
+                          Check our privacy policy for more details.
+                        </a>
+                      </p>
+                      <div className="flex flex-col gap-3">
+                        <label className="flex items-start gap-3 cursor-pointer group">
+                          <input
+                            type="radio"
+                            name="smsConsent"
+                            value="yes"
+                            checked={formData.smsConsent === "yes"}
+                            onChange={() => setFormData({ ...formData, smsConsent: "yes" })}
+                            className="mt-0.5 accent-[#C9A84C] shrink-0"
+                          />
+                          <span className="text-xs text-ivory/60 font-light leading-relaxed group-hover:text-ivory/80 transition-colors">
+                            Yes, I agree to receive text messages from King and Carter sent from 7707660383.
+                          </span>
+                        </label>
+                        <label className="flex items-start gap-3 cursor-pointer group">
+                          <input
+                            type="radio"
+                            name="smsConsent"
+                            value="no"
+                            checked={formData.smsConsent === "no"}
+                            onChange={() => setFormData({ ...formData, smsConsent: "no" })}
+                            className="mt-0.5 accent-[#C9A84C] shrink-0"
+                          />
+                          <span className="text-xs text-ivory/60 font-light leading-relaxed group-hover:text-ivory/80 transition-colors">
+                            No, I do not want to receive text messages from King and Carter.
+                          </span>
+                        </label>
+                      </div>
                     </div>
 
                     <button

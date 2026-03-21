@@ -213,7 +213,7 @@ export default function ServicePage() {
             <p className="text-ivory/50 font-light max-w-md mx-auto mb-10">
               Contact us to discuss your requirements and let us craft the perfect experience.
             </p>
-            <Link href={service.cta?.buttonUrl || "/contact"}>
+            <Link href={service.cta?.buttonUrl || "/reservations"}>
               <span className="inline-flex items-center gap-3 text-sm tracking-[0.2em] uppercase bg-gold text-[#0A0A0A] px-10 py-4 hover:bg-gold-light transition-all duration-400 font-medium">
                 {service.cta?.buttonLabel || "Book Now"}
                 <ArrowRight size={16} />

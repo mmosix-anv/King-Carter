@@ -95,7 +95,7 @@ export default function Home() {
             <p className="text-base lg:text-lg text-ivory/60 font-light leading-relaxed max-w-lg mb-10">
               Private transport experiences shaped by hospitality, discretion, and modern elegance.
             </p>
-            <Link href="/contact">
+            <Link href="/reservations">
               <span className="inline-flex items-center gap-3 text-sm tracking-[0.2em] uppercase border border-gold/50 text-gold px-8 py-4 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400 group">
                 Book an Experience
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -265,7 +265,7 @@ export default function Home() {
             <p className="text-ivory/50 font-light max-w-lg mx-auto mb-10">
               Let us coordinate your next journey with the care and attention it deserves.
             </p>
-            <Link href="/contact">
+            <Link href="/reservations">
               <span className="inline-flex items-center gap-3 text-sm tracking-[0.2em] uppercase bg-gold text-[#0A0A0A] px-10 py-4 hover:bg-gold-light transition-all duration-400 font-medium">
                 Book Now
                 <ArrowRight size={16} />

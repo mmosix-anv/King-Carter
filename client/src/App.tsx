@@ -12,6 +12,9 @@ import Contact from "./pages/Contact";
 import ServicePage from "./pages/ServicePage";
 import Experience from "./pages/Experience";
 import BecomeAMember from "./pages/BecomeAMember";
+import ClientLogin from "./pages/ClientLogin";
+import Reservations from "./pages/Reservations";
+import Terms from "./pages/Terms";
 
 // Admin pages
 import Login from "./pages/admin/Login";
@@ -32,6 +35,9 @@ function Router() {
       <Route path="/contact" component={Contact} />
       <Route path="/experience" component={Experience} />
       <Route path="/become-a-member" component={BecomeAMember} />
+      <Route path="/login" component={ClientLogin} />
+      <Route path="/reservations" component={Reservations} />
+      <Route path="/terms" component={Terms} />
       <Route path="/services/:slug" component={ServicePage} />
       
       {/* Admin routes */}

@@ -6,7 +6,7 @@
  */
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, LogIn } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase, Service } from "@/lib/supabase";
 
@@ -87,7 +87,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
           {/* Services Dropdown */}
           <div
             ref={dropdownRef}
@@ -95,13 +95,13 @@ export default function Header() {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <button className="flex items-center gap-1.5 text-xs tracking-[0.25em] uppercase text-ivory/70 hover:text-gold transition-colors duration-300 font-sans font-normal">
+            <span className="text-xs tracking-[0.15em] xl:tracking-[0.25em] uppercase text-ivory/70 hover:text-gold transition-colors duration-300 font-sans font-normal inline-flex items-center gap-1.5 cursor-pointer select-none whitespace-nowrap">
               Services
               <ChevronDown
                 size={12}
                 className={`transition-transform duration-300 ${servicesOpen ? "rotate-180" : ""}`}
               />
-            </button>
+            </span>
 
             <AnimatePresence>
               {servicesOpen && (
@@ -133,23 +133,34 @@ export default function Header() {
           {/* Other Nav Links */}
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href}>
-              <span className="text-xs tracking-[0.25em] uppercase text-ivory/70 hover:text-gold transition-colors duration-300 font-sans font-normal">
+              <span className="text-xs tracking-[0.15em] xl:tracking-[0.25em] uppercase text-ivory/70 hover:text-gold transition-colors duration-300 font-sans font-normal leading-none whitespace-nowrap">
                 {link.label}
               </span>
             </Link>
           ))}
 
           <Link href="/become-a-member">
-            <span className="text-xs tracking-[0.2em] uppercase text-gold/80 hover:text-gold transition-colors duration-300 font-sans font-normal">
+            <span className="text-xs tracking-[0.15em] xl:tracking-[0.2em] uppercase text-gold/80 hover:text-gold transition-colors duration-300 font-sans font-normal leading-none whitespace-nowrap">
               Become a Member
             </span>
           </Link>
 
-          <Link href="/contact">
-            <span className="text-xs tracking-[0.2em] uppercase border border-gold/40 text-gold px-6 py-2.5 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400 font-sans font-normal">
-              Book an Experience
-            </span>
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="/reservations">
+              <span className="text-xs tracking-[0.15em] xl:tracking-[0.2em] uppercase border border-gold/40 text-gold px-4 xl:px-6 py-2.5 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400 font-sans font-normal whitespace-nowrap">
+                Book an Experience
+              </span>
+            </Link>
+
+            <span className="text-ivory/25 font-light select-none">|</span>
+
+            <Link href="/login">
+              <span className="inline-flex items-center gap-1.5 text-xs tracking-[0.2em] uppercase text-ivory/55 hover:text-ivory/80 transition-colors duration-300 font-sans font-normal">
+                <LogIn size={12} strokeWidth={1.5} />
+                Login
+              </span>
+            </Link>
+          </div>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -224,9 +235,16 @@ export default function Header() {
                 </span>
               </Link>
 
-              <Link href="/contact">
+              <Link href="/reservations">
                 <span className="text-sm tracking-[0.2em] uppercase border border-gold/40 text-gold px-6 py-3 hover:bg-gold hover:text-[#0A0A0A] transition-all inline-block text-center font-sans">
                   Book an Experience
+                </span>
+              </Link>
+
+              <Link href="/login">
+                <span className="text-sm tracking-[0.2em] uppercase text-ivory/40 hover:text-ivory/60 transition-colors font-sans inline-flex items-center gap-2">
+                  <LogIn size={13} strokeWidth={1.5} />
+                  Login
                 </span>
               </Link>
             </nav>

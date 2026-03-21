@@ -1,0 +1,510 @@
+/* ============================================================
+   KING & CARTER — Booking Widget Styles
+   Dark noir theme matching kingandcarter.com
+   ============================================================ */
+
+:root {
+  --gold:           #c9a84c;
+  --gold-h:         #b8973b;
+  --gold-light:     #d4b86a;
+  --ivory:          #f5f1ea;
+  --bg:             #0a0a0a;
+  --bg-alt:         #0f0f0f;
+  --bg-panel:       #111111;
+  --bg-input:       #0d0d0d;
+  --border:         rgba(255,255,255,0.08);
+  --border-focus:   rgba(201,168,76,0.4);
+  --text:           rgba(245,241,234,0.85);
+  --text-muted:     rgba(245,241,234,0.4);
+  --text-faint:     rgba(245,241,234,0.2);
+  --danger:         #c0392b;
+  --radius:         2px;
+  --font-serif:     'Playfair Display', Georgia, serif;
+  --font-sans:      'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  background-color: transparent !important;
+  color: var(--text) !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 300 !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  overflow-x: hidden !important;
+}
+
+body, .ors, #outer-wrap, #inner-wrap, #content-wrap,
+.container-fluid, .container,
+.row, .col, [class*="col-"],
+#booking-wrap, #page-wrap, .page-wrap,
+.ors-wrap, .ors-content, .ors-body,
+.step-wrap, .steps-wrap, .booking-steps {
+  background-color: transparent !important;
+  color: var(--text) !important;
+}
+
+input, textarea, select, button {
+  font-family: var(--font-sans) !important;
+}
+
+/* ── HIDE THEIR HEADER / LOGO ─────────────────────────────── */
+header#top.ors-menu-top,
+.ors-menu-top,
+nav.navbar,
+.navbar {
+  display: none !important;
+}
+
+img.brand-logo,
+.row.center:has(img.brand-logo) {
+  display: none !important;
+}
+
+/* ── HEADINGS ─────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6,
+.panel-title,
+.ors-title,
+.vehicle-grid-item-heading,
+.step-info-vehicle {
+  font-family: var(--font-serif) !important;
+  font-weight: 500 !important;
+  color: var(--ivory) !important;
+  letter-spacing: 0 !important;
+}
+
+/* ── PANELS / STEPS ───────────────────────────────────────── */
+.panel {
+  background: var(--bg-panel) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: none !important;
+  margin-bottom: 12px !important;
+}
+
+.panel-heading {
+  background: var(--bg-alt) !important;
+  border-bottom: 1px solid var(--border) !important;
+  padding: 14px 20px !important;
+  border-radius: var(--radius) var(--radius) 0 0 !important;
+}
+
+.panel-heading a,
+.panel-heading h4,
+.panel-heading .panel-title {
+  color: var(--ivory) !important;
+  font-family: var(--font-serif) !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  letter-spacing: 0.02em !important;
+}
+
+.panel-body,
+.panel-body-book {
+  background: var(--bg-panel) !important;
+  padding: 24px 20px !important;
+}
+
+/* ── STEP WIZARD ICONS ────────────────────────────────────── */
+.svg-step-in-active { fill: rgba(255,255,255,0.1) !important; color: rgba(255,255,255,0.1) !important; }
+.svg-step-active    { fill: var(--gold) !important; color: var(--gold) !important; }
+.svg-step-completed { fill: var(--gold) !important; color: var(--gold) !important; }
+.svg-icon-edit      { fill: var(--gold) !important; }
+
+/* Step connector line */
+.step-line { background: var(--border) !important; }
+.step-line-active { background: var(--gold) !important; }
+
+/* ── LABELS ───────────────────────────────────────────────── */
+label {
+  font-family: var(--font-sans) !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--text-muted) !important;
+  margin-bottom: 6px !important;
+  display: block !important;
+}
+
+/* ── INPUTS ───────────────────────────────────────────────── */
+.form-control {
+  background: var(--bg-input) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  color: var(--text) !important;
+  font-family: var(--font-sans) !important;
+  font-size: 14px !important;
+  font-weight: 300 !important;
+  height: 42px !important;
+  padding: 8px 12px !important;
+  transition: border-color 0.2s !important;
+}
+
+.form-control:focus {
+  background: var(--bg-input) !important;
+  border-color: var(--border-focus) !important;
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.08) !important;
+  outline: none !important;
+  color: var(--ivory) !important;
+}
+
+.form-control::placeholder {
+  color: var(--text-faint) !important;
+  opacity: 1 !important;
+}
+
+/* Textarea */
+textarea.form-control {
+  height: auto !important;
+  min-height: 90px !important;
+  resize: vertical !important;
+}
+
+/* Select */
+select.form-control {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  cursor: pointer !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a84c' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  padding-right: 32px !important;
+}
+
+/* Input group (date/time pickers) */
+.input-group-btn .btn-default {
+  background: var(--bg-alt) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-muted) !important;
+}
+
+.input-group-btn .btn-default:hover {
+  background: var(--bg-panel) !important;
+  border-color: var(--border-focus) !important;
+  color: var(--gold) !important;
+}
+
+/* Touchspin +/- */
+.bootstrap-touchspin-up,
+.bootstrap-touchspin-down {
+  background: var(--bg-alt) !important;
+  border-color: var(--border) !important;
+  color: var(--text-muted) !important;
+}
+
+.bootstrap-touchspin-up:hover,
+.bootstrap-touchspin-down:hover {
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: var(--bg) !important;
+}
+
+/* ── BUTTONS ──────────────────────────────────────────────── */
+.btn {
+  font-family: var(--font-sans) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  border-radius: var(--radius) !important;
+  transition: all 0.25s !important;
+}
+
+/* Primary — Book Now, Select, Continue */
+.btn-primary {
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: var(--bg) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background: var(--gold-h) !important;
+  border-color: var(--gold-h) !important;
+  color: var(--bg) !important;
+}
+
+/* Outline / secondary */
+.btn-outline,
+.btn-default {
+  background: transparent !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-muted) !important;
+}
+
+.btn-outline:hover,
+.btn-default:hover {
+  border-color: var(--gold) !important;
+  color: var(--gold) !important;
+  background: transparent !important;
+}
+
+/* ── VEHICLE CARDS ────────────────────────────────────────── */
+.vehicle-grid-item {
+  background: var(--bg-panel) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: none !important;
+  transition: border-color 0.25s !important;
+  overflow: hidden !important;
+}
+
+.vehicle-grid-item:hover {
+  border-color: rgba(201,168,76,0.25) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.vehicle-grid-item-heading {
+  font-family: var(--font-serif) !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  color: var(--ivory) !important;
+}
+
+.vehicle-grid-item-price-numb {
+  font-family: var(--font-serif) !important;
+  font-size: 24px !important;
+  font-weight: 500 !important;
+  color: var(--gold) !important;
+}
+
+.vehicle-grid-item-price-label,
+.vehicle-grid-item-price-desc {
+  color: var(--text-muted) !important;
+  font-size: 11px !important;
+}
+
+/* ── AUTOCOMPLETE ─────────────────────────────────────────── */
+.ors-suggest-list.dropdown-menu,
+.dropdown-menu {
+  background: var(--bg-panel) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6) !important;
+}
+
+.ors-suggest-list li a,
+.dropdown-menu li a,
+.dropdown-menu > li > a {
+  color: var(--text) !important;
+  background: transparent !important;
+  font-size: 13px !important;
+  padding: 8px 14px !important;
+}
+
+.ors-suggest-list li:hover a,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background: rgba(201,168,76,0.08) !important;
+  color: var(--gold) !important;
+}
+
+/* ── LOGIN / GUEST COLUMNS ────────────────────────────────── */
+.ors-column-l,
+.ors-column-r {
+  background: var(--bg-panel) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  padding: 24px !important;
+}
+
+.ors-column-l-border {
+  border-right: 1px solid var(--border) !important;
+}
+
+.ors-title {
+  font-family: var(--font-serif) !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  color: var(--ivory) !important;
+  margin-bottom: 16px !important;
+}
+
+/* ── MODALS ───────────────────────────────────────────────── */
+.modal-content {
+  background: var(--bg-panel) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+}
+
+.modal-header {
+  background: var(--bg-alt) !important;
+  border-bottom: 1px solid var(--border) !important;
+  border-radius: var(--radius) var(--radius) 0 0 !important;
+}
+
+.modal-title {
+  font-family: var(--font-serif) !important;
+  color: var(--ivory) !important;
+  font-weight: 500 !important;
+}
+
+.modal-header .close {
+  color: var(--text-muted) !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+}
+
+.modal-header .close:hover { color: var(--ivory) !important; }
+
+.modal-body { color: var(--text) !important; }
+
+.modal-footer {
+  border-top: 1px solid var(--border) !important;
+  background: var(--bg-alt) !important;
+}
+
+/* ── DATEPICKER ───────────────────────────────────────────── */
+.bootstrap-datetimepicker-widget {
+  background: var(--bg-panel) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+}
+
+.bootstrap-datetimepicker-widget table td,
+.bootstrap-datetimepicker-widget table th {
+  color: var(--text) !important;
+}
+
+.bootstrap-datetimepicker-widget table td.day:hover,
+.bootstrap-datetimepicker-widget table td.hour:hover,
+.bootstrap-datetimepicker-widget table td.minute:hover {
+  background: rgba(201,168,76,0.1) !important;
+  border-radius: 2px !important;
+  color: var(--gold) !important;
+}
+
+.bootstrap-datetimepicker-widget table td.active,
+.bootstrap-datetimepicker-widget table td.active:hover {
+  background: var(--gold) !important;
+  color: var(--bg) !important;
+  border-radius: 2px !important;
+}
+
+.bootstrap-datetimepicker-widget table td.today::before {
+  border-bottom-color: var(--gold) !important;
+}
+
+.bootstrap-datetimepicker-widget table th.picker-switch:hover,
+.bootstrap-datetimepicker-widget table th.prev:hover,
+.bootstrap-datetimepicker-widget table th.next:hover {
+  background: rgba(255,255,255,0.05) !important;
+  color: var(--gold) !important;
+}
+
+.btn-timepicker-close {
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: var(--bg) !important;
+}
+
+/* ── LOADING SPINNER ──────────────────────────────────────── */
+.loader-path { stroke: var(--gold) !important; }
+
+#loadingProgressContainer {
+  background: rgba(10,10,10,0.9) !important;
+}
+
+/* ── TOGGLE SWITCH ────────────────────────────────────────── */
+.switch input.toggle:checked + label {
+  background-color: var(--gold) !important;
+}
+
+/* ── LINKS ────────────────────────────────────────────────── */
+a, .text-link, .ors-pseudo-link {
+  color: var(--gold) !important;
+}
+
+a:hover, .text-link:hover {
+  color: var(--gold-light) !important;
+}
+
+/* ── ALERTS ───────────────────────────────────────────────── */
+.alert {
+  background: var(--bg-alt) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text) !important;
+  border-radius: var(--radius) !important;
+}
+
+.alert-danger {
+  border-left: 3px solid var(--danger) !important;
+}
+
+.alert-info,
+.alert-primary {
+  border-left: 3px solid var(--gold) !important;
+}
+
+.text-danger { color: var(--danger) !important; }
+.text-muted  { color: var(--text-muted) !important; }
+
+/* ── TABLES ───────────────────────────────────────────────── */
+table { color: var(--text) !important; }
+
+.table > thead > tr > th {
+  border-bottom: 1px solid var(--border) !important;
+  color: var(--text-muted) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  font-weight: 400 !important;
+}
+
+.table > tbody > tr > td {
+  border-top: 1px solid var(--border) !important;
+  color: var(--text) !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background: rgba(255,255,255,0.02) !important;
+}
+
+/* ── STEP SUMMARY ROWS ────────────────────────────────────── */
+.step-info-date h6,
+.step-info-location p,
+.step-info-vehicle {
+  color: var(--text) !important;
+}
+
+.step-info-date h6 { font-weight: 500 !important; }
+
+/* ── PAGINATION ───────────────────────────────────────────── */
+.pagination > li > a,
+.pagination > li > span {
+  background: var(--bg-panel) !important;
+  border-color: var(--border) !important;
+  color: var(--text-muted) !important;
+}
+
+.pagination > .active > a,
+.pagination > .active > span {
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: var(--bg) !important;
+}
+
+/* ── FOOTER / PRIVACY ─────────────────────────────────────── */
+#privacyPolicyLink,
+.ors-footer {
+  color: var(--text-faint) !important;
+  font-size: 11px !important;
+}
+
+/* ── SCROLLBAR ────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .panel-body, .panel-body-book { padding: 16px !important; }
+  .vehicle-grid-item-price-numb { font-size: 20px !important; }
+}

@@ -122,12 +122,16 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} King & Carter Premier. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <span className="text-xs text-ivory/30 hover:text-ivory/50 transition-colors cursor-pointer font-light">
-              Privacy Policy
-            </span>
-            <span className="text-xs text-ivory/30 hover:text-ivory/50 transition-colors cursor-pointer font-light">
-              Terms & Conditions
-            </span>
+            <Link href="/terms#privacy">
+              <span className="text-xs text-ivory/30 hover:text-ivory/50 transition-colors cursor-pointer font-light">
+                Privacy Policy
+              </span>
+            </Link>
+            <Link href="/terms">
+              <span className="text-xs text-ivory/30 hover:text-ivory/50 transition-colors cursor-pointer font-light">
+                Terms & Conditions
+              </span>
+            </Link>
           </div>
         </div>
       </div>

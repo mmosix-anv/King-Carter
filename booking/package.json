@@ -1,0 +1,24 @@
+{
+  "name": "limobiz-proxy",
+  "version": "2.0.0",
+  "description": "Production proxy for mylimobiz booking widget with full CSS/font control",
+  "main": "server.js",
+  "scripts": {
+    "start":  "node server.js",
+    "dev":    "nodemon server.js",
+    "pm2":    "pm2 start ecosystem.config.js"
+  },
+  "dependencies": {
+    "axios":      "^1.7.0",
+    "dotenv":     "^16.4.0",
+    "express":    "^4.19.0",
+    "morgan":     "^1.10.0",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
