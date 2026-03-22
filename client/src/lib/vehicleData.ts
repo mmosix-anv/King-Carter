@@ -84,4 +84,4 @@ export const vehicles: Vehicle[] = [
   },
 ];
 
-export const fleetHeroImage = `/images/fleet-hero.webp`;
+export const fleetHeroImage = `/images/fleet-hero.jpg`;
