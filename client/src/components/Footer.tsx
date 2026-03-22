@@ -39,7 +39,7 @@ export default function Footer() {
     <footer className="bg-[#060606] border-t border-white/5">
       <div className="container py-20 lg:py-28">
         {/* Top section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-20 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16 mb-16">
           {/* Brand */}
           <div>
             <Link href="/">
@@ -75,6 +75,22 @@ export default function Footer() {
                   </li>
                 ))
               )}
+            </ul>
+          </div>
+
+          {/* Our Fleet */}
+          <div>
+            <h4 className="section-label mb-6">Our Fleet</h4>
+            <ul className="space-y-3">
+              {["Chevrolet Suburban", "Cadillac Escalade", "Mercedes-Maybach", "Executive Sprinter", "Rolls-Royce Ghost", "Rolls-Royce Cullinan"].map((name) => (
+                <li key={name}>
+                  <Link href="/fleet">
+                    <span className="text-sm text-ivory/75 hover:text-gold transition-colors duration-300 font-light">
+                      {name}
+                    </span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
