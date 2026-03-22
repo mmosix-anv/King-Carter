@@ -10,7 +10,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { toast } from "sonner";
 
-const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/fleet-escalade-crnVmWMFtCKEbCWw4UKNdP.webp";
+const HERO_BG = "/images/fleet-escalade.webp";
 
 const membershipTiers = [
   {

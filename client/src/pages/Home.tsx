@@ -13,8 +13,8 @@ import Footer from "@/components/Footer";
 import { supabase, Service } from "@/lib/supabase";
 
 const IMAGES = {
-  hero: "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/hero-escalade-5okQMximnwKcV6cV3SJq9Q.webp",
-  fleet: "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/fleet-escalade-crnVmWMFtCKEbCWw4UKNdP.webp",
+  hero: "/images/hero-escalade.webp",
+  fleet: "/images/fleet-escalade.webp",
 };
 
 const whyReasons = [
@@ -191,6 +191,14 @@ export default function Home() {
                   <p className="font-serif text-3xl text-gold mb-1">24/7</p>
                   <p className="text-xs text-ivory/65 tracking-wide uppercase">Availability</p>
                 </div>
+              </div>
+              <div className="mt-8">
+                <Link href="/fleet">
+                  <span className="inline-flex items-center gap-3 text-sm tracking-[0.2em] uppercase border border-gold/50 text-gold px-8 py-4 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400 group">
+                    View Fleet
+                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
               </div>
             </FadeUp>
             <FadeUp delay={0.2}>

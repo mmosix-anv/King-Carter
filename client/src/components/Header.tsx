@@ -15,6 +15,7 @@ const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3
 const navLinks = [
   { label: "About Us", href: "/about" },
   { label: "Experience", href: "/experience" },
+  { label: "Our Fleet", href: "/fleet" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -87,7 +88,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-5">
           {/* Services Dropdown */}
           <div
             ref={dropdownRef}
@@ -118,7 +119,7 @@ export default function Header() {
                     ) : (
                       services.map((service) => (
                         <Link key={service.slug} href={`/services/${service.slug}`}>
-                          <span className="block px-6 py-3 text-xs tracking-[0.15em] uppercase text-ivory/80 hover:text-gold hover:bg-white/[0.03] transition-all duration-300 font-sans">
+                          <span className={`block px-6 py-3 text-xs tracking-[0.15em] uppercase hover:bg-white/[0.03] transition-all duration-300 font-sans ${location === `/services/${service.slug}` ? "text-gold" : "text-ivory/80 hover:text-gold"}`}>
                             {service.title}
                           </span>
                         </Link>
@@ -133,7 +134,7 @@ export default function Header() {
           {/* Other Nav Links */}
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href}>
-              <span className={`text-xs tracking-[0.15em] xl:tracking-[0.25em] uppercase transition-colors duration-300 font-sans font-normal leading-none whitespace-nowrap ${location === link.href ? "text-gold" : "text-white/80 hover:text-white"}`}>
+              <span className={`text-xs tracking-[0.15em] xl:tracking-[0.25em] uppercase transition-colors duration-300 font-sans font-normal leading-none whitespace-nowrap ${location === link.href || location.startsWith(link.href + "/") ? "text-gold" : "text-white/80 hover:text-white"}`}>
                 {link.label}
               </span>
             </Link>
@@ -147,7 +148,7 @@ export default function Header() {
 
           <div className="flex items-center gap-3">
             <Link href="/reservations">
-              <span className="text-xs tracking-[0.15em] xl:tracking-[0.2em] uppercase border border-gold/40 text-gold px-4 xl:px-6 py-2.5 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400 font-sans font-normal whitespace-nowrap">
+              <span className="text-xs tracking-[0.15em] xl:tracking-[0.2em] uppercase border border-gold/40 text-gold px-3 xl:px-4 py-1.5 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400 font-sans font-normal whitespace-nowrap">
                 Book an Experience
               </span>
             </Link>
@@ -208,7 +209,7 @@ export default function Header() {
                         ) : (
                           services.map((service) => (
                             <Link key={service.slug} href={`/services/${service.slug}`}>
-                              <span className="text-xs tracking-[0.15em] uppercase text-ivory/75 hover:text-gold transition-colors font-sans">
+                              <span className={`text-xs tracking-[0.15em] uppercase transition-colors font-sans ${location === `/services/${service.slug}` ? "text-gold" : "text-ivory/75 hover:text-gold"}`}>
                                 {service.title}
                               </span>
                             </Link>
@@ -223,7 +224,9 @@ export default function Header() {
               {/* Other Links */}
               {navLinks.map((link) => (
                 <Link key={link.href} href={link.href}>
-                  <span className="text-sm tracking-[0.2em] uppercase text-ivory/85 hover:text-gold transition-colors font-sans">
+                  <span className={`text-sm tracking-[0.2em] uppercase transition-colors font-sans ${
+                    location === link.href || location.startsWith(link.href + "/") ? "text-gold" : "text-ivory/85 hover:text-gold"
+                  }`}>
                     {link.label}
                   </span>
                 </Link>

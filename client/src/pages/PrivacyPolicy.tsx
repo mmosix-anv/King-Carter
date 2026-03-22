@@ -26,11 +26,11 @@ const SECTIONS = [
   },
   {
     title: "Contact & Support",
-    body: "Contact King & Carter Group DBA King & Carter Premier at (470) 664-0171 or Info@kingandcarter.com for HELP or to STOP receiving messages. You can send HELP for additional assistance, and you will receive a text including our phone number, email, and website.",
+    body: "Contact King & Carter Group DBA King & Carter Premier at (770) 766-0383 or Info@kingandcarter.com for HELP or to STOP receiving messages. You can send HELP for additional assistance, and you will receive a text including our phone number, email, and website.",
   },
   {
     title: "Opt-Out",
-    body: "You can opt out of the SMS list at any time by texting, emailing, or replying STOP to Info@kingandcarter.com or (470) 664-0171. After unsubscribing, you will receive a final SMS to confirm you have been unsubscribed and we will remove your number from our list within 24 hours.",
+    body: "You can opt out of the SMS list at any time by texting, emailing, or replying STOP to Info@kingandcarter.com or (770) 766-0383. After unsubscribing, you will receive a final SMS to confirm you have been unsubscribed and we will remove your number from our list within 24 hours.",
   },
   {
     title: "Non-Sharing Clause",

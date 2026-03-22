@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 
-const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/events-diverse-VdNwYEZNA9dqJ3nJssANxj.webp";
+const HERO_BG = "/images/events-diverse.webp";
 
 const upcomingExperiences = [
   {

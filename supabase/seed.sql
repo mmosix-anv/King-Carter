@@ -169,3 +169,83 @@ VALUES
     'index, follow'
   )
 ON CONFLICT (page_type, page_identifier) DO NOTHING;
+
+-- ============================================
+-- FLEET VEHICLES
+-- ============================================
+
+INSERT INTO fleet_vehicles (id, name, category, description, passengers, luggage, amenities, image, status, display_order)
+VALUES
+  (
+    'suburban',
+    '2026 Chevrolet Suburban',
+    'Executive SUV',
+    'Generous space meets quiet composure. The Suburban delivers a commanding presence paired with the kind of interior comfort that makes every mile feel unhurried — ideal for executive groups and seamless airport transfers.',
+    '6',
+    'Up to 6',
+    '["Complimentary Wi-Fi", "Bottled Water", "Climate Control", "Privacy Windows"]'::jsonb,
+    '/images/fleet-suburban.jpg',
+    'published',
+    1
+  ),
+  (
+    'escalade',
+    '2026 Cadillac Escalade',
+    'Executive SUV',
+    'The definitive luxury SUV. With its signature lighting and whisper-quiet cabin, the Escalade cocoons passengers in handcrafted comfort — transforming every journey into a first-class experience.',
+    '6',
+    'Up to 6',
+    '["Complimentary Wi-Fi", "Bottled Water", "Climate Control", "Privacy Windows"]'::jsonb,
+    '/images/fleet-escalade-ext.jpg',
+    'published',
+    2
+  ),
+  (
+    'maybach',
+    '2026 Mercedes-Maybach S-Class',
+    'Ultra-Luxury Sedan',
+    'The pinnacle of chauffeured luxury. An extended wheelbase creates a rear cabin of extraordinary space and serenity, where reclining executive seats and hand-finished materials transform every journey into a private retreat.',
+    '3',
+    '3',
+    '["Executive Seats with Calf Rests", "Complimentary Wi-Fi", "Bottled Water", "Rear Privacy Partition"]'::jsonb,
+    '/images/fleet-maybach.webp',
+    'published',
+    3
+  ),
+  (
+    'sprinter',
+    'Mercedes-Benz Executive Sprinter',
+    'Executive Coach',
+    'Group travel, redefined. A bespoke cabin designed for comfort and productivity — whether coordinating a corporate delegation or hosting a private celebration, every guest travels with distinction.',
+    '12',
+    '10–12',
+    '["Flat-Screen TVs", "Dining Tables", "Complimentary Wi-Fi", "Privacy Partition"]'::jsonb,
+    '/images/fleet-sprinter.jpg',
+    'published',
+    4
+  ),
+  (
+    'ghost',
+    'Rolls-Royce Ghost',
+    'Ultra-Luxury Sedan',
+    'The art of simplicity. Extraordinary presence delivered with absolute discretion — the handcrafted interior wraps passengers in an atmosphere of calm, unhurried elegance that makes every journey feel effortless.',
+    '3',
+    '3',
+    '["Complimentary Wi-Fi", "Bottled Water", "Handcrafted Interior", "Rear Privacy Curtains"]'::jsonb,
+    '/images/fleet-ghost.jpg',
+    'published',
+    5
+  ),
+  (
+    'cullinan',
+    'Rolls-Royce Cullinan',
+    'Ultra-Luxury SUV',
+    'Uncompromising luxury meets extraordinary capability. An elevated seating position, whisper-quiet cabin, and effortless power create a sanctuary that moves with purpose — whether navigating city streets or venturing beyond.',
+    '4',
+    '4',
+    '["Complimentary Wi-Fi", "Bottled Water", "Handcrafted Interior", "Panoramic Views"]'::jsonb,
+    '/images/fleet-cullinan.jpg',
+    'published',
+    6
+  )
+ON CONFLICT (id) DO NOTHING;

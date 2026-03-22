@@ -57,6 +57,23 @@ export interface Media {
   uploaded_at: string;
 }
 
+export interface FleetVehicle {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  passengers: string;
+  luggage: string;
+  amenities: string[];
+  image: string | null;
+  status: 'draft' | 'published' | 'archived';
+  display_order: number;
+  created_at: string;
+  updated_at: string;
+  created_by: string | null;
+  updated_by: string | null;
+}
+
 export interface SiteConfig {
   key: string;
   value: any;

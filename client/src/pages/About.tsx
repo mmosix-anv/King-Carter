@@ -11,11 +11,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const IMAGES = {
-  hero: "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/about-hero-RrEuk8KkLKLswuWpc4Xskf.webp",
-  dining: "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/about-lifestyle-Mwu3V8DSQWUVvDCe4yddwb.webp",
-  yacht: "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/about-yacht-VjPD6vL98XyeCBb6msCLgq.webp",
-  theater: "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/about-theater-4NnDMXxyD6xyWmab7CUMrX.webp",
-  corporate: "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/corporate-diverse-kQ7gozJJ5PSGzT9Q99VYbQ.webp",
+  hero: "/images/about-hero.webp",
+  dining: "/images/about-lifestyle.webp",
+  yacht: "/images/about-yacht.webp",
+  theater: "/images/about-theater.webp",
+  corporate: "/images/corporate-diverse.webp",
 };
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {

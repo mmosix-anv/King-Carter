@@ -12,7 +12,7 @@ import { supabase } from "@/lib/supabase";
 import { toast } from "sonner";
 
 const IMAGES = {
-  bg: "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/contact-concierge-LparVqG2GsRJcjhJjau9GV.webp",
+  bg: "/images/contact-concierge.webp",
 };
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -218,7 +218,7 @@ export default function Contact() {
                     <div className="border border-white/10 p-5 space-y-4">
                       <p className="text-xs text-ivory/50 font-light leading-relaxed">
                         Do you agree to receive text messages from King and Carter Group DBA King & Carter Premier sent from 7707660383? Message frequency varies and may include informational messages. Message and data rates may apply. Reply STOP or CANCEL at any time to end or unsubscribe. For assistance, reply HELP or contact support at 7707660383.{" "}
-                        <a href="/terms#privacy" className="text-gold/70 hover:text-gold transition-colors underline underline-offset-2">
+                        <a href="/privacy" className="text-gold/70 hover:text-gold transition-colors underline underline-offset-2">
                           Check our privacy policy for more details.
                         </a>
                       </p>

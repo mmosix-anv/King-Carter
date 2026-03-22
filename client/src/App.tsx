@@ -17,12 +17,15 @@ import Reservations from "./pages/Reservations";
 import Test from "./pages/Test";
 import Terms from "./pages/Terms";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Fleet from "./pages/Fleet";
 
 // Admin pages
 import Login from "./pages/admin/Login";
 import Dashboard from "./pages/admin/Dashboard";
 import Services from "./pages/admin/Services";
 import ServiceEditor from "./pages/admin/ServiceEditor";
+import FleetAdmin from "./pages/admin/Fleet";
+import FleetEditor from "./pages/admin/FleetEditor";
 import Media from "./pages/admin/Media";
 import Settings from "./pages/admin/Settings";
 import ContactSubmissions from "./pages/admin/ContactSubmissions";
@@ -42,6 +45,7 @@ function Router() {
       <Route path="/test" component={Test} />
       <Route path="/terms" component={Terms} />
       <Route path="/privacy" component={PrivacyPolicy} />
+      <Route path="/fleet" component={Fleet} />
       <Route path="/services/:slug" component={ServicePage} />
       
       {/* Admin routes */}
@@ -59,6 +63,16 @@ function Router() {
       <Route path="/admin/services/:id" component={() => (
         <ProtectedRoute>
           <ServiceEditor />
+        </ProtectedRoute>
+      )} />
+      <Route path="/admin/fleet" component={() => (
+        <ProtectedRoute>
+          <FleetAdmin />
+        </ProtectedRoute>
+      )} />
+      <Route path="/admin/fleet/:id" component={() => (
+        <ProtectedRoute>
+          <FleetEditor />
         </ProtectedRoute>
       )} />
       <Route path="/admin/media">

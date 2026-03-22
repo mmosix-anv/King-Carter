@@ -233,3 +233,38 @@ CREATE POLICY "Admin newsletter full access" ON newsletter_subscribers
 -- Allow public to insert (subscribe)
 CREATE POLICY "Public can subscribe" ON newsletter_subscribers
   FOR INSERT WITH CHECK (true);
+
+-- ============================================
+-- FLEET VEHICLES
+-- ============================================
+
+CREATE TABLE IF NOT EXISTS fleet_vehicles (
+  id VARCHAR(255) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  category VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL,
+  passengers VARCHAR(50) NOT NULL,
+  luggage VARCHAR(50) NOT NULL,
+  amenities JSONB DEFAULT '[]'::jsonb,
+  image VARCHAR(500),
+  status VARCHAR(20) DEFAULT 'published',
+  display_order INTEGER DEFAULT 0,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  created_by UUID REFERENCES admin_users(id),
+  updated_by UUID REFERENCES admin_users(id)
+);
+
+CREATE INDEX IF NOT EXISTS idx_fleet_vehicles_status ON fleet_vehicles(status);
+CREATE INDEX IF NOT EXISTS idx_fleet_vehicles_order ON fleet_vehicles(display_order);
+
+CREATE TRIGGER update_fleet_vehicles_updated_at BEFORE UPDATE ON fleet_vehicles
+  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+ALTER TABLE fleet_vehicles ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Admin fleet full access" ON fleet_vehicles
+  FOR ALL USING (true);
+
+CREATE POLICY "Public read published fleet" ON fleet_vehicles
+  FOR SELECT USING (status = 'published');
