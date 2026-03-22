@@ -20,6 +20,7 @@ const shortNames: Record<string, string> = {
 export default function Fleet() {
   const [vehicles, setVehicles] = useState<FleetVehicle[]>([]);
   const [activeVehicle, setActiveVehicle] = useState("");
+  const [scrolled, setScrolled] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
@@ -28,6 +29,9 @@ export default function Fleet() {
   useEffect(() => {
     window.scrollTo(0, 0);
     loadVehicles();
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   async function loadVehicles() {
@@ -71,7 +75,9 @@ export default function Fleet() {
       <Header />
 
       {/* Vehicle quick-nav — desktop only, sits below the main header */}
-      <div className="hidden xl:flex fixed top-20 lg:top-24 left-0 right-0 z-40 bg-[#0A0A0A]/80 backdrop-blur-md border-b border-white/5">
+      <div className={`hidden xl:flex fixed top-20 lg:top-24 left-0 right-0 z-40 transition-all duration-500 ${
+        scrolled ? "bg-[#0A0A0A]/90 backdrop-blur-md border-t border-white/5" : "bg-transparent border-t border-white/10"
+      }`}>
         <div className="container flex items-center justify-center gap-8 h-10">
           {vehicles.map((v) => (
             <button
