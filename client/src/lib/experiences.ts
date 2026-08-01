@@ -4,19 +4,17 @@
  * Pricing figures are the client's real numbers.
  * Pickup language: "preferred location" (not limited to hotels/airports).
  * The Digital Experience Guide is included with every experience.
- *
- * NOTE: kingLegacy, carterLeadership and atlantaArts currently point at the
- * closest existing site photography. Swap in the commissioned location shots
- * (MLK Historic Park, The Carter Center, Atlanta galleries) when available.
+ * Photography: the kc-* set from the king-carter-experiences repository.
  */
 export const ASSETS = {
-  hero: "/images/hero-escalade.webp",
-  interior: "/images/experience-interior.jpg",
-  celebration: "/images/events-diverse.webp",
-  kingLegacy: "/images/about-hero.webp",
-  carterLeadership: "/images/contact-concierge.webp",
-  atlantaArts: "/images/about-theater.webp",
-  nightOut: "/images/about-lifestyle.webp",
+  hero: "/images/kc-hero-chauffeur.jpg",
+  interior: "/images/kc-interior-couple.jpg",
+  rooftop: "/images/kc-rooftop-toast.jpg",
+  qr: "/images/kc-qr-brochure.png",
+  kingLegacy: "/images/kc-king-legacy.jpg",
+  carterLeadership: "/images/kc-carter-leadership.jpg",
+  atlantaArts: "/images/kc-atlanta-arts.jpg",
+  nightOut: "/images/kc-food-cocktails.jpg",
 } as const;
 
 export const LINKS = {
@@ -62,7 +60,8 @@ export const experiences: Experience[] = [
     tagline:
       "Walk in the footsteps of Dr. Martin Luther King Jr. through the landmarks that shaped a movement.",
     image: ASSETS.kingLegacy,
-    imageAlt: "Atlanta at golden hour, the city that shaped a movement",
+    imageAlt:
+      "A couple walking beside the reflecting pool at the Martin Luther King Jr. National Historic Park at golden hour",
     overview:
       "Walk in the footsteps of Dr. Martin Luther King Jr. through the neighborhoods that shaped a movement. A deeply moving journey through Atlanta's most sacred civil rights landmarks, guided with reverence, comfort, and grace.",
     whyUnique:
@@ -103,7 +102,8 @@ export const experiences: Experience[] = [
     tagline:
       "An inspiring half-day devoted to leadership, diplomacy, and a life of service.",
     image: ASSETS.carterLeadership,
-    imageAlt: "A quiet club lounge, portraits and conversation over cocktails",
+    imageAlt:
+      "Guests walking the gardens of The Carter Center, the Atlanta skyline beyond",
     overview:
       "An inspiring half-day devoted to leadership, diplomacy, and a life of service. Explore the legacy of President Jimmy Carter amid tranquil gardens and world-changing ideas, a graceful reflection on what it means to lead with purpose.",
     whyUnique:
@@ -142,7 +142,8 @@ export const experiences: Experience[] = [
     tagline:
       "A private passage through Atlanta's flourishing art scene, at a pace entirely your own.",
     image: ASSETS.atlantaArts,
-    imageAlt: "A grand Atlanta hall beneath a crystal chandelier",
+    imageAlt:
+      "Two guests considering a large gold and black canvas in an Atlanta gallery",
     overview:
       "A private passage through Atlanta's flourishing art scene, from refined Buckhead galleries to the creative pulse of West Midtown and Castleberry Hill. Discover works you will not find anywhere else, at a pace entirely your own.",
     whyUnique:
@@ -183,7 +184,8 @@ export const experiences: Experience[] = [
     tagline:
       "An evening composed like a fine tasting menu. Atlanta after dark, entirely yours.",
     image: ASSETS.nightOut,
-    imageAlt: "Candlelit fine dining in an Atlanta restaurant",
+    imageAlt:
+      "Cocktails on a marble bar top above the lit Atlanta skyline at night",
     overview:
       "An evening composed like a fine tasting menu. From celebrated dining rooms to hidden speakeasies and rooftop lounges above the glittering skyline, this is Atlanta after dark, elegant, indulgent, and entirely yours.",
     whyUnique:

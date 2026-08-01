@@ -171,9 +171,10 @@ export default function Experience() {
 
       {/* ===== HERO ===== */}
       <section className="relative min-h-[85vh] flex items-end overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${ASSETS.hero})` }}
+        <img
+          src={ASSETS.hero}
+          alt="A King & Carter chauffeur opening the door of a black luxury SUV against the dusk Atlanta skyline"
+          className="absolute inset-0 h-full w-full object-cover object-[45%_center]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/60 to-[#0A0A0A]/30" />
 
@@ -193,12 +194,12 @@ export default function Experience() {
             </p>
             <div className="mt-9 flex flex-col sm:flex-row gap-4">
               <a href="#experiences">
-                <span className="inline-flex items-center justify-center gap-3 text-sm tracking-[0.2em] uppercase bg-gold text-[#0A0A0A] px-8 py-4 hover:bg-gold-light transition-all duration-400 font-medium">
+                <span className="inline-flex items-center justify-center gap-3 whitespace-nowrap text-sm tracking-[0.2em] uppercase bg-gold text-[#0A0A0A] px-8 py-4 hover:bg-gold-light transition-all duration-400 font-medium">
                   Explore the Experiences
                 </span>
               </a>
               <Link href={LINKS.concierge}>
-                <span className="inline-flex items-center justify-center gap-3 text-sm tracking-[0.2em] uppercase border border-gold/50 text-gold px-8 py-4 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400">
+                <span className="inline-flex items-center justify-center gap-3 whitespace-nowrap text-sm tracking-[0.2em] uppercase border border-gold/50 text-gold px-8 py-4 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400">
                   Speak with a Concierge
                 </span>
               </Link>
@@ -248,7 +249,7 @@ export default function Experience() {
                   <div className="absolute -left-4 -top-4 h-full w-full border border-gold/30" aria-hidden />
                   <img
                     src={ASSETS.interior}
-                    alt="The rear cabin of a King & Carter vehicle, Atlanta passing by at night"
+                    alt="A couple in the rear cabin of a King & Carter SUV as the Atlanta skyline passes at sunset"
                     className="relative aspect-[4/5] w-full object-cover"
                   />
                 </figure>
@@ -416,12 +417,12 @@ export default function Experience() {
           <FadeUp>
             <div className="mt-14 flex flex-col sm:flex-row gap-4">
               <Link href={LINKS.reserve}>
-                <span className="inline-flex items-center justify-center gap-3 text-sm tracking-[0.2em] uppercase bg-gold text-[#0A0A0A] px-8 py-4 hover:bg-gold-light transition-all duration-400 font-medium">
+                <span className="inline-flex items-center justify-center gap-3 whitespace-nowrap text-sm tracking-[0.2em] uppercase bg-gold text-[#0A0A0A] px-8 py-4 hover:bg-gold-light transition-all duration-400 font-medium">
                   Reserve Your Experience <ArrowRight size={16} />
                 </span>
               </Link>
               <Link href={LINKS.concierge}>
-                <span className="inline-flex items-center justify-center gap-3 text-sm tracking-[0.2em] uppercase border border-gold/50 text-gold px-8 py-4 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400">
+                <span className="inline-flex items-center justify-center gap-3 whitespace-nowrap text-sm tracking-[0.2em] uppercase border border-gold/50 text-gold px-8 py-4 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400">
                   Customize Your Journey
                 </span>
               </Link>
@@ -432,9 +433,10 @@ export default function Experience() {
 
       {/* ===== BEGIN YOUR JOURNEY ===== */}
       <section className="relative overflow-hidden border-t border-white/5">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${ASSETS.celebration})` }}
+        <img
+          src={ASSETS.rooftop}
+          alt="Guests toasting on a rooftop terrace overlooking the Atlanta skyline at dusk"
+          className="absolute inset-0 h-full w-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-[#0A0A0A]/88" />
 
@@ -451,12 +453,12 @@ export default function Experience() {
                 </p>
                 <div className="mt-9 flex flex-col sm:flex-row gap-4">
                   <Link href={LINKS.reserve}>
-                    <span className="inline-flex items-center justify-center gap-3 text-sm tracking-[0.2em] uppercase bg-gold text-[#0A0A0A] px-8 py-4 hover:bg-gold-light transition-all duration-400 font-medium">
+                    <span className="inline-flex items-center justify-center gap-3 whitespace-nowrap text-sm tracking-[0.2em] uppercase bg-gold text-[#0A0A0A] px-8 py-4 hover:bg-gold-light transition-all duration-400 font-medium">
                       Reserve Your Experience <ArrowRight size={16} />
                     </span>
                   </Link>
                   <Link href={LINKS.concierge}>
-                    <span className="inline-flex items-center justify-center gap-3 text-sm tracking-[0.2em] uppercase border border-gold/50 text-gold px-8 py-4 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400">
+                    <span className="inline-flex items-center justify-center gap-3 whitespace-nowrap text-sm tracking-[0.2em] uppercase border border-gold/50 text-gold px-8 py-4 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400">
                       Speak with a Concierge
                     </span>
                   </Link>
@@ -483,9 +485,16 @@ export default function Experience() {
               <FadeUp delay={0.15}>
                 <div className="border border-gold/25 bg-[#0A0A0A]/70 backdrop-blur-md p-8 sm:p-10">
                   <p className="section-label">The Digital Experience Guide</p>
-                  <p className="mt-5 text-sm text-ivory/55 font-light leading-relaxed">
-                    A beautifully composed companion to everything on this page. View it, or share it with the people joining you.
-                  </p>
+                  <div className="mt-6 flex items-start gap-6">
+                    <img
+                      src={ASSETS.qr}
+                      alt="QR code linking to the King & Carter digital Experience Guide"
+                      className="h-28 w-28 shrink-0 border border-gold/40 bg-white p-1.5 sm:h-32 sm:w-32"
+                    />
+                    <p className="text-sm text-ivory/55 font-light leading-relaxed">
+                      Scan to view or share the complete guide, a beautifully composed companion to everything on this page.
+                    </p>
+                  </div>
 
                   <hr className="gold-rule my-7 opacity-30" />
 
