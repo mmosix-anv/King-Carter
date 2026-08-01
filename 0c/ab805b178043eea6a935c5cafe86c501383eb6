@@ -1,0 +1,31 @@
+client/src/pages/Experience.tsx
+  s_b52904753d8f7d::t_c4ff2ff2bebeae 177
+  s_b52904753d8f7d::t_be06cc0e37df4d 197,420,456
+  s_b52904753d8f7d::t_a5a7ff1bc73bff 174-176
+  s_b52904753d8f7d::t_4a34ad0c9da858 488-497
+  s_b52904753d8f7d::t_36ef385bf702d3 252
+  s_b52904753d8f7d::t_1712420a1f7eae 202,425,461
+  s_b52904753d8f7d::t_1f04facfa82597 436-439
+client/src/lib/experiences.ts
+  s_b52904753d8f7d::t_850eaf81e53c47 145-146
+  s_b52904753d8f7d::t_16a31e9a7efd7a 7,10-17
+  s_b52904753d8f7d::t_c29310ee5f3a0a 187-188
+  s_b52904753d8f7d::t_fbe96a56a7fec5 105-106
+  s_b52904753d8f7d::t_92786085bdbdb0 63-64
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.19",
+  "base_commit_sha": "0cab805b178043eea6a935c5cafe86c501383eb6",
+  "prompts": {},
+  "sessions": {
+    "s_b52904753d8f7d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f90ed05c-7aea-4ed6-b58e-3ab4115c0995",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Moses Oyewole <moses@anvillive.com>"
+    }
+  }
+}
