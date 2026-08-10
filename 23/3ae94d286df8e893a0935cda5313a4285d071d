@@ -1,0 +1,96 @@
+client/src/pages/PrivacyPolicy.tsx
+  s_b52904753d8f7d::t_9016f07a4393fb 5
+  s_b52904753d8f7d::t_ad4ecd79dd44c6 43
+client/src/pages/NotFound.tsx
+  s_b52904753d8f7d::t_20f29be8d39003 5,10-15
+  s_b52904753d8f7d::t_92b8aaa9360814 16
+client/src/pages/BecomeAMember.tsx
+  s_b52904753d8f7d::t_ffc82180dbb34b 78
+  s_b52904753d8f7d::t_25ebe7e707f061 11
+client/public/sitemap.xml
+  s_b52904753d8f7d::t_d59e11affa9030 2-6,10,16,22,28,34,38-43,46,48,51-52,56-61,64,68-85
+shared/seo.ts
+  s_b52904753d8f7d::t_66f71bc8e606af 16,92,341-379
+  s_b52904753d8f7d::t_62d64e654256ce 4,7-15
+  s_b52904753d8f7d::t_4c8b873d75e0ad 1-3
+  s_b52904753d8f7d::t_a7c7e3b21b872b 5-6
+  s_b52904753d8f7d::t_18d732fb92dae7 89-91
+  s_b52904753d8f7d::t_d59b5c718c3338 93-95
+  s_b52904753d8f7d::t_8b130f03aac896 21-30,34-39,41,45,47-48,50-52,58,63,66-74,76-88,96-240,243-339
+client/src/pages/ServicePage.tsx
+  s_b52904753d8f7d::t_5dce55ed0bacbc 13
+  s_b52904753d8f7d::t_69149ce7fbed4d 14
+  s_b52904753d8f7d::t_939a351f1234e7 149-152,164
+  s_b52904753d8f7d::t_5792097d334427 38-80
+client/public/robots.txt
+  s_b52904753d8f7d::t_8ca9875e09871f 1,6-9,11
+server/index.ts
+  s_b52904753d8f7d::t_c9a1b194ded3cf 139,141-144,147
+  s_b52904753d8f7d::t_9d38367ce683b7 8
+  s_b52904753d8f7d::t_b99cd05e034230 225-227
+  s_b52904753d8f7d::t_56d13fddbe9a2b 117-138,140,145-146,148-174
+  s_b52904753d8f7d::t_181160d4fb9ebe 229-243,245-248
+  s_b52904753d8f7d::t_6321e6247e36c8 228
+client/src/hooks/useSEO.ts
+  s_b52904753d8f7d::t_c53465b4368f7b 66-68
+  s_b52904753d8f7d::t_987137696c2600 36-37
+  s_b52904753d8f7d::t_867280eee30a9f 99,102,110
+  s_b52904753d8f7d::t_168f504d21965b 3
+  s_b52904753d8f7d::t_8373bf86cc8af5 5-7,9-22,25-35,40-65,71-73,79,81-84,91,93-98,100,103-104,106-109,111-112
+  s_b52904753d8f7d::t_129c56a3627803 24
+client/src/pages/About.tsx
+  s_b52904753d8f7d::t_8bf53e1dda935f 39
+  s_b52904753d8f7d::t_19c7f9219ed240 12
+  s_b52904753d8f7d::t_7eae801727b5ca 88
+client/src/pages/Experience.tsx
+  s_b52904753d8f7d::t_4e8f556f441d61 225
+  s_b52904753d8f7d::t_155f76b58784b1 110
+  s_b52904753d8f7d::t_c5b8eb50e7de05 32
+client/src/pages/Contact.tsx
+  s_b52904753d8f7d::t_1d0e7587875aec 12
+  s_b52904753d8f7d::t_b35c4c515850d3 13
+  s_b52904753d8f7d::t_e51252f0ba34b2 54-63
+client/src/pages/ClientLogin.tsx
+  s_b52904753d8f7d::t_98d11b43fb2e63 10
+  s_b52904753d8f7d::t_e33ff3e1915774 16
+client/src/components/VehicleSection.tsx
+  s_b52904753d8f7d::t_ba0a629005b1da 31-33
+client/src/pages/Fleet.tsx
+  s_b52904753d8f7d::t_52b326ec4cb370 10
+  s_b52904753d8f7d::t_c28af14ec9d9c0 30-31
+  s_b52904753d8f7d::t_620bfd7f7dc5c1 161-178
+client/src/pages/Home.tsx
+  s_b52904753d8f7d::t_67b840aa43e56d 89-92
+  s_b52904753d8f7d::t_4134bf5f0d9f8f 110
+  s_b52904753d8f7d::t_10afaef4e768a9 20
+  s_b52904753d8f7d::t_bad223b8fab235 138,141
+  s_b52904753d8f7d::t_1a9a5e6fee6c6c 14
+  s_b52904753d8f7d::t_32235bea2c676c 51-61
+  s_b52904753d8f7d::t_bc7793c06be033 15
+client/index.html
+  s_b52904753d8f7d::t_663b8583b4dfa9 20-53
+  s_b52904753d8f7d::t_2b7b4c6f2c059f 60-63
+  s_b52904753d8f7d::t_2c185cdf9d1118 6-12
+client/src/pages/Reservations.tsx
+  s_b52904753d8f7d::t_4f268a2bebbea2 40
+  s_b52904753d8f7d::t_6a359a75e5fe36 10
+client/src/pages/Terms.tsx
+  s_b52904753d8f7d::t_f0246a7eb3b055 6
+  s_b52904753d8f7d::t_036e0afc1be53e 18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.21",
+  "base_commit_sha": "233ae94d286df8e893a0935cda5313a4285d071d",
+  "prompts": {},
+  "sessions": {
+    "s_b52904753d8f7d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f90ed05c-7aea-4ed6-b58e-3ab4115c0995",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Moses Oyewole <moses@anvillive.com>"
+    }
+  }
+}
