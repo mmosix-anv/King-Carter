@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 import axios from "axios";
 import NodeCache from "node-cache";
+import { seoConfig, resolvePageSEO, isKnownRoute, normalizePath } from "../shared/seo";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -113,6 +114,64 @@ function sendPage(res: express.Response, html: string) {
     .send(html);
 }
 
+// ─── SPA metadata injection ───────────────────────────────────────────────────
+// The client sets per-route metadata via the useSEO hook, but crawlers that do not
+// execute JavaScript (Facebook, LinkedIn, Slack, iMessage) only ever see the shell.
+// Rewriting the shell here means every consumer gets the right tags on first byte.
+// Both sides read the same map in shared/seo.ts.
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/** Replaces a tag if the shell already has it, otherwise appends before </head>. */
+function upsertTag(html: string, pattern: RegExp, tag: string): string {
+  return pattern.test(html) ? html.replace(pattern, tag) : html.replace("</head>", `    ${tag}\n  </head>`);
+}
+
+function injectSeo(html: string, pathname: string): string {
+  const page = resolvePageSEO(pathname);
+  const path = normalizePath(pathname);
+  const known = isKnownRoute(path);
+
+  const title = page?.title ?? (known ? seoConfig.defaultTitle : "Page Not Found | King & Carter");
+  const description =
+    page?.description ??
+    (known ? seoConfig.defaultDescription : "The page you are looking for is no longer available.");
+  const image = page?.image ?? seoConfig.defaultImage;
+  const canonical = `${seoConfig.siteUrl}${path === "/" ? "/" : path}`;
+  const robots = page?.noindex || !known ? "noindex, nofollow" : "index, follow";
+
+  const t = escapeHtml(title);
+  const d = escapeHtml(description);
+
+  let out = html;
+  out = out.replace(/<title>[\s\S]*?<\/title>/i, `<title>${t}</title>`);
+  out = upsertTag(out, /<meta\s+name="description"[^>]*>/i, `<meta name="description" content="${d}" />`);
+  out = upsertTag(out, /<meta\s+name="robots"[^>]*>/i, `<meta name="robots" content="${robots}" />`);
+  out = upsertTag(out, /<meta\s+name="googlebot"[^>]*>/i, `<meta name="googlebot" content="${robots}" />`);
+  out = upsertTag(out, /<link\s+rel="canonical"[^>]*>/i, `<link rel="canonical" href="${canonical}" />`);
+
+  out = upsertTag(out, /<meta\s+property="og:title"[^>]*>/i, `<meta property="og:title" content="${t}" />`);
+  out = upsertTag(out, /<meta\s+property="og:description"[^>]*>/i, `<meta property="og:description" content="${d}" />`);
+  out = upsertTag(out, /<meta\s+property="og:url"[^>]*>/i, `<meta property="og:url" content="${canonical}" />`);
+  out = upsertTag(out, /<meta\s+property="og:image"[^>]*>/i, `<meta property="og:image" content="${escapeHtml(image)}" />`);
+
+  out = upsertTag(out, /<meta\s+name="twitter:title"[^>]*>/i, `<meta name="twitter:title" content="${t}" />`);
+  out = upsertTag(out, /<meta\s+name="twitter:description"[^>]*>/i, `<meta name="twitter:description" content="${d}" />`);
+  out = upsertTag(out, /<meta\s+name="twitter:image"[^>]*>/i, `<meta name="twitter:image" content="${escapeHtml(image)}" />`);
+
+  if (page?.keywords) {
+    out = upsertTag(out, /<meta\s+name="keywords"[^>]*>/i, `<meta name="keywords" content="${escapeHtml(page.keywords)}" />`);
+  }
+
+  return out;
+}
+
 function sendError(res: express.Response, label: string) {
   res.status(502).send(`<html><body style="font-family:sans-serif;padding:2rem;text-align:center">
     <h2>${label} temporarily unavailable</h2>
@@ -163,10 +222,30 @@ async function startServer() {
       ? path.resolve(__dirname, "public")
       : path.resolve(__dirname, "..", "dist", "public");
 
-  app.use(express.static(staticPath));
+  // index:false so "/" falls through to the catch-all below and gets its metadata
+  // injected. Without it express.static answers "/" with the raw shell.
+  app.use(express.static(staticPath, { index: false }));
 
-  app.get("*", (_req, res) => {
-    res.sendFile(path.join(staticPath, "index.html"));
+  const indexPath = path.join(staticPath, "index.html");
+  let shell: string | null = null;
+  try {
+    shell = fs.readFileSync(indexPath, "utf8");
+    console.log("[seo] HTML shell loaded, per-route metadata injection active");
+  } catch (err: any) {
+    console.error(`[seo] could not read ${indexPath}: ${err.message} — serving shell unmodified`);
+  }
+
+  app.get("*", (req, res) => {
+    if (!shell) return res.sendFile(indexPath);
+
+    // Unmatched URLs must answer 404, not a soft 404 with a 200 status. The client
+    // still renders its NotFound page for them.
+    const status = isKnownRoute(req.path) ? 200 : 404;
+
+    res
+      .status(status)
+      .set("Content-Type", "text/html; charset=utf-8")
+      .send(injectSeo(shell, req.path));
   });
 
   const port = process.env.PORT || 3000;

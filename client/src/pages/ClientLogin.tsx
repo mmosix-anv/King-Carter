@@ -7,11 +7,13 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/useSEO";
 
 const BG_IMAGE =
   "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/contact-concierge-LparVqG2GsRJcjhJjau9GV.webp";
 
 export default function ClientLogin() {
+  useSEO();
   useEffect(() => {
     window.scrollTo(0, 0);
 

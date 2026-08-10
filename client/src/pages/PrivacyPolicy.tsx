@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/useSEO";
 
 const SECTIONS = [
   {
@@ -39,6 +40,7 @@ const SECTIONS = [
 ];
 
 export default function PrivacyPolicy() {
+  useSEO();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

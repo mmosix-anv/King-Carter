@@ -10,6 +10,8 @@ import { ArrowRight, Check } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { supabase, Service } from "@/lib/supabase";
+import { useSEO } from "@/hooks/useSEO";
+import { seoConfig, servicePageSEO } from "@shared/seo";
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef(null);
@@ -33,7 +35,49 @@ export default function ServicePage() {
   const [otherServices, setOtherServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => { 
+  // Keyword map from the SEO guide. The visible H1 comes from here rather than the
+  // CMS title, which doubles as the short nav label.
+  const seo = slug ? servicePageSEO[slug] : undefined;
+  const heading = seo?.h1 ?? service?.title ?? "";
+
+  useSEO({
+    ...seo,
+    image: service?.hero_image || seo?.image,
+    type: "website",
+    ready: !loading,
+    schema: service
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            name: heading,
+            description: seo?.description ?? service.tagline,
+            serviceType: heading,
+            url: `${seoConfig.siteUrl}/services/${slug}`,
+            provider: { "@id": `${seoConfig.siteUrl}/#organization` },
+            areaServed: [
+              { "@type": "City", name: "Atlanta" },
+              { "@type": "State", name: "Georgia" },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: seoConfig.siteUrl },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: heading,
+                item: `${seoConfig.siteUrl}/services/${slug}`,
+              },
+            ],
+          },
+        ]
+      : undefined,
+  });
+
+  useEffect(() => {
     window.scrollTo(0, 0);
     if (slug) {
       loadService(slug);
@@ -102,9 +146,10 @@ export default function ServicePage() {
 
       {/* ===== HERO ===== */}
       <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${service.hero_image || '/placeholder.jpg'})` }}
+        <img
+          src={service.hero_image || '/placeholder.jpg'}
+          alt={`${heading} by King & Carter`}
+          className="absolute inset-0 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/50 to-[#0A0A0A]/20" />
 
@@ -116,7 +161,7 @@ export default function ServicePage() {
           >
             <p className="section-label mb-3">Services</p>
             <h1 className="font-serif text-3xl sm:text-4xl lg:text-6xl text-ivory font-medium leading-tight mb-4">
-              {service.title}
+              {heading}
             </h1>
             <p className="text-lg text-ivory/60 font-light font-serif">{service.tagline}</p>
           </motion.div>

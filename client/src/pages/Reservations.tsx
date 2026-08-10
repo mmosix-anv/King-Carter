@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { Clock, Shield, Car, UserCheck, Sparkles } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/useSEO";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/FQyr2jPsM9DJhTd6unvn3k/hero-arrival-9qjK2eBkbYp58sszKHazKh.webp";
 const BRAND_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/FQyr2jPsM9DJhTd6unvn3k/rear-cabin-interior-mjAtp7Kd9qeFNN3WpZDkiY.webp";
@@ -36,6 +37,7 @@ function useInView(threshold = 0.15) {
 }
 
 export default function Reservations() {
+  useSEO();
   const brandSection = useInView(0.2);
   const formSection = useInView(0.1);
   const trustSection = useInView(0.15);

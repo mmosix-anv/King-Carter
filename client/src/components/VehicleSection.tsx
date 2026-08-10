@@ -28,8 +28,9 @@ export default function VehicleSection({ vehicle, index }: VehicleSectionProps) 
           >
             <div className="relative aspect-[4/3] sm:aspect-[3/2] overflow-hidden">
               <img
-                src={vehicle.image}
-                alt={vehicle.name}
+                src={vehicle.image ?? undefined}
+                alt={`${vehicle.name} available for chauffeured service in Atlanta`}
+                loading={index === 0 ? "eager" : "lazy"}
                 className="absolute inset-0 w-full h-full object-cover"
               />
               <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#0A0A0A]/30 to-transparent pointer-events-none" />

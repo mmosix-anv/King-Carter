@@ -9,6 +9,7 @@ import { motion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/useSEO";
 
 const IMAGES = {
   hero: "/images/about-hero.webp",
@@ -35,6 +36,7 @@ function FadeUp({ children, delay = 0, className = "" }: { children: React.React
 }
 
 export default function About() {
+  useSEO();
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   return (
@@ -83,7 +85,7 @@ export default function About() {
             <div className="lg:col-span-7">
               <FadeUp delay={0.15}>
                 <p className="text-ivory/60 font-light leading-relaxed text-base lg:text-lg mb-6">
-                  King & Carter Premier was founded with a clear vision: to bring the standards of the finest hospitality to private ground transportation. Based in Atlanta, we serve discerning clients who expect more than a ride. They expect an experience that reflects their values and lifestyle.
+                  King & Carter Premier is an Atlanta luxury transportation company founded with a clear vision: to bring the standards of the finest hospitality to private ground transportation. Based in Atlanta, we serve discerning clients who expect more than a ride. They expect an experience that reflects their values and lifestyle.
                 </p>
                 <p className="text-ivory/60 font-light leading-relaxed text-base lg:text-lg mb-6">
                   Our approach is shaped by the principles of luxury hospitality: anticipation, discretion, and attention to detail. Every vehicle is meticulously prepared. Every chauffeur is professionally trained. Every journey is coordinated with the kind of care that turns transportation into a seamless extension of your day.

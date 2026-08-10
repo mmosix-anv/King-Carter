@@ -9,6 +9,8 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { supabase } from "@/lib/supabase";
+import { useSEO } from "@/hooks/useSEO";
+import { seoConfig } from "@shared/seo";
 import { toast } from "sonner";
 
 const IMAGES = {
@@ -48,6 +50,16 @@ export default function Contact() {
     smsConsent: "" as "" | "yes" | "no",
   });
   const [submitting, setSubmitting] = useState(false);
+
+  useSEO({
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      name: "Contact King & Carter",
+      url: `${seoConfig.siteUrl}/contact`,
+      mainEntity: { "@id": `${seoConfig.siteUrl}/#organization` },
+    },
+  });
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 

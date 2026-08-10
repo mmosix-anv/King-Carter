@@ -29,6 +29,7 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ExperienceModal from "@/components/ExperienceModal";
+import { useSEO } from "@/hooks/useSEO";
 import {
   ASSETS,
   LINKS,
@@ -106,6 +107,7 @@ export default function Experience() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
+  useSEO();
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const handleShare = async () => {
@@ -220,7 +222,7 @@ export default function Experience() {
                 </h2>
                 <hr className="gold-rule w-20 opacity-40 my-7" />
                 <p className="text-base lg:text-lg text-ivory/60 font-light leading-relaxed mb-5">
-                  King & Carter creates private, chauffeured experiences for travelers, executives, couples, families, and small groups who wish to discover Atlanta in a more meaningful way. Every journey is thoughtfully curated and personally attended, so you may simply arrive, unwind, and experience the city as it was meant to be seen.
+                  King & Carter creates private, chauffeured luxury experiences in Atlanta for travelers, executives, couples, families, and small groups who wish to discover the city in a more meaningful way. Every journey is thoughtfully curated and personally attended, so you may simply arrive, unwind, and experience the city as it was meant to be seen.
                 </p>
                 <p className="text-base text-ivory/45 font-light leading-relaxed">
                   Each experience is designed in partnership with Atlanta's finest venues, chefs, and cultural institutions. Transportation is just the beginning.

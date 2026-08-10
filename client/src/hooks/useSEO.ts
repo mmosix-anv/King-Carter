@@ -1,87 +1,114 @@
 import { useEffect } from 'react';
 import { useLocation } from 'wouter';
-import { seoConfig } from '../config/seo';
+import { seoConfig, resolvePageSEO, type PageSEO } from '@shared/seo';
 
-export const useSEO = ({ title, description, keywords, image, type = 'website' }: {
-  title?: string;
-  description?: string;
-  keywords?: string;
-  image?: string;
+type JsonLd = Record<string, unknown>;
+
+interface UseSEOOptions extends Partial<PageSEO> {
   type?: string;
-}) => {
+  /** Page-level structured data, added alongside the site-wide LocalBusiness graph. */
+  schema?: JsonLd | JsonLd[];
+  /** Skip the effect while async page data is still loading. */
+  ready?: boolean;
+}
+
+/**
+ * Sets the document title, meta tags, canonical URL and JSON-LD for the current route.
+ *
+ * With no arguments the hook resolves everything from `pageSEO` using the current
+ * path, so most pages only need `useSEO()`. Pass overrides for pages whose metadata
+ * depends on fetched data (service pages).
+ */
+export const useSEO = (options: UseSEOOptions = {}) => {
   const [location] = useLocation();
-  const fullUrl = `${seoConfig.siteUrl}${location}`;
+  const fromMap = resolvePageSEO(location);
+
+  const title = options.title ?? fromMap?.title ?? seoConfig.defaultTitle;
+  const description = options.description ?? fromMap?.description ?? seoConfig.defaultDescription;
+  const keywords = options.keywords ?? fromMap?.keywords ?? seoConfig.keywords.join(', ');
+  const image = options.image ?? fromMap?.image ?? seoConfig.defaultImage;
+  const noindex = options.noindex ?? fromMap?.noindex ?? false;
+  const type = options.type ?? 'website';
+  const ready = options.ready ?? true;
+  const schema = options.schema;
+
+  const canonical = `${seoConfig.siteUrl}${location === '/' ? '/' : location.replace(/\/$/, '')}`;
+  // Serialized so inline schema literals do not re-run the effect on every render.
+  const schemaJson = schema ? JSON.stringify(schema) : undefined;
 
   useEffect(() => {
-    // Update title
-    document.title = title || seoConfig.defaultTitle;
+    if (!ready) return;
 
-    // Update or create meta tags
-    updateMetaTag('description', description || seoConfig.defaultDescription);
-    updateMetaTag('keywords', keywords || seoConfig.keywords.join(', '));
-    updateMetaTag('author', seoConfig.author);
+    document.title = title;
 
-    // Open Graph tags
-    updateMetaTag('og:title', title || seoConfig.defaultTitle, 'property');
-    updateMetaTag('og:description', description || seoConfig.defaultDescription, 'property');
-    updateMetaTag('og:url', fullUrl, 'property');
-    updateMetaTag('og:type', type, 'property');
-    updateMetaTag('og:site_name', seoConfig.siteName, 'property');
-    if (image) {
-      updateMetaTag('og:image', image, 'property');
-    }
+    setMeta('description', description);
+    if (keywords) setMeta('keywords', keywords);
+    setMeta('author', seoConfig.author);
+    setMeta('robots', noindex ? 'noindex, nofollow' : 'index, follow');
+    setMeta('googlebot', noindex ? 'noindex, nofollow' : 'index, follow');
 
-    // Twitter Card tags
-    updateMetaTag('twitter:card', 'summary_large_image', 'name');
-    updateMetaTag('twitter:site', seoConfig.twitterHandle, 'name');
-    updateMetaTag('twitter:title', title || seoConfig.defaultTitle, 'name');
-    updateMetaTag('twitter:description', description || seoConfig.defaultDescription, 'name');
-    if (image) {
-      updateMetaTag('twitter:image', image, 'name');
-    }
+    setMeta('og:title', title, 'property');
+    setMeta('og:description', description, 'property');
+    setMeta('og:url', canonical, 'property');
+    setMeta('og:type', type, 'property');
+    setMeta('og:site_name', seoConfig.siteName, 'property');
+    setMeta('og:locale', 'en_US', 'property');
+    setMeta('og:image', image, 'property');
 
-    // Canonical URL
-    updateLinkTag('canonical', fullUrl);
+    setMeta('twitter:card', 'summary_large_image');
+    setMeta('twitter:site', seoConfig.twitterHandle);
+    setMeta('twitter:title', title);
+    setMeta('twitter:description', description);
+    setMeta('twitter:image', image);
 
-    // Structured Data
-    updateStructuredData();
-  }, [title, description, keywords, image, type, fullUrl]);
+    setLink('canonical', canonical);
+
+    setJsonLd('seo-organization', JSON.stringify(seoConfig.organization));
+    setJsonLd('seo-page', schemaJson);
+  }, [ready, title, description, keywords, image, noindex, type, canonical, schemaJson]);
 };
 
-const updateMetaTag = (name, content, attribute = 'name') => {
-  let element = document.querySelector(`meta[${attribute}="${name}"]`);
-  
+function setMeta(name: string, content: string, attribute: 'name' | 'property' = 'name') {
+  let element = document.querySelector<HTMLMetaElement>(`meta[${attribute}="${name}"]`);
+
   if (!element) {
     element = document.createElement('meta');
     element.setAttribute(attribute, name);
     document.head.appendChild(element);
   }
-  
-  element.setAttribute('content', content);
-};
 
-const updateLinkTag = (rel, href) => {
-  let element = document.querySelector(`link[rel="${rel}"]`);
-  
+  element.setAttribute('content', content);
+}
+
+function setLink(rel: string, href: string) {
+  let element = document.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`);
+
   if (!element) {
     element = document.createElement('link');
     element.setAttribute('rel', rel);
     document.head.appendChild(element);
   }
-  
-  element.setAttribute('href', href);
-};
 
-const updateStructuredData = () => {
-  let script = document.querySelector('script[type="application/ld+json"]');
-  
-  if (!script) {
-    script = document.createElement('script');
-    script.type = 'application/ld+json';
-    document.head.appendChild(script);
+  element.setAttribute('href', href);
+}
+
+/**
+ * Writes (or clears) a JSON-LD block. Each block owns its own <script> via `id`, so
+ * page-specific schema never overwrites the site-wide organization graph.
+ */
+function setJsonLd(id: string, json: string | undefined) {
+  const existing = document.getElementById(id);
+
+  if (!json) {
+    existing?.remove();
+    return;
   }
-  
-  script.textContent = JSON.stringify(seoConfig.organization);
-};
+
+  const script = (existing as HTMLScriptElement | null) ?? document.createElement('script');
+  script.id = id;
+  script.setAttribute('type', 'application/ld+json');
+  script.textContent = json;
+  if (!existing) document.head.appendChild(script);
+}
 
 export default useSEO;

@@ -11,10 +11,13 @@ import { ArrowRight, ChevronDown, Shield, Clock, Users, Star, Gem } from "lucide
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { supabase, Service } from "@/lib/supabase";
+import { useSEO } from "@/hooks/useSEO";
+import { seoConfig } from "@shared/seo";
 
 const IMAGES = {
   hero: "/images/hero-escalade.webp",
   fleet: "/images/fleet-escalade.webp",
+  events: "/images/events-diverse.webp",
 };
 
 const whyReasons = [
@@ -45,7 +48,17 @@ export default function Home() {
   const [services, setServices] = useState<Service[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => { 
+  useSEO({
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: seoConfig.siteName,
+      url: seoConfig.siteUrl,
+      publisher: { "@id": `${seoConfig.siteUrl}/#organization` },
+    },
+  });
+
+  useEffect(() => {
     window.scrollTo(0, 0);
     loadServices();
   }, []);
@@ -73,9 +86,10 @@ export default function Home() {
 
       {/* ===== HERO ===== */}
       <section className="relative h-screen min-h-[700px] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${IMAGES.hero})` }}
+        <img
+          src={IMAGES.hero}
+          alt="A King & Carter chauffeur opening the door of a black Cadillac Escalade at an Atlanta hotel entrance"
+          className="absolute inset-0 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/60 to-transparent" />
@@ -93,7 +107,7 @@ export default function Home() {
               <span className="font-light text-gold">Delivered with Intention</span>
             </h1>
             <p className="text-base lg:text-lg text-ivory/80 font-light leading-relaxed max-w-lg mb-10">
-              Private transport experiences shaped by hospitality, discretion, and modern elegance.
+              Luxury transportation and professional chauffeur service in Atlanta, Georgia. Private travel shaped by hospitality, discretion, and modern elegance.
             </p>
             <Link href="/reservations">
               <span className="inline-flex items-center gap-3 text-sm tracking-[0.2em] uppercase border border-gold/50 text-gold px-8 py-4 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400 group">
@@ -121,10 +135,10 @@ export default function Home() {
           <FadeUp>
             <p className="section-label mb-4 text-center">Our Services</p>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-ivory text-center mb-4 font-medium">
-              Curated for Every Occasion
+              Luxury Transportation, <span className="font-light text-gold">Intentionally Designed</span>
             </h2>
             <p className="text-ivory/75 text-center font-light max-w-xl mx-auto mb-16 lg:mb-20">
-              From executive travel to special celebrations, each service is designed with the same commitment to excellence.
+              Curated for every occasion, from private travel and corporate and executive journeys to Atlanta airport transfers, special engagements and curated experiences.
             </p>
           </FadeUp>
 

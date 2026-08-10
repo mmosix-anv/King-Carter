@@ -2,9 +2,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle, Home } from "lucide-react";
 import { useLocation } from "wouter";
+import { useSEO } from "@/hooks/useSEO";
 
 export default function NotFound() {
   const [, setLocation] = useLocation();
+
+  useSEO({
+    title: "Page Not Found | King & Carter",
+    description: "The page you are looking for is no longer available.",
+    keywords: "",
+    noindex: true,
+  });
 
   const handleGoHome = () => {
     setLocation("/");

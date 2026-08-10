@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/useSEO";
 
 const ITEMS = [
   "The messaging program consists of general conversational messaging to answer questions and provide support to customers.",
@@ -14,6 +15,7 @@ const ITEMS = [
 ];
 
 export default function Terms() {
+  useSEO();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

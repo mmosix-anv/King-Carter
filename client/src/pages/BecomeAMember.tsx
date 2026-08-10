@@ -8,6 +8,7 @@ import { useRef } from "react";
 import { ArrowRight, Crown, Shield, Gem, Clock, Star, Users } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { useSEO } from "@/hooks/useSEO";
 import { toast } from "sonner";
 
 const HERO_BG = "/images/fleet-escalade.webp";
@@ -74,6 +75,7 @@ export default function BecomeAMember() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
+  useSEO();
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {

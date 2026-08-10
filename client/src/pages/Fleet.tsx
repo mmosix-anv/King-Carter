@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import VehicleSection from "@/components/VehicleSection";
 import { supabase, FleetVehicle } from "@/lib/supabase";
 import { fleetHeroImage } from "@/lib/vehicleData";
+import { useSEO } from "@/hooks/useSEO";
 
 const shortNames: Record<string, string> = {
   suburban: "Suburban",
@@ -25,6 +26,8 @@ export default function Fleet() {
   const { scrollY } = useScroll();
   const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
   const heroScale = useTransform(scrollY, [0, 600], [1, 1.06]);
+
+  useSEO();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -155,6 +158,24 @@ export default function Fleet() {
 
       {/* Vehicle sections */}
       <main className="xl:pt-10">
+        <section className="container pt-20 pb-4 lg:pt-28 lg:pb-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7 }}
+            className="max-w-2xl"
+          >
+            <p className="section-label mb-4">The Collection</p>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-ivory leading-[1.15]">
+              Our Luxury Transportation <span className="font-light text-gold">Fleet</span>
+            </h2>
+            <p className="mt-6 text-ivory/60 font-light leading-relaxed">
+              Executive SUVs, Suburbans and Escalades for daily private and corporate travel, executive Sprinters for groups, and a reserve collection of ultra-luxury vehicles available by request across Atlanta.
+            </p>
+          </motion.div>
+        </section>
+
         {vehicles.map((vehicle, index) => (
           <VehicleSection key={vehicle.id} vehicle={vehicle} index={index} />
         ))}
