@@ -186,6 +186,30 @@ export default function ServicePage() {
         </div>
       </section>
 
+      {/* ===== CONTENT SECTIONS ===== */}
+      {service.sections && service.sections.length > 0 && (
+        <section className="pb-24 lg:pb-32">
+          <div className="container max-w-4xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-14">
+              {service.sections.map((section, i) => (
+                <FadeUp key={section.heading} delay={i * 0.08}>
+                  <div className="border-t border-gold/25 pt-6">
+                    <h2 className="font-serif text-xl lg:text-2xl text-ivory font-medium">
+                      {section.heading}
+                    </h2>
+                    {section.body.map((para, j) => (
+                      <p key={j} className="mt-4 text-[15px] leading-[1.8] text-ivory/55 font-light">
+                        {para}
+                      </p>
+                    ))}
+                  </div>
+                </FadeUp>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ===== HIGHLIGHTS ===== */}
       {service.highlights && service.highlights.length > 0 && (
         <section className="py-24 lg:py-32 bg-[#080808]">

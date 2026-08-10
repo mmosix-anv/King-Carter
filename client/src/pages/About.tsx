@@ -85,7 +85,7 @@ export default function About() {
             <div className="lg:col-span-7">
               <FadeUp delay={0.15}>
                 <p className="text-ivory/60 font-light leading-relaxed text-base lg:text-lg mb-6">
-                  King & Carter Premier is an Atlanta luxury transportation company founded with a clear vision: to bring the standards of the finest hospitality to private ground transportation. Based in Atlanta, we serve discerning clients who expect more than a ride. They expect an experience that reflects their values and lifestyle.
+                  King & Carter is an Atlanta-based luxury transportation company built around a simple belief: how you are cared for along the journey matters as much as where you are going. Through private ground transportation, professional chauffeur service and personalized hospitality, we serve individuals, executives, organizations and guests seeking a more thoughtful way to move throughout Atlanta and beyond.
                 </p>
                 <p className="text-ivory/60 font-light leading-relaxed text-base lg:text-lg mb-6">
                   Our approach is shaped by the principles of luxury hospitality: anticipation, discretion, and attention to detail. Every vehicle is meticulously prepared. Every chauffeur is professionally trained. Every journey is coordinated with the kind of care that turns transportation into a seamless extension of your day.

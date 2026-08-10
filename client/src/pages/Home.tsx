@@ -107,7 +107,7 @@ export default function Home() {
               <span className="font-light text-gold">Delivered with Intention</span>
             </h1>
             <p className="text-base lg:text-lg text-ivory/80 font-light leading-relaxed max-w-lg mb-10">
-              Luxury transportation and professional chauffeur service in Atlanta, Georgia. Private travel shaped by hospitality, discretion, and modern elegance.
+              Luxury transportation and professional chauffeur service in Atlanta, shaped by hospitality, discretion, and modern elegance.
             </p>
             <Link href="/reservations">
               <span className="inline-flex items-center gap-3 text-sm tracking-[0.2em] uppercase border border-gold/50 text-gold px-8 py-4 hover:bg-gold hover:text-[#0A0A0A] transition-all duration-400 group">
@@ -137,8 +137,8 @@ export default function Home() {
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-ivory text-center mb-4 font-medium">
               Luxury Transportation, <span className="font-light text-gold">Intentionally Designed</span>
             </h2>
-            <p className="text-ivory/75 text-center font-light max-w-xl mx-auto mb-16 lg:mb-20">
-              Curated for every occasion, from private travel and corporate and executive journeys to Atlanta airport transfers, special engagements and curated experiences.
+            <p className="text-ivory/75 text-center font-light max-w-2xl mx-auto mb-16 lg:mb-20">
+              King &amp; Carter provides luxury transportation and professional chauffeur service throughout Atlanta, with private transportation, corporate and executive travel, airport transfers, special engagements and curated experiences delivered through an intentional approach to hospitality.
             </p>
           </FadeUp>
 
@@ -166,7 +166,7 @@ export default function Home() {
                         <h3 className="font-serif text-xl lg:text-2xl text-ivory mb-2 font-medium">
                           {service.title}
                         </h3>
-                        <p className="text-sm text-ivory/75 font-light mb-4 max-w-sm">
+                        <p className="text-sm text-ivory/75 font-light mb-4 max-w-sm line-clamp-3">
                           {service.tagline}
                         </p>
                         <span className="inline-flex items-center gap-2 text-xs tracking-[0.2em] uppercase text-gold opacity-0 group-hover:opacity-100 transition-opacity duration-400">

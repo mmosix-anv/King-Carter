@@ -18,6 +18,26 @@ const shortNames: Record<string, string> = {
   cullinan: "Cullinan",
 };
 
+/*
+ * Category copy from the on-page SEO instructions. Shown as a compact row above the
+ * vehicle sections rather than inline: vehicle categories interleave in display order,
+ * so per-vehicle blurbs would orphan the ultra-luxury cars from their heading.
+ */
+const CATEGORIES = [
+  {
+    label: "Executive SUVs",
+    copy: "Spacious, discreet and refined, our executive SUVs are suited for airport transfers, corporate travel, private engagements and chauffeured transportation throughout Atlanta.",
+  },
+  {
+    label: "Executive Sprinters",
+    copy: "Designed for groups requiring additional space without sacrificing presentation or service, Executive Sprinters are ideal for corporate groups, airport transportation, special events and coordinated group travel.",
+  },
+  {
+    label: "Reserve Collection",
+    copy: "For occasions requiring an elevated vehicle experience, select Mercedes-Maybach and Rolls-Royce vehicles may be available by request. Availability is based on the requested date, itinerary and vehicle.",
+  },
+];
+
 export default function Fleet() {
   const [vehicles, setVehicles] = useState<FleetVehicle[]>([]);
   const [activeVehicle, setActiveVehicle] = useState("");
@@ -166,14 +186,30 @@ export default function Fleet() {
             transition={{ duration: 0.7 }}
             className="max-w-2xl"
           >
-            <p className="section-label mb-4">The Collection</p>
+            <p className="section-label mb-4">A Fleet Selected for the Journey</p>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-ivory leading-[1.15]">
               Our Luxury Transportation <span className="font-light text-gold">Fleet</span>
             </h2>
             <p className="mt-6 text-ivory/60 font-light leading-relaxed">
-              Executive SUVs, Suburbans and Escalades for daily private and corporate travel, executive Sprinters for groups, and a reserve collection of ultra-luxury vehicles available by request across Atlanta.
+              King &amp; Carter's luxury transportation fleet supports private travel, executive transportation, airport transfers, group transportation and special engagements throughout Atlanta. Vehicle selection is coordinated around passenger needs, luggage requirements, group size and the nature of each journey.
             </p>
           </motion.div>
+
+          <div className="mt-14 grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-12">
+            {CATEGORIES.map((c, i) => (
+              <motion.div
+                key={c.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+                className="border-t border-gold/25 pt-5"
+              >
+                <h3 className="font-serif text-xl text-ivory">{c.label}</h3>
+                <p className="mt-3 text-sm leading-[1.8] text-ivory/50 font-light">{c.copy}</p>
+              </motion.div>
+            ))}
+          </div>
         </section>
 
         {vehicles.map((vehicle, index) => (

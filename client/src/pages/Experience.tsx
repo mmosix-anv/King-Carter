@@ -218,14 +218,14 @@ export default function Experience() {
               <FadeUp>
                 <p className="section-label mb-4">Curated Moments</p>
                 <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl text-ivory font-medium leading-snug">
-                  More Than <span className="font-light text-gold">Transportation</span>
+                  Experience Atlanta, <span className="font-light text-gold">Intentionally</span>
                 </h2>
                 <hr className="gold-rule w-20 opacity-40 my-7" />
                 <p className="text-base lg:text-lg text-ivory/60 font-light leading-relaxed mb-5">
-                  King & Carter creates private, chauffeured luxury experiences in Atlanta for travelers, executives, couples, families, and small groups who wish to discover the city in a more meaningful way. Every journey is thoughtfully curated and personally attended, so you may simply arrive, unwind, and experience the city as it was meant to be seen.
+                  King & Carter's curated Atlanta experiences go beyond transportation, combining private chauffeured service with thoughtfully selected moments across culture, dining, art, entertainment and the stories that define Atlanta.
                 </p>
                 <p className="text-base text-ivory/45 font-light leading-relaxed">
-                  Each experience is designed in partnership with Atlanta's finest venues, chefs, and cultural institutions. Transportation is just the beginning.
+                  Composed for travelers, executives, couples, families and small groups, each experience is designed to remove the friction of planning while allowing guests to discover Atlanta through a more personal and intentional lens.
                 </p>
               </FadeUp>
 

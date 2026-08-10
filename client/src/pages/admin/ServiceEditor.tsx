@@ -28,6 +28,7 @@ export default function ServiceEditor() {
     hero_image: '',
     description: [''],
     highlights: [''],
+    sections: [],
     cta: {
       text: '',
       buttonLabel: '',
@@ -108,6 +109,34 @@ export default function ServiceEditor() {
     setFormData((prev) => ({
       ...prev,
       [field]: (prev[field] || []).filter((_, i) => i !== index),
+    }));
+  }
+
+  /* Content sections: a heading plus one or more paragraphs, rendered as headed
+     blocks on the service page. Body paragraphs are edited as blank-line-separated
+     text so the whole block stays in one field. */
+  function addSection() {
+    setFormData((prev) => ({
+      ...prev,
+      sections: [...(prev.sections || []), { heading: '', body: [''] }],
+    }));
+  }
+
+  function updateSection(index: number, key: 'heading' | 'body', value: string) {
+    setFormData((prev) => ({
+      ...prev,
+      sections: (prev.sections || []).map((s, i) =>
+        i === index
+          ? { ...s, [key]: key === 'body' ? value.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean) : value }
+          : s
+      ),
+    }));
+  }
+
+  function removeSection(index: number) {
+    setFormData((prev) => ({
+      ...prev,
+      sections: (prev.sections || []).filter((_, i) => i !== index),
     }));
   }
 
@@ -278,6 +307,49 @@ export default function ServiceEditor() {
                 >
                   <X className="h-4 w-4" />
                 </Button>
+              </div>
+            ))}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <div className="flex justify-between items-center">
+              <div>
+                <CardTitle>Content Sections</CardTitle>
+                <CardDescription>
+                  Headed blocks shown below the description, e.g. "Arriving in Atlanta". Separate
+                  paragraphs with a blank line.
+                </CardDescription>
+              </div>
+              <Button type="button" variant="outline" size="sm" onClick={addSection}>
+                <Plus className="h-4 w-4 mr-2" />
+                Add Section
+              </Button>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {(formData.sections || []).length === 0 && (
+              <p className="text-sm text-muted-foreground">No content sections.</p>
+            )}
+            {(formData.sections || []).map((section, index) => (
+              <div key={index} className="space-y-2 rounded-md border p-4">
+                <div className="flex gap-2">
+                  <Input
+                    value={section.heading}
+                    onChange={(e) => updateSection(index, 'heading', e.target.value)}
+                    placeholder="Section heading"
+                  />
+                  <Button type="button" variant="ghost" size="icon" onClick={() => removeSection(index)}>
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+                <Textarea
+                  value={(section.body || []).join('\n\n')}
+                  onChange={(e) => updateSection(index, 'body', e.target.value)}
+                  placeholder="Section text. Leave a blank line between paragraphs."
+                  rows={5}
+                />
               </div>
             ))}
           </CardContent>

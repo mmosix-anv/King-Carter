@@ -28,6 +28,8 @@ export interface Service {
   hero_image: string | null;
   description: string[];
   highlights: string[];
+  /** Headed content blocks rendered below the description, e.g. "Arriving in Atlanta". */
+  sections: { heading: string; body: string[] }[] | null;
   cta: {
     text: string;
     buttonLabel: string;
