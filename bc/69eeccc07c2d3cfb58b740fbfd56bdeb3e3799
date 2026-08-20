@@ -1,0 +1,20 @@
+pnpm-workspace.yaml
+  s_b52904753d8f7d::t_f703871e74c3c2 1-8,10,20-23
+  s_b52904753d8f7d::t_42ca85a908388a 9,11-19,24-26
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.23",
+  "base_commit_sha": "bc69eeccc07c2d3cfb58b740fbfd56bdeb3e3799",
+  "prompts": {},
+  "sessions": {
+    "s_b52904753d8f7d": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f90ed05c-7aea-4ed6-b58e-3ab4115c0995",
+        "model": "claude-opus-5"
+      },
+      "human_author": "Moses Oyewole <moses@anvillive.com>"
+    }
+  }
+}
