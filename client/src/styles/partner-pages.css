@@ -1,0 +1,489 @@
+/* ============================================================================
+   Partner staging pages — /aero-center, /hyatt-atlanta, /hotel-phoenix
+   Ported from the kartonzawolo staging repos.
+
+   Every rule and custom property is scoped under .reference-page on purpose:
+   the prototypes define --gold, --ivory etc. on :root, which would collide with
+   this site's design tokens, and .gold-rule already means something else
+   site-wide (the thin divider on About/Experience).
+
+   Type, sizes and lockup widths match the prototypes exactly. Cormorant Garamond
+   and Manrope are loaded by PartnerStagingPage on mount, so only these three
+   routes pay for them; the site families remain the fallback.
+   ========================================================================= */
+
+.reference-page {
+  --ink: #050505;
+  --gold: #cfad63;
+  --ivory: #f6f1e8;
+  --soft: #d5d0c5;
+  --faint: rgba(246, 241, 232, 0.42);
+  --rule: rgba(207, 173, 99, 0.58);
+
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--ivory);
+  font-family: "Manrope", var(--font-sans);
+}
+
+.reference-page::before {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  opacity: 0.3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.32'/%3E%3C/svg%3E");
+  mix-blend-mode: soft-light;
+}
+
+.reference-page .city-shade {
+  position: absolute;
+  z-index: 0;
+  top: 10rem;
+  left: 0;
+  width: 100%;
+  height: 18rem;
+  opacity: 0.45;
+  background:
+    radial-gradient(ellipse at center bottom, rgba(207, 173, 99, 0.09), transparent 58%),
+    linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.82) 83%),
+    repeating-linear-gradient(90deg, transparent 0 8%, rgba(255, 255, 255, 0.02) 8.5% 9%, transparent 9.5% 16%);
+  mask-image: linear-gradient(to bottom, transparent, #000 32%, #000 66%, transparent);
+  pointer-events: none;
+}
+
+.reference-page .reference-shell,
+.reference-page .reference-footer {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2.2rem, 61rem);
+  margin-inline: auto;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+
+.reference-page .reference-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3.4rem 0 3rem;
+  text-align: center;
+}
+
+.reference-page .hero-brand {
+  display: block;
+  width: min(31rem, 84vw);
+  color: inherit;
+  text-decoration: none;
+}
+
+.reference-page .brand-lockup {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.reference-page .hotel-title {
+  margin-top: clamp(3rem, 8vw, 5.35rem);
+  text-align: center;
+}
+
+.reference-page .hotel-title > p {
+  margin: 0;
+  color: var(--ivory);
+  font-family: "Cormorant Garamond", var(--font-serif);
+  font-size: clamp(2.7rem, 9vw, 6rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.reference-page .hotel-location {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.85rem;
+  color: var(--gold);
+}
+
+.reference-page .hotel-location span {
+  display: block;
+  width: clamp(2.5rem, 8vw, 5rem);
+  height: 1px;
+  background: var(--gold);
+}
+
+.reference-page .hotel-location b {
+  font-size: clamp(0.72rem, 2vw, 0.98rem);
+  font-weight: 600;
+  letter-spacing: 0.52em;
+  text-indent: 0.52em;
+  text-transform: uppercase;
+}
+
+.reference-page .reference-hero h1 {
+  max-width: 42rem;
+  margin: clamp(2.6rem, 6vw, 4rem) 0 0;
+  color: var(--ivory);
+  font-family: "Cormorant Garamond", var(--font-serif);
+  font-size: clamp(1.8rem, 4.2vw, 3.6rem);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.reference-page .reference-book-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-width: min(100%, 24.5rem);
+  margin-top: clamp(2.8rem, 6vw, 4.2rem);
+  padding: 1.3rem 2rem;
+  border: 1px solid rgba(225, 197, 127, 0.9);
+  border-radius: 0.3rem;
+  background: linear-gradient(105deg, #bf9646, #edcf80 53%, #bd943f);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.36),
+    0 0.7rem 2rem rgba(0, 0, 0, 0.36);
+  color: var(--ink);
+  font-size: clamp(0.76rem, 1.8vw, 1.05rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    transform 160ms cubic-bezier(0.23, 1, 0.32, 1),
+    filter 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reference-page .reference-book-button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-3px);
+}
+
+.reference-page .reference-book-button:active {
+  transform: scale(0.97);
+}
+
+.reference-page .booking-note {
+  margin: 0.9rem 0 0;
+  color: var(--faint);
+  font-size: 0.63rem;
+  line-height: 1.5;
+}
+
+/* Overrides the site-wide .gold-rule, which is a different divider. */
+.reference-page .gold-rule {
+  position: relative;
+  width: auto;
+  height: 1px;
+  border: 0;
+  background: var(--rule);
+  opacity: 1;
+}
+
+.reference-page .gold-rule i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 1px solid var(--gold);
+  background: var(--ink);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* ── Services ─────────────────────────────────────────────────────────── */
+
+.reference-page .service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: clamp(2.3rem, 5vw, 4.4rem) 0;
+}
+
+.reference-page .reference-service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 14.3rem;
+  padding: 1.65rem 1.1rem;
+  border-right: 1px solid rgba(246, 241, 232, 0.19);
+  border-bottom: 1px solid rgba(246, 241, 232, 0.19);
+  text-align: center;
+}
+
+.reference-page .reference-service:nth-child(2n) {
+  border-right: 0;
+}
+
+.reference-page .reference-service:nth-child(n + 3) {
+  border-bottom: 0;
+}
+
+.reference-page .service-icon {
+  color: var(--gold);
+}
+
+.reference-page .reference-service h2 {
+  display: grid;
+  gap: 0.12rem;
+  margin: 1rem 0 0;
+  color: var(--ivory);
+  font-family: "Manrope", var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.32;
+  text-transform: uppercase;
+}
+
+.reference-page .reference-service h2 span {
+  display: block;
+}
+
+.reference-page .reference-service p {
+  max-width: 12.2rem;
+  margin: 0.85rem 0 0;
+  color: var(--soft);
+  font-size: 0.71rem;
+  line-height: 1.7;
+}
+
+/* ── QR handoff ───────────────────────────────────────────────────────── */
+
+.reference-page .reference-qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 clamp(4rem, 9vw, 7.2rem);
+}
+
+.reference-page .qr-card-reference {
+  width: min(100%, 17.8rem);
+  padding: 1rem;
+  border: 1px solid rgba(207, 173, 99, 0.7);
+  border-radius: 0.55rem;
+  background: linear-gradient(145deg, rgba(19, 19, 18, 0.82), #070707);
+  box-shadow: 0 1.3rem 4.4rem rgba(0, 0, 0, 0.3);
+}
+
+.reference-page .qr-code-wrap {
+  display: grid;
+  width: 100%;
+  aspect-ratio: 1;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 0.18rem;
+  background: #fff;
+}
+
+.reference-page .qr-code-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.reference-page .qr-code-wrap span {
+  color: var(--ink);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.8;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.reference-page .qr-card-reference > p {
+  margin: 1rem 0 0;
+  color: var(--gold);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.reference-page .qr-supporting-copy {
+  max-width: 22rem;
+  margin: 1.15rem 0 0;
+  color: var(--faint);
+  font-size: 0.62rem;
+  line-height: 1.65;
+  text-align: center;
+}
+
+/* ── Footer ───────────────────────────────────────────────────────────── */
+
+.reference-page .reference-footer {
+  padding-bottom: 2.4rem;
+  border-top: 1px solid var(--rule);
+}
+
+.reference-page .footer-inner {
+  display: grid;
+  gap: 1.55rem;
+  padding: 2rem 0 1.3rem;
+}
+
+.reference-page .footer-lockup {
+  width: min(23rem, 72vw);
+}
+
+.reference-page .footer-contact {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.reference-page .footer-contact a,
+.reference-page .footer-web {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: var(--ivory);
+  font-size: 0.77rem;
+  text-decoration: none;
+  transition: color 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reference-page .footer-contact a:hover,
+.reference-page .footer-web:hover {
+  color: var(--gold);
+}
+
+.reference-page .footer-contact svg,
+.reference-page .footer-web svg {
+  color: var(--gold);
+}
+
+.reference-page .reference-disclosure {
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(246, 241, 232, 0.12);
+  color: var(--faint);
+  font-size: 0.57rem;
+  line-height: 1.65;
+}
+
+.reference-page .hero-brand:focus-visible,
+.reference-page .reference-book-button:focus-visible,
+.reference-page .footer-contact a:focus-visible,
+.reference-page .footer-web:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+/* ── Wide ─────────────────────────────────────────────────────────────── */
+
+@media (min-width: 43rem) {
+  .reference-page .reference-shell,
+  .reference-page .reference-footer {
+    width: min(100% - 5rem, 61rem);
+  }
+
+  .reference-page .reference-hero {
+    padding-top: 4.8rem;
+  }
+
+  .reference-page .service-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .reference-page .reference-service {
+    min-height: 18rem;
+    padding: 2rem 1.25rem;
+    border-right: 1px solid rgba(246, 241, 232, 0.2);
+    border-bottom: 0;
+  }
+
+  .reference-page .reference-service:nth-child(2n) {
+    border-right: 1px solid rgba(246, 241, 232, 0.2);
+  }
+
+  .reference-page .reference-service:last-child {
+    border-right: 0;
+  }
+
+  .reference-page .reference-service h2 {
+    font-size: 0.82rem;
+  }
+
+  .reference-page .reference-service p {
+    font-size: 0.77rem;
+  }
+
+  .reference-page .qr-card-reference {
+    width: 20rem;
+    padding: 1.2rem;
+  }
+
+  .reference-page .footer-inner {
+    grid-template-columns: 1.08fr 1.15fr auto;
+    align-items: center;
+    gap: 2.2rem;
+  }
+
+  .reference-page .footer-web {
+    justify-self: end;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reference-page .reference-hero > *,
+  .reference-page .section-rule,
+  .reference-page .service-grid,
+  .reference-page .reference-qr-section,
+  .reference-page .reference-footer {
+    animation: reference-arrival 680ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
+  .reference-page .reference-hero > *:nth-child(2) { animation-delay: 60ms; }
+  .reference-page .reference-hero > *:nth-child(3) { animation-delay: 120ms; }
+  .reference-page .reference-hero > *:nth-child(4) { animation-delay: 180ms; }
+  .reference-page .reference-hero > *:nth-child(5) { animation-delay: 220ms; }
+}
+
+@keyframes reference-arrival {
+  from { opacity: 0; transform: translateY(11px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Concierge cards are meant to be printed. */
+@media print {
+  @page {
+    size: auto;
+    margin: 0.35in;
+  }
+
+  .reference-page {
+    background: #000;
+  }
+
+  .reference-page::before,
+  .reference-page .city-shade {
+    display: none;
+  }
+
+  .reference-page .booking-note,
+  .reference-page .qr-supporting-copy,
+  .reference-page .reference-disclosure {
+    display: none;
+  }
+
+  .reference-page .reference-shell,
+  .reference-page .reference-footer {
+    width: 100%;
+  }
+
+  .reference-page .reference-footer {
+    padding-bottom: 0;
+  }
+}

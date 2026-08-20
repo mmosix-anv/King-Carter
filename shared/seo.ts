@@ -238,6 +238,32 @@ export const pageSEO: Record<string, PageSEO> = {
     keywords: '',
     noindex: true,
   },
+
+
+  /* Partner staging pages: shared with a venue for review, so noindex and kept
+     out of the sitemap. They must stay listed here regardless - isKnownRoute
+     drives the HTTP status, so a missing entry would serve them as a 404. */
+  "/aero-center": {
+    title: "Aero Center × King & Carter | Executive Transportation",
+    description:
+      "Private chauffeur and executive transportation for guests of Aero Center in Atlanta, provided by King & Carter.",
+    keywords: "",
+    noindex: true,
+  },
+  "/hyatt-atlanta": {
+    title: "Hyatt Regency Atlanta × King & Carter | Executive Transportation",
+    description:
+      "Private chauffeur and executive transportation for guests of Hyatt Regency Atlanta, provided by King & Carter.",
+    keywords: "",
+    noindex: true,
+  },
+  "/hotel-phoenix": {
+    title: "Hotel Phoenix × King & Carter | Executive Transportation",
+    description:
+      "Private chauffeur and executive transportation for guests of Hotel Phoenix in Atlanta, provided by King & Carter.",
+    keywords: "",
+    noindex: true,
+  },
 };
 
 /* ── Service pages, keyed by Supabase slug ──────────────────────────────── */

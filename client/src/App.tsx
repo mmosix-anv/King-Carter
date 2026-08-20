@@ -19,6 +19,11 @@ import Terms from "./pages/Terms";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Fleet from "./pages/Fleet";
 
+// Partner staging pages (standalone, not in the site nav)
+import AeroCenter from "./pages/partners/AeroCenter";
+import HyattAtlanta from "./pages/partners/HyattAtlanta";
+import HotelPhoenix from "./pages/partners/HotelPhoenix";
+
 // Admin pages
 import Login from "./pages/admin/Login";
 import Dashboard from "./pages/admin/Dashboard";
@@ -47,6 +52,11 @@ function Router() {
       <Route path="/privacy" component={PrivacyPolicy} />
       <Route path="/fleet" component={Fleet} />
       <Route path="/services/:slug" component={ServicePage} />
+
+      {/* Partner staging pages */}
+      <Route path="/aero-center" component={AeroCenter} />
+      <Route path="/hyatt-atlanta" component={HyattAtlanta} />
+      <Route path="/hotel-phoenix" component={HotelPhoenix} />
       
       {/* Admin routes */}
       <Route path="/admin/login" component={Login} />
