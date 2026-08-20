@@ -1,0 +1,26 @@
+# pnpm settings.
+#
+# pnpm 10 no longer reads the "pnpm" field in package.json (it warns: 'The "pnpm"
+# field in package.json is no longer read by pnpm'), and it blocks dependency
+# build scripts by default. Together those meant esbuild's postinstall never ran,
+# so its native binary was installed without the execute bit and every build died
+# with "spawn .../@esbuild/linux-x64/bin/esbuild EACCES".
+#
+# esbuild is needed by `vite build` (it compiles vite.config.ts) and by the
+# build:server script. @tailwindcss/oxide is Tailwind v4's native engine.
+#
+# The settings below mirror what package.json still declares under "pnpm", so
+# behaviour is unchanged apart from the build scripts now being allowed. The
+# override matches the one already recorded in pnpm-lock.yaml, so adding this
+# file does not trigger re-resolution.
+
+packages:
+  - .
+
+onlyBuiltDependencies:
+  - esbuild
+  - "@tailwindcss/oxide"
+  - supabase
+
+overrides:
+  tailwindcss>nanoid: 3.3.7
