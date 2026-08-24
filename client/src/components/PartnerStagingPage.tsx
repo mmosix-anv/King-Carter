@@ -29,9 +29,8 @@ const CONTACT_EMAIL = "reservations@kingandcarter.com";
 
 /* The site lockup, already used by the header and footer. The prototypes pointed
    at a Manus-hosted copy of the same mark, which is not publicly reachable. */
-const LOGO_URL =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/king-carter-logo-bright_175fd0e0.png";
-
+const LOGO_URL = "/images/logo.png";
+  
 const services = [
   {
     title: "Airport\nTransfer",

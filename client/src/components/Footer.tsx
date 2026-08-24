@@ -44,7 +44,7 @@ export default function Footer() {
           <div>
             <Link href="/">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/king-carter-logo-bright_175fd0e0.png"
+                src="/images/logo.png"
                 alt="King & Carter"
                 className="h-12 w-auto"
               />

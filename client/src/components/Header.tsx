@@ -10,7 +10,7 @@ import { Menu, X, ChevronDown, LogIn } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { supabase, Service } from "@/lib/supabase";
 
-const LOGO_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663383946852/XmPp3EMAhtE96ppfU4CNgK/king-carter-logo-bright_175fd0e0.png";
+const LOGO_URL = "/images/logo.png";
 
 const navLinks = [
   { label: "About Us", href: "/about" },

@@ -247,22 +247,23 @@ export const pageSEO: Record<string, PageSEO> = {
     title: "Aero Center × King & Carter | Executive Transportation",
     description:
       "Private chauffeur and executive transportation for guests of Aero Center in Atlanta, provided by King & Carter.",
-    keywords: "",
+    keywords: "Aero Center Atlanta car service, private aviation transportation Atlanta, FBO car service ATL, executive car service for private jets Atlanta, King & Carter Aero Center",
     noindex: true,
   },
   "/hyatt-atlanta": {
     title: "Hyatt Regency Atlanta × King & Carter | Executive Transportation",
     description:
       "Private chauffeur and executive transportation for guests of Hyatt Regency Atlanta, provided by King & Carter.",
-    keywords: "",
+    keywords: "Hyatt Regency Atlanta car service, Atlanta hotel transportation, luxury car service Hyatt Atlanta, chauffeur service for hotel guests Atlanta, King & Carter Hyatt Atlanta",
     noindex: true,
   },
   "/hotel-phoenix": {
     title: "Hotel Phoenix × King & Carter | Executive Transportation",
     description:
       "Private chauffeur and executive transportation for guests of Hotel Phoenix in Atlanta, provided by King & Carter.",
-    keywords: "",
+    keywords: "Hotel Phoenix Atlanta car service, Atlanta hotel transportation, luxury car service Hotel Phoenix, chauffeur service for hotel guests Atlanta, King & Carter Hotel Phoenix",
     noindex: true,
+    image: "/images/hotelphoenix.jpg",
   },
 };
 
