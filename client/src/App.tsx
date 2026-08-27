@@ -23,6 +23,7 @@ import Fleet from "./pages/Fleet";
 import AeroCenter from "./pages/partners/AeroCenter";
 import HyattAtlanta from "./pages/partners/HyattAtlanta";
 import HotelPhoenix from "./pages/partners/HotelPhoenix";
+import TheWhitley from "./pages/partners/TheWhitley";
 
 // Admin pages
 import Login from "./pages/admin/Login";
