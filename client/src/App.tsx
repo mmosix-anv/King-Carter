@@ -57,6 +57,7 @@ function Router() {
       <Route path="/aero-center" component={AeroCenter} />
       <Route path="/hyatt-atlanta" component={HyattAtlanta} />
       <Route path="/hotel-phoenix" component={HotelPhoenix} />
+      <Route path="/the-whitley" component={TheWhitley} />
       
       {/* Admin routes */}
       <Route path="/admin/login" component={Login} />

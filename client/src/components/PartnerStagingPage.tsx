@@ -108,19 +108,6 @@ export default function PartnerStagingPage({
     document.head.appendChild(link);
   }, []);
 
-  /* Encodes the venue booking link, not this page, so a scan from a printed card
-     goes straight to the agent-attributed booking flow. */
-  useEffect(() => {
-    QRCode.toDataURL(bookingUrl, {
-      width: 760,
-      margin: 1,
-      errorCorrectionLevel: "M",
-      color: { dark: "#080808", light: "#ffffff" },
-    })
-      .then(setQrImage)
-      .catch(() => setQrImage(""));
-  }, [bookingUrl]);
-
   return (
     <div className="reference-page">
       <div className="city-shade" aria-hidden="true" />

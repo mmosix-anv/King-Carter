@@ -265,6 +265,13 @@ export const pageSEO: Record<string, PageSEO> = {
     noindex: true,
     image: "/images/hotelphoenix.jpg",
   },
+  "/the-whitley": {
+    title: "The Whitley × King & Carter | Executive Transportation",
+    description:
+      "Private chauffeur and executive transportation for guests of The Whitley in Atlanta, provided by King & Carter.",
+    keywords: "The Whitley Atlanta car service, Atlanta hotel transportation, luxury car service The Whitley, chauffeur service for hotel guests Atlanta, King & Carter The Whitley",
+    noindex: true,
+  },
 };
 
 /* ── Service pages, keyed by Supabase slug ──────────────────────────────── */
