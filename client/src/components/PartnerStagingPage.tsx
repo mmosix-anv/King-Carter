@@ -92,6 +92,16 @@ export default function PartnerStagingPage({
   });
 
   useEffect(() => {
+    QRCode.toDataURL(bookingUrl)
+      .then((url) => {
+        setQrImage(url);
+      })
+      .catch((err) => {
+        console.error("Failed to generate QR code:", err);
+      });
+  }, [bookingUrl]);
+
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
