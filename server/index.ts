@@ -200,16 +200,18 @@ function sendError(res: express.Response, label: string) {
 // a 200, which fragments indexing across four URLs for one page.
 const CANONICAL_HOST = "kingandcarter.com";
 
+// Host-only redirect — deliberately does NOT also enforce HTTPS here. Doing that
+// requires trusting req.secure / X-Forwarded-Proto, which depends on exactly how
+// the fronting reverse proxy is configured; guessing wrong turns this into a
+// redirect loop (every request looks "not https" even when it already is, so the
+// app redirects a request to the same URL forever — this took the site down in
+// production). www/non-www only depends on the Host header, which is reliable
+// regardless of proxy setup, so it can't loop. HTTP->HTTPS enforcement belongs at
+// the reverse proxy/TLS-terminating layer, not guessed at here.
 function canonicalRedirect(req: express.Request, res: express.Response, next: express.NextFunction) {
   const host = (req.headers.host || "").toLowerCase();
-  const bareHost = host.replace(/^www\./, "");
-  const isHttps = req.secure || req.headers["x-forwarded-proto"] === "https";
 
-  // Only touch the production domain (and its www variant) — preview/manus hosts
-  // and local dev pass through untouched.
-  if (bareHost !== CANONICAL_HOST) return next();
-
-  if (!isHttps || host !== CANONICAL_HOST) {
+  if (host === `www.${CANONICAL_HOST}`) {
     return res.redirect(301, `https://${CANONICAL_HOST}${req.originalUrl}`);
   }
 
