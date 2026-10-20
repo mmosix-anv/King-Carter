@@ -43,7 +43,11 @@ export default function Reservations() {
   const trustSection = useInView(0.15);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (window.location.hash === "#book") {
+      document.getElementById("book")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.scrollTo(0, 0);
+    }
 
     const existing = document.querySelector('script[src="https://book.mylimobiz.com/v4/widgets/widget-loader.js"]');
     if (existing) existing.remove();

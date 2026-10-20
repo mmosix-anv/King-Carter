@@ -155,7 +155,7 @@ export default function Header() {
 
             <span className="text-ivory/50 font-light select-none">|</span>
 
-            <Link href="/login">
+            <Link href="/reservations#book">
               <span className="inline-flex items-center gap-1.5 text-xs tracking-[0.2em] uppercase text-ivory/75 hover:text-white transition-colors duration-300 font-sans font-normal">
                 <LogIn size={12} strokeWidth={1.5} />
                 Login
@@ -244,7 +244,7 @@ export default function Header() {
                 </span>
               </Link>
 
-              <Link href="/login">
+              <Link href="/reservations#book">
                 <span className="text-sm tracking-[0.2em] uppercase text-ivory/65 hover:text-ivory/90 transition-colors font-sans inline-flex items-center gap-2">
                   <LogIn size={13} strokeWidth={1.5} />
                   Login

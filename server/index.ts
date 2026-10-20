@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 import axios from "axios";
 import NodeCache from "node-cache";
-import { seoConfig, resolvePageSEO, isKnownRoute, normalizePath } from "../shared/seo";
+import { seoConfig, resolvePageSEO, isKnownRoute, normalizePath, indexableRoutes } from "../shared/seo";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -133,6 +133,17 @@ function upsertTag(html: string, pattern: RegExp, tag: string): string {
   return pattern.test(html) ? html.replace(pattern, tag) : html.replace("</head>", `    ${tag}\n  </head>`);
 }
 
+/**
+ * Upserts a JSON-LD block by script id. Uses the same id the client's useSEO hook
+ * writes to (setJsonLd), so hydration overwrites this script in place instead of
+ * duplicating it.
+ */
+function upsertJsonLd(html: string, id: string, data: unknown): string {
+  const tag = `<script type="application/ld+json" id="${id}">${JSON.stringify(data)}</script>`;
+  const pattern = new RegExp(`<script[^>]*\\sid=["']${id}["'][^>]*>[\\s\\S]*?<\\/script>`, "i");
+  return upsertTag(html, pattern, tag);
+}
+
 function injectSeo(html: string, pathname: string): string {
   const page = resolvePageSEO(pathname);
   const path = normalizePath(pathname);
@@ -169,6 +180,10 @@ function injectSeo(html: string, pathname: string): string {
     out = upsertTag(out, /<meta\s+name="keywords"[^>]*>/i, `<meta name="keywords" content="${escapeHtml(page.keywords)}" />`);
   }
 
+  // Mirrors useSEO's unconditional setJsonLd('seo-organization', ...) so crawlers
+  // that don't execute JavaScript still see the LocalBusiness graph.
+  out = upsertJsonLd(out, "seo-organization", seoConfig.organization);
+
   return out;
 }
 
@@ -179,10 +194,44 @@ function sendError(res: express.Response, label: string) {
   </body></html>`);
 }
 
+// ─── Canonicalization + security headers ──────────────────────────────────────
+// SEO audits flag duplicate, unencrypted URL variants and missing security headers.
+// kingandcarter.com was reachable over http://, https://www., and https:// all with
+// a 200, which fragments indexing across four URLs for one page.
+const CANONICAL_HOST = "kingandcarter.com";
+
+function canonicalRedirect(req: express.Request, res: express.Response, next: express.NextFunction) {
+  const host = (req.headers.host || "").toLowerCase();
+  const bareHost = host.replace(/^www\./, "");
+  const isHttps = req.secure || req.headers["x-forwarded-proto"] === "https";
+
+  // Only touch the production domain (and its www variant) — preview/manus hosts
+  // and local dev pass through untouched.
+  if (bareHost !== CANONICAL_HOST) return next();
+
+  if (!isHttps || host !== CANONICAL_HOST) {
+    return res.redirect(301, `https://${CANONICAL_HOST}${req.originalUrl}`);
+  }
+
+  next();
+}
+
+function securityHeaders(_req: express.Request, res: express.Response, next: express.NextFunction) {
+  res.setHeader("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "SAMEORIGIN");
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  next();
+}
+
 // ─── Main server ──────────────────────────────────────────────────────────────
 async function startServer() {
   const app = express();
+  app.disable("x-powered-by");
   const server = createServer(app);
+
+  app.use(canonicalRedirect);
+  app.use(securityHeaders);
 
   // ── Booking proxy routes (before static) ──────────────────────────────────
   app.get("/booking", async (req, res) => {
@@ -226,6 +275,32 @@ async function startServer() {
   // injected. Without it express.static answers "/" with the raw shell.
   app.use(express.static(staticPath, { index: false }));
 
+  // ── Prerendered snapshots ──────────────────────────────────────────────────
+  // This is a client-rendered SPA: without these, a non-JS crawler sees an empty
+  // <body> (0 words, no H1, no links — confirmed by a Seobility audit). Each file
+  // here is a real, fully-hydrated page captured by scripts/prerender.ts, so it
+  // already carries correct content, headings, links and head metadata (the
+  // client's useSEO hook set that during capture, same as any real visitor). We
+  // serve it verbatim to everyone for the routes that have one, and fall back to
+  // the shell + injectSeo for every other path (admin, partner pages, 404, and any
+  // route that doesn't have a snapshot yet).
+  const prerenderedDir =
+    process.env.NODE_ENV === "production"
+      ? path.resolve(__dirname, "prerendered")
+      : path.resolve(__dirname, "..", "dist", "prerendered");
+
+  const prerendered = new Map<string, string>();
+  for (const route of indexableRoutes()) {
+    const file = path.join(prerenderedDir, route === "/" ? "" : route, "index.html");
+    try {
+      prerendered.set(route, fs.readFileSync(file, "utf8"));
+    } catch {
+      // No snapshot yet (first boot before `npm run build:server` has prerendered,
+      // or a route added after the last build) — that route just uses the shell.
+    }
+  }
+  console.log(`[seo] ${prerendered.size}/${indexableRoutes().length} routes serving prerendered snapshots`);
+
   const indexPath = path.join(staticPath, "index.html");
   let shell: string | null = null;
   try {
@@ -236,6 +311,11 @@ async function startServer() {
   }
 
   app.get("*", (req, res) => {
+    const snapshot = prerendered.get(normalizePath(req.path));
+    if (snapshot) {
+      return res.status(200).set("Content-Type", "text/html; charset=utf-8").send(snapshot);
+    }
+
     if (!shell) return res.sendFile(indexPath);
 
     // Unmatched URLs must answer 404, not a soft 404 with a 200 status. The client

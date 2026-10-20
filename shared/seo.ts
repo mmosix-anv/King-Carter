@@ -411,3 +411,17 @@ export function isKnownRoute(pathname: string): boolean {
 
   return false;
 }
+
+/**
+ * Every public, indexable route — the same set that belongs in sitemap.xml.
+ * Single source of truth for the build-time prerender script (scripts/prerender.ts)
+ * and the server's prerendered-snapshot lookup, so both stay in step with pageSEO
+ * and servicePageSEO automatically instead of duplicating a route list.
+ */
+export function indexableRoutes(): string[] {
+  const pages = Object.entries(pageSEO)
+    .filter(([, seo]) => !seo.noindex)
+    .map(([path]) => path);
+  const services = Object.keys(servicePageSEO).map((slug) => `/services/${slug}`);
+  return [...pages, ...services];
+}
