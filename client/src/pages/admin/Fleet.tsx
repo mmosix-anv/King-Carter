@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase, FleetVehicle } from '@/lib/supabase';
+import { triggerPrerenderRebuild } from '@/lib/adminRebuild';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +36,7 @@ export default function Fleet() {
       const { error } = await supabase.from('fleet_vehicles').delete().eq('id', id);
       if (error) throw error;
       toast.success('Vehicle deleted');
+      triggerPrerenderRebuild();
       loadVehicles();
     } catch {
       toast.error('Failed to delete vehicle');

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRoute, useLocation } from 'wouter';
 import { supabase, FleetVehicle } from '@/lib/supabase';
 import { useAdmin } from '@/contexts/AdminContext';
+import { triggerPrerenderRebuild } from '@/lib/adminRebuild';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -73,6 +74,7 @@ export default function FleetEditor() {
 
       if (error) throw error;
       toast.success(isNew ? 'Vehicle created' : 'Vehicle updated');
+      triggerPrerenderRebuild();
       setLocation('/admin/fleet');
     } catch (error: any) {
       toast.error(error.message || 'Failed to save vehicle');

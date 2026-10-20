@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRoute, useLocation } from 'wouter';
 import { supabase, Service } from '@/lib/supabase';
 import { useAdmin } from '@/contexts/AdminContext';
+import { triggerPrerenderRebuild } from '@/lib/adminRebuild';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -79,6 +80,7 @@ export default function ServiceEditor() {
       if (error) throw error;
 
       toast.success(isNew ? 'Service created' : 'Service updated');
+      triggerPrerenderRebuild();
       setLocation('/admin/services');
     } catch (error: any) {
       toast.error(error.message || 'Failed to save service');

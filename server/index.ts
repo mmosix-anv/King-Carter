@@ -5,7 +5,9 @@ import { fileURLToPath } from "url";
 import fs from "fs";
 import axios from "axios";
 import NodeCache from "node-cache";
+import { createClient } from "@supabase/supabase-js";
 import { seoConfig, resolvePageSEO, isKnownRoute, normalizePath, indexableRoutes } from "../shared/seo";
+import { capturePrerenderedRoutes, outPathFor } from "../scripts/prerender-core";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -235,6 +237,13 @@ async function startServer() {
   app.use(canonicalRedirect);
   app.use(securityHeaders);
 
+  // Declared early: both the admin rebuild endpoint below and the prerendered-
+  // snapshot serving further down need this path.
+  const prerenderedDir =
+    process.env.NODE_ENV === "production"
+      ? path.resolve(__dirname, "prerendered")
+      : path.resolve(__dirname, "..", "dist", "prerendered");
+
   // ── Booking proxy routes (before static) ──────────────────────────────────
   app.get("/booking", async (req, res) => {
     try {
@@ -267,6 +276,82 @@ async function startServer() {
     res.json({ ok: true });
   });
 
+  // ── Admin-triggered prerender rebuild ──────────────────────────────────────
+  // The prerendered snapshots below are only as fresh as the last build. Services
+  // and Fleet are edited through /admin against Supabase directly — real visitors
+  // always see that live data (the client remounts and refetches on every load,
+  // see client/src/main.tsx), but a non-JS crawler reading the snapshot would see
+  // stale content until the next deploy. This lets the admin UI ask for a fresh
+  // capture right after a save/delete instead of waiting on that.
+  //
+  // Authorization is the caller's real Supabase session, not a secret baked into
+  // the client bundle — a bundled secret is extractable from the shipped JS and
+  // this endpoint launches a headless browser, so a leaked secret would be a real
+  // abuse/DoS vector. Reuses the same two-step check (valid Supabase user -> active
+  // row in admin_users) that client/src/contexts/AdminContext.tsx already gates the
+  // admin UI with.
+  const supabaseAuthClient =
+    process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY
+      ? createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY)
+      : null;
+
+  async function isAuthenticatedAdmin(req: express.Request): Promise<boolean> {
+    if (!supabaseAuthClient) return false;
+    const authHeader = req.headers.authorization || "";
+    const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
+    if (!token) return false;
+
+    const { data: userData, error: userErr } = await supabaseAuthClient.auth.getUser(token);
+    if (userErr || !userData.user?.email) return false;
+
+    const { data: adminRow, error: adminErr } = await supabaseAuthClient
+      .from("admin_users")
+      .select("id")
+      .eq("email", userData.user.email)
+      .eq("is_active", true)
+      .single();
+
+    return !adminErr && !!adminRow;
+  }
+
+  let rebuildInFlight = false;
+
+  app.post("/admin/rebuild-prerender", express.json(), async (req, res) => {
+    let authorized = false;
+    try {
+      authorized = await isAuthenticatedAdmin(req);
+    } catch (err: any) {
+      console.error("[prerender] auth check failed:", err.message);
+    }
+    if (!authorized) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    if (rebuildInFlight) {
+      return res.status(202).json({ ok: true, status: "already-running" });
+    }
+
+    rebuildInFlight = true;
+    res.status(202).json({ ok: true, status: "started" });
+
+    const port = process.env.PORT || 3000;
+    try {
+      const result = await capturePrerenderedRoutes({
+        baseUrl: `http://127.0.0.1:${port}`,
+        outDir: prerenderedDir,
+        routes: indexableRoutes(),
+        log: (msg) => console.log(msg),
+      });
+      console.log(`[prerender] admin-triggered rebuild done — ${result.ok.length} ok, ${result.failed.length} failed`);
+    } catch (err: any) {
+      // Never let a failed rebuild affect the live server — worst case, snapshots
+      // just stay as they were (same fail-soft behavior as the build-time version).
+      console.error("[prerender] admin-triggered rebuild failed:", err.message);
+    } finally {
+      rebuildInFlight = false;
+    }
+  });
+
   // ── Static + SPA fallback ──────────────────────────────────────────────────
   const staticPath =
     process.env.NODE_ENV === "production"
@@ -280,28 +365,26 @@ async function startServer() {
   // ── Prerendered snapshots ──────────────────────────────────────────────────
   // This is a client-rendered SPA: without these, a non-JS crawler sees an empty
   // <body> (0 words, no H1, no links — confirmed by a Seobility audit). Each file
-  // here is a real, fully-hydrated page captured by scripts/prerender.ts, so it
+  // here is a real, fully-hydrated page captured by scripts/prerender.ts (or the
+  // /admin/rebuild-prerender route above, after a Services/Fleet edit), so it
   // already carries correct content, headings, links and head metadata (the
   // client's useSEO hook set that during capture, same as any real visitor). We
   // serve it verbatim to everyone for the routes that have one, and fall back to
   // the shell + injectSeo for every other path (admin, partner pages, 404, and any
   // route that doesn't have a snapshot yet).
-  const prerenderedDir =
-    process.env.NODE_ENV === "production"
-      ? path.resolve(__dirname, "prerendered")
-      : path.resolve(__dirname, "..", "dist", "prerendered");
-
-  const prerendered = new Map<string, string>();
+  //
+  // Content is read fresh from disk on every request rather than cached at startup
+  // — a rebuild triggered while the server is already running (admin-triggered or
+  // otherwise) must take effect on the next request, not require a process restart.
+  // Only the route -> file path mapping is fixed at startup; that mapping itself
+  // is safe to compute from indexableRoutes() (a fixed, known list), never from
+  // request input, so there's no path-traversal exposure in resolving it per request.
+  const prerenderedPaths = new Map<string, string>();
   for (const route of indexableRoutes()) {
-    const file = path.join(prerenderedDir, route === "/" ? "" : route, "index.html");
-    try {
-      prerendered.set(route, fs.readFileSync(file, "utf8"));
-    } catch {
-      // No snapshot yet (first boot before `npm run build:server` has prerendered,
-      // or a route added after the last build) — that route just uses the shell.
-    }
+    prerenderedPaths.set(route, outPathFor(prerenderedDir, route));
   }
-  console.log(`[seo] ${prerendered.size}/${indexableRoutes().length} routes serving prerendered snapshots`);
+  const snapshotCount = Array.from(prerenderedPaths.values()).filter((f) => fs.existsSync(f)).length;
+  console.log(`[seo] ${snapshotCount}/${indexableRoutes().length} routes currently have a prerendered snapshot on disk`);
 
   const indexPath = path.join(staticPath, "index.html");
   let shell: string | null = null;
@@ -313,9 +396,15 @@ async function startServer() {
   }
 
   app.get("*", (req, res) => {
-    const snapshot = prerendered.get(normalizePath(req.path));
-    if (snapshot) {
-      return res.status(200).set("Content-Type", "text/html; charset=utf-8").send(snapshot);
+    const snapshotPath = prerenderedPaths.get(normalizePath(req.path));
+    if (snapshotPath) {
+      try {
+        const snapshot = fs.readFileSync(snapshotPath, "utf8");
+        return res.status(200).set("Content-Type", "text/html; charset=utf-8").send(snapshot);
+      } catch {
+        // Not written yet (first boot, or a rebuild is mid-flight) — fall through
+        // to the shell below rather than error.
+      }
     }
 
     if (!shell) return res.sendFile(indexPath);

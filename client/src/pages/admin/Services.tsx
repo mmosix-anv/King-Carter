@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { supabase, Service } from '@/lib/supabase';
+import { triggerPrerenderRebuild } from '@/lib/adminRebuild';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -43,6 +44,7 @@ export default function Services() {
 
       if (error) throw error;
       toast.success('Service deleted');
+      triggerPrerenderRebuild();
       loadServices();
     } catch (error: any) {
       toast.error('Failed to delete service');
